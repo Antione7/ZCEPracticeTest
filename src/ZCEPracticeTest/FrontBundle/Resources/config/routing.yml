@@ -1,0 +1,4 @@
+front-get-questions:
+    path:     /GET/questions
+    defaults: { _controller: ZCEPracticeTestFrontBundle:Get:question }
+

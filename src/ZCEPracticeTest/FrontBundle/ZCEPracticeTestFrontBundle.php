@@ -1,6 +1,6 @@
 <?php
 
-namespace ZCEPracticeTest\Bundle\FrontBundle;
+namespace ZCEPracticeTest\FrontBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace ZCEPracticeTest\Bundle\FrontBundle\DependencyInjection;
+namespace ZCEPracticeTest\FrontBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
