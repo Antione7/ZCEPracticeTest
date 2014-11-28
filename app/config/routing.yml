@@ -1,0 +1,4 @@
+zce_practice_test_front:
+    resource: "@ZCEPracticeTestFrontBundle/Resources/config/routing.yml"
+    prefix:   /
+

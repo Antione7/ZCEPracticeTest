@@ -1,0 +1,4 @@
+services:
+#    zce_practice_test_front.example:
+#        class: ZCEPracticeTest\Bundle\FrontBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]
