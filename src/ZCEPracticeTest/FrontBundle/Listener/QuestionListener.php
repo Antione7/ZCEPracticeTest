@@ -13,7 +13,10 @@
  *
  */
 namespace ZCEPracticeTest\FrontBundle\Listener;
+
 use ZCEPracticeTest\FrontBundle\Event\QuestionEvent;
+use Doctrine\ORM\EntityManager;
+use ZCEPracticeTest\FrontBundle\Service\QuestionParser;
 
 /**
  * Question Listener.
@@ -27,6 +30,16 @@ use ZCEPracticeTest\FrontBundle\Event\QuestionEvent;
  */
 class QuestionListener
 {
+    protected $entityManager;
+
+    protected $questionParser;
+
+    public function __construct(EntityManager $entityManager, QuestionParser $questionParser)
+    {
+        $this->entityManager = $entityManager;
+        $this->questionParser = $questionParser;
+    }
+
     /**
      * Initialize questions
      * Get 70 questions randomly, parse them to json and set into event
@@ -35,13 +48,13 @@ class QuestionListener
      */
     public function onQuestionsInit (QuestionEvent $event)
     {
-        $questions = array();
+        // get questions
+        $questions =
+            $this->entityManager->getRepository('ZCEPracticeTestFrontBundle:Question')
+                 ->findBy(array(), array(), $event->getLimit());
 
-        // get questions (@todo Entity call)
-
-        // parse to json (@todo Service)
-
-
+        // parse to json
+        $questions = $this->questionParser->parseToJson($questions);
         $event->setQuestions($questions);
     }
 }

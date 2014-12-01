@@ -71,7 +71,6 @@ class Question
      * Array of answers
      * @var array
      * @ORM\OneToMany(targetEntity="Answer", mappedBy="question", cascade={"persist"})
-     * @ORM\JoinColumn(name="question_id", referencedColumnName="id")
      */
     private $answers;
 
@@ -91,7 +90,7 @@ class Question
     }
 
     /**
-     * @return array
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getAnswers ()
     {
@@ -104,7 +103,7 @@ class Question
      */
     public function addAnswer ($answer)
     {
-        $this->answers[] = $answer;
+        $this->answers->add($answer);
     }
 
     /**
@@ -171,5 +170,27 @@ class Question
         return $this->category;
     }
 
+    /**
+     * Return to json format the question entity
+     * @return array
+     */
+    public function jsonSerialize ()
+    {
+        //$answers = array();
+        var_dump($this->answers->toArray()); die();
+        /*
+        foreach ($this->answers->getValues() as $answer) {
+            die('a');
+            $answers[] = $answer->jsonSerialize();
+        }
+        */
+
+        return array(
+            'id' => $this->id,
+            'entitled' => $this->entitled,
+            'code' => $this->code,
+            'answers' => $answers
+        );
+    }
 
 }

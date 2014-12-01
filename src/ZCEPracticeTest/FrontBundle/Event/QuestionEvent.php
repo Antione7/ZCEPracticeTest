@@ -27,8 +27,20 @@ use ZCEPracticeTest\FrontBundle\Event\EventAbstract;
  */
 class QuestionEvent extends EventAbstract
 {
+    /**
+     * @var array of questions
+     */
     private $questions;
 
+    /**
+     * @var int
+     */
+    private $limit;
+
+    public function __construct ($limit)
+    {
+        $this->limit = $limit;
+    }
     /**
      * Set questions in event
      * @param array $questions
@@ -42,8 +54,17 @@ class QuestionEvent extends EventAbstract
      * Get questions in event
      * @return array
      */
-    public function getQuestions()
+    public function getQuestions ()
     {
         return $this->questions;
+    }
+
+    /**
+     * Return limit
+     * @return int
+     */
+    public function getLimit ()
+    {
+        return (int)$this->limit;
     }
 }

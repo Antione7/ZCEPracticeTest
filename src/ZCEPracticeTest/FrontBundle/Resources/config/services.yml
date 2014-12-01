@@ -2,6 +2,10 @@ services:
     wg_admin.listener.questionnaire:
         class: ZCEPracticeTest\FrontBundle\Listener\QuestionListener
         arguments:
-            #- @doctrine.orm.entity_manager
+            - @doctrine.orm.entity_manager
+            - @questionParser
         tags:
             - { name: kernel.event_listener, event: event.zce.questions.init, method: onQuestionsInit }
+
+    questionParser:
+        class: ZCEPracticeTest\FrontBundle\Service\QuestionParser

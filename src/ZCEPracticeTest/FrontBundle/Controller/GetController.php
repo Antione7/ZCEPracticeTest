@@ -34,7 +34,7 @@ class GetController extends Controller
     public function questionAction ()
     {
         // event initialize questions
-        $questionEvent = new QuestionEvent();
+        $questionEvent = new QuestionEvent(5);
         $this->get('event_dispatcher')->dispatch(QuestionEvent::QUESTION_INIT, $questionEvent);
 
         return $this->render('ZCEPracticeTestFrontBundle:Default:index.html.twig', array(

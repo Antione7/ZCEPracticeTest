@@ -135,5 +135,17 @@ class Answer
         return $this->question;
     }
 
+    /**
+     * Return to json format the answer entity
+     * @return array
+     */
+    public function jsonSerialize ()
+    {
+        return array(
+            'id' => $this->id,
+            'entitled' => $this->entitled,
+            'isValid' => $this->isValid
+        );
+    }
 
 }
