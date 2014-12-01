@@ -76,6 +76,13 @@ class Question
     private $answers;
 
     /**
+     * @var ZCEPracticeTest\FrontBundle\Category
+     * @ORM\ManyToOne(targetEntity="Category")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     */
+    private $category;
+
+    /**
      * @param array $answers
      */
     public function setAnswers ($answers)
@@ -146,6 +153,22 @@ class Question
     public function getId ()
     {
         return $this->id;
+    }
+
+    /**
+     * @param \ZCEPracticeTest\FrontBundle\Entity\ZCEPracticeTest\FrontBundle\Category $category
+     */
+    public function setCategory(Category $category)
+    {
+        $this->category = $category;
+    }
+
+    /**
+     * @return \ZCEPracticeTest\FrontBundle\Entity\ZCEPracticeTest\FrontBundle\Category
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 
 

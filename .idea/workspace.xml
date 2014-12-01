@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="64a9e487-7984-4818-901b-718496b79f51" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/AppKernel.php" afterPath="$PROJECT_DIR$/app/AppKernel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/SymfonyRequirements.php" afterPath="$PROJECT_DIR$/app/SymfonyRequirements.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/check.php" afterPath="$PROJECT_DIR$/app/check.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/Tests/Controller/DefaultControllerTest.php" afterPath="$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/Tests/Controller/DefaultControllerTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/Entity/Question.php" afterPath="$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/Entity/Question.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/DataFixtures/ORM/QuestionLoad.php" afterPath="$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/DataFixtures/ORM/QuestionLoad.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/zce-practice-test.iml" afterPath="$PROJECT_DIR$/.idea/zce-practice-test.iml" />
     </list>
     <ignored path="zce-practice-test.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,7 +31,7 @@
       <file leaf-file-name="GetController.php" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/Controller/GetController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="28" column="6" selection-start="591" selection-end="591" vertical-scroll-proportion="-10.0" vertical-offset="0" max-vertical-offset="570">
+            <state line="38" column="0" selection-start="924" selection-end="924" vertical-scroll-proportion="-16.25" vertical-offset="0" max-vertical-offset="570">
               <folding />
             </state>
           </provider>
@@ -44,11 +40,32 @@
       <file leaf-file-name="QuestionLoad.php" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/DataFixtures/ORM/QuestionLoad.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="69" column="5" selection-start="1900" selection-end="1900" vertical-scroll-proportion="0.89300996" vertical-offset="409" max-vertical-offset="1170">
+            <state line="30" column="54" selection-start="845" selection-end="845" vertical-scroll-proportion="-0.04850214" vertical-offset="484" max-vertical-offset="1185">
               <folding>
                 <element signature="e#7#220#0" expanded="true" />
                 <element signature="e#270#319#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CategoryLoad.php" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/DataFixtures/ORM/CategoryLoad.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="31" column="36" selection-start="857" selection-end="866" vertical-scroll-proportion="-19.208334" vertical-offset="4" max-vertical-offset="780">
+              <folding>
+                <element signature="e#7#220#0" expanded="true" />
+                <element signature="e#270#319#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.yml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/config/config.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="46" column="22" selection-start="1150" selection-end="1150" vertical-scroll-proportion="0.0" vertical-offset="250" max-vertical-offset="975">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -83,18 +100,22 @@
         <option value="$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/DependencyInjection/ZCEPracticeTestFrontExtension.php" />
         <option value="$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/DependencyInjection/Configuration.php" />
         <option value="$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/Event/QuestionEvent.php" />
-        <option value="$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/Controller/GetController.php" />
         <option value="$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/Listener/QuestionListener.php" />
         <option value="$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/Resources/views/Default/index.html.twig" />
         <option value="$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/Repository/AnswerRepository.php" />
         <option value="$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/Repository/QuestionRepository.php" />
         <option value="$PROJECT_DIR$/app/config/parameters.yml" />
-        <option value="$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/Entity/Question.php" />
         <option value="$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/Entity/Answer.php" />
         <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/app/AppKernel.php" />
+        <option value="$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/Repository/CategoryRepository.php" />
+        <option value="$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/Entity/Category.php" />
+        <option value="$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/Tests/Controller/DefaultControllerTest.php" />
+        <option value="$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/Controller/GetController.php" />
+        <option value="$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/DataFixtures/ORM/CategoryLoad.php" />
         <option value="$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/DataFixtures/ORM/QuestionLoad.php" />
+        <option value="$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/Entity/Question.php" />
       </list>
     </option>
   </component>
@@ -279,6 +300,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="zce-practice-test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ZCEPracticeTest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="config" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -348,6 +387,7 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32934928" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -359,7 +399,6 @@
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32934928" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -399,11 +438,6 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="712" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/config/config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="22" selection-start="1150" selection-end="1150" vertical-scroll-proportion="0.6068966" vertical-offset="250" max-vertical-offset="975" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/config/config_dev.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="21" column="25" selection-start="517" selection-end="517" vertical-scroll-proportion="0.43448275" vertical-offset="0" max-vertical-offset="725" />
@@ -416,17 +450,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/Resources/config/routing.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="36" selection-start="86" selection-end="86" vertical-scroll-proportion="0.04137931" vertical-offset="0" max-vertical-offset="725" />
+        <state line="2" column="36" selection-start="86" selection-end="86" vertical-scroll-proportion="0.04137931" vertical-offset="0" max-vertical-offset="725">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/Resources/config/services.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="36" selection-start="83" selection-end="83" vertical-scroll-proportion="0.04137931" vertical-offset="0" max-vertical-offset="725" />
+        <state line="2" column="36" selection-start="83" selection-end="83" vertical-scroll-proportion="0.04137931" vertical-offset="0" max-vertical-offset="725">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/logs/dev.log">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="36480" />
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="36480">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/phpunit.xml.dist">
@@ -441,26 +481,9 @@
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-7.7398257" vertical-offset="5325" max-vertical-offset="10590" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/ZCEPracticeTestFrontBundle.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="5" column="0" selection-start="95" selection-end="95" vertical-scroll-proportion="0.11061947" vertical-offset="0" max-vertical-offset="678">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/app.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="712" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/app_dev.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="20" column="16" selection-start="928" selection-end="928" vertical-scroll-proportion="0.40656206" vertical-offset="0" max-vertical-offset="701" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1950" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/.htaccess">
@@ -475,7 +498,9 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/config/routing.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="35" selection-start="60" selection-end="60" vertical-scroll-proportion="0.020689655" vertical-offset="0" max-vertical-offset="725" />
+        <state line="1" column="35" selection-start="60" selection-end="60" vertical-scroll-proportion="0.020689655" vertical-offset="0" max-vertical-offset="725">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/config/routing_dev.yml">
@@ -523,12 +548,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/DependencyInjection/Configuration.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="26" selection-start="33" selection-end="33" vertical-scroll-proportion="0.044247787" vertical-offset="0" max-vertical-offset="678" />
+        <state line="2" column="26" selection-start="33" selection-end="33" vertical-scroll-proportion="0.044247787" vertical-offset="0" max-vertical-offset="678">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/DependencyInjection/ZCEPracticeTestFrontExtension.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="7" selection-start="520" selection-end="520" vertical-scroll-proportion="0.27817404" vertical-offset="0" max-vertical-offset="701" />
+        <state line="16" column="7" selection-start="520" selection-end="520" vertical-scroll-proportion="0.27817404" vertical-offset="0" max-vertical-offset="701">
+          <folding />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/Event/QuestionEvent.php">
@@ -557,24 +586,6 @@
         <state line="2" column="0" selection-start="7" selection-end="216" vertical-scroll-proportion="0.042796005" vertical-offset="0" max-vertical-offset="780">
           <folding>
             <element signature="e#7#216#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/Repository/AnswerRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="0" selection-start="0" selection-end="641" vertical-scroll-proportion="0.32097003" vertical-offset="0" max-vertical-offset="701">
-          <folding>
-            <element signature="e#7#213#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/Repository/QuestionRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="30" column="14" selection-start="604" selection-end="604" vertical-scroll-proportion="0.64194006" vertical-offset="0" max-vertical-offset="701">
-          <folding>
-            <element signature="e#7#213#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -610,26 +621,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/Entity/Answer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="38" selection-start="1433" selection-end="1433" vertical-scroll-proportion="0.7703281" vertical-offset="495" max-vertical-offset="2160">
-          <folding>
-            <element signature="e#7#214#0" expanded="true" />
-            <element signature="e#262#316#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/Entity/Question.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="73" column="38" selection-start="1502" selection-end="1502" vertical-scroll-proportion="0.122681886" vertical-offset="1009" max-vertical-offset="2355">
-          <folding>
-            <element signature="e#7#214#0" expanded="true" />
-            <element signature="e#262#316#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/AppKernel.php">
       <provider selected="true" editor-type-id="text-editor">
         <state line="17" column="72" selection-start="722" selection-end="722" vertical-scroll-proportion="0.34236804" vertical-offset="0" max-vertical-offset="701">
@@ -637,16 +628,125 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/Repository/AnswerRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="2" selection-start="0" selection-end="641" vertical-scroll-proportion="0.42035398" vertical-offset="0" max-vertical-offset="678">
+          <folding>
+            <element signature="e#7#213#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/Entity/Answer.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="69" column="38" selection-start="1433" selection-end="1433" vertical-scroll-proportion="0.7489301" vertical-offset="510" max-vertical-offset="2160">
+          <folding>
+            <element signature="e#7#214#0" expanded="true" />
+            <element signature="e#262#316#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/Repository/QuestionRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="14" selection-start="604" selection-end="604" vertical-scroll-proportion="0.64194006" vertical-offset="0" max-vertical-offset="701">
+          <folding>
+            <element signature="e#7#213#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/app.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="712">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-1.9323308" vertical-offset="1285" max-vertical-offset="1950">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/Tests/Controller/DefaultControllerTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="26" selection-start="33" selection-end="33" vertical-scroll-proportion="0.069767445" vertical-offset="0" max-vertical-offset="430">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/ZCEPracticeTestFrontBundle.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1" column="0" selection-start="6" selection-end="6" vertical-scroll-proportion="0.034883723" vertical-offset="0" max-vertical-offset="430">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/Repository/CategoryRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="26" selection-start="241" selection-end="252" vertical-scroll-proportion="0.29957205" vertical-offset="0" max-vertical-offset="701">
+          <folding>
+            <element signature="e#7#213#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/doctrine/common/lib/Doctrine/Common/Persistence/ObjectManager.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="128" column="20" selection-start="4339" selection-end="4339" vertical-scroll-proportion="0.34379458" vertical-offset="1439" max-vertical-offset="2385">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/Entity/Category.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="14" column="20" selection-start="235" selection-end="235" vertical-scroll-proportion="-0.6847361" vertical-offset="690" max-vertical-offset="1395">
+          <folding>
+            <element signature="e#7#214#0" expanded="true" />
+            <element signature="e#262#316#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/Controller/GetController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="28" column="6" selection-start="591" selection-end="591" vertical-scroll-proportion="-10.0" vertical-offset="0" max-vertical-offset="570">
+        <state line="38" column="0" selection-start="924" selection-end="924" vertical-scroll-proportion="-16.25" vertical-offset="0" max-vertical-offset="570">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/config/config.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="46" column="22" selection-start="1150" selection-end="1150" vertical-scroll-proportion="0.0" vertical-offset="250" max-vertical-offset="975">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/DataFixtures/ORM/CategoryLoad.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="31" column="36" selection-start="857" selection-end="866" vertical-scroll-proportion="-19.208334" vertical-offset="4" max-vertical-offset="780">
+          <folding>
+            <element signature="e#7#220#0" expanded="true" />
+            <element signature="e#270#319#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/Entity/Question.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="167" column="7" selection-start="3229" selection-end="3229" vertical-scroll-proportion="3.5734665" vertical-offset="0" max-vertical-offset="2700">
+          <folding>
+            <element signature="e#7#214#0" expanded="true" />
+            <element signature="e#262#316#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ZCEPracticeTest/FrontBundle/DataFixtures/ORM/QuestionLoad.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="69" column="5" selection-start="1900" selection-end="1900" vertical-scroll-proportion="0.89300996" vertical-offset="409" max-vertical-offset="1170">
+        <state line="30" column="54" selection-start="845" selection-end="845" vertical-scroll-proportion="-0.04850214" vertical-offset="484" max-vertical-offset="1185">
           <folding>
             <element signature="e#7#220#0" expanded="true" />
             <element signature="e#270#319#0" expanded="true" />

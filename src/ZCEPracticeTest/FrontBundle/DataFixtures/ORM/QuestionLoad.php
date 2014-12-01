@@ -28,6 +28,7 @@ class QuestionLoad extends AbstractFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $objectManager)
     {
+        $category = $this->getReference('Category 0');
         $questionData = array(
             'entitled'  => "Question",
             'code'      => "<?php echo 'Hello world';",
@@ -49,7 +50,7 @@ class QuestionLoad extends AbstractFixture implements OrderedFixtureInterface
             $question = new Question();
             $question->setEntitled($questionData['entitled']);
             $question->setCode($questionData['code']);
-
+            $question->setCategory($category);
             // add 2 answers per question
             for ($j = 0; $j < 2; $j++) {
                 $answer = new Answer();
@@ -68,6 +69,6 @@ class QuestionLoad extends AbstractFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 1;
+        return 2;
     }
 }
