@@ -54,7 +54,8 @@ class QuestionListener
                  ->findBy(array(), array(), $event->getLimit());
 
         // parse to json
-        $questions = $this->questionParser->parseToJson($questions);
-        $event->setQuestions($questions);
+        $json = $this->questionParser->parseToJson($questions);
+
+        $event->setJson($json);
     }
 }

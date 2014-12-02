@@ -33,6 +33,11 @@ class QuestionEvent extends EventAbstract
     private $questions;
 
     /**
+     * @var string question in json format
+     */
+    private $json;
+
+    /**
      * @var int
      */
     private $limit;
@@ -57,6 +62,24 @@ class QuestionEvent extends EventAbstract
     public function getQuestions ()
     {
         return $this->questions;
+    }
+
+    /**
+     * Set json
+     * @param string $json
+     */
+    public function setJson ($json)
+    {
+        $this->json = $json;
+    }
+
+    /**
+     * Get Json
+     * @return string
+     */
+    public function getJson ()
+    {
+        return $this->json;
     }
 
     /**

@@ -15,6 +15,7 @@
 namespace ZCEPracticeTest\FrontBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use ZCEPracticeTest\FrontBundle\Event\QuestionEvent;
 
 /**
@@ -37,8 +38,6 @@ class GetController extends Controller
         $questionEvent = new QuestionEvent(5);
         $this->get('event_dispatcher')->dispatch(QuestionEvent::QUESTION_INIT, $questionEvent);
 
-        return $this->render('ZCEPracticeTestFrontBundle:Default:index.html.twig', array(
-            'questions' => $questionEvent->getQuestions()
-        ));
+        return new JsonResponse($questionEvent->getJson());
     }
 }

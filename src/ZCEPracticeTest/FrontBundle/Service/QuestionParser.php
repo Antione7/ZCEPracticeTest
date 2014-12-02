@@ -24,6 +24,7 @@ class QuestionParser
     public function parseToJson ($questions)
     {
         $json = array();
+
         foreach ($questions as $question) {
             $json[] = $question->jsonSerialize();
         }

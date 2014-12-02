@@ -56,6 +56,7 @@ class QuestionLoad extends AbstractFixture implements OrderedFixtureInterface
                 $answer = new Answer();
                 $answer->setEntitled($answerData[$j]['entitled']);
                 $answer->setIsValid($answerData[$j]['isValid']);
+                $answer->setQuestion($question);
                 $question->addAnswer($answer);
             }
             $objectManager->persist($question);

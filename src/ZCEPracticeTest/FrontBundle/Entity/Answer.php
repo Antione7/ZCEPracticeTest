@@ -66,8 +66,7 @@ class Answer
 
     /**
      * @var ZcePracticeTest\Entity\Question
-     * @ORM\OneToMany(targetEntity="Question", mappedBy="answers")
-     * @ORM\JoinColumn(name="answer_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="ZCEPracticeTest\FrontBundle\Entity\Question", inversedBy="answers")
      */
     private $question;
 

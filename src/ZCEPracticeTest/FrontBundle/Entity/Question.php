@@ -15,6 +15,7 @@
 namespace ZCEPracticeTest\FrontBundle\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,7 +32,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Question
 {
-
     /**
      * Id of question entity
      * @var integer
@@ -70,7 +70,8 @@ class Question
     /**
      * Array of answers
      * @var array
-     * @ORM\OneToMany(targetEntity="Answer", mappedBy="question", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="ZCEPracticeTest\FrontBundle\Entity\Answer", mappedBy="question", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(onDelete="CASCADE")
      */
     private $answers;
 
@@ -80,6 +81,11 @@ class Question
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      */
     private $category;
+
+    public function __construct ()
+    {
+        $this->answers= new ArrayCollection();
+    }
 
     /**
      * @param array $answers
@@ -176,14 +182,10 @@ class Question
      */
     public function jsonSerialize ()
     {
-        //$answers = array();
-        var_dump($this->answers->toArray()); die();
-        /*
-        foreach ($this->answers->getValues() as $answer) {
-            die('a');
+        $answers = array();
+        foreach ($this->answers as $answer) {
             $answers[] = $answer->jsonSerialize();
         }
-        */
 
         return array(
             'id' => $this->id,
