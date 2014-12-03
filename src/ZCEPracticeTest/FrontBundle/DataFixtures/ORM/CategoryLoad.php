@@ -17,7 +17,7 @@ namespace ZCEPracticeTest\FrontBundle\Fixtures;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use ZCEPracticeTest\FrontBundle\Entity\Category;
+use ZCEPracticeTest\Core\Entity\Category;
 
 class CategoryLoad extends AbstractFixture implements OrderedFixtureInterface
 {

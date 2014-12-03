@@ -17,8 +17,8 @@ namespace ZCEPracticeTest\FrontBundle\Fixtures;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use ZCEPracticeTest\FrontBundle\Entity\Answer;
-use ZCEPracticeTest\FrontBundle\Entity\Question;
+use ZCEPracticeTest\Core\Entity\Answer;
+use ZCEPracticeTest\Core\Entity\Question;
 
 class QuestionLoad extends AbstractFixture implements OrderedFixtureInterface
 {
