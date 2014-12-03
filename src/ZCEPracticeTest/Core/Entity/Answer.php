@@ -26,7 +26,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @link     www.darkmira.fr
  *
  * @Table(name="answer")
- * @Entity(repositoryClass="ZCEPracticeTest\FrontBundle\Repository\AnswerRepository")
+ * @Entity(repositoryClass="ZCEPracticeTest\Core\Repository\AnswerRepository")
  */
 class Answer
 {

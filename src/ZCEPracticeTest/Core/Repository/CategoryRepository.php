@@ -12,7 +12,7 @@
  *
  */
 
-namespace ZCEPracticeTest\FrontBundle\Repository;
+namespace ZCEPracticeTest\Core\Repository;
 
 use Doctrine\ORM\EntityRepository;
 
@@ -30,5 +30,4 @@ use Doctrine\ORM\EntityRepository;
  */
 class CategoryRepository extends EntityRepository
 {
-
 }

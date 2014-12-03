@@ -12,7 +12,7 @@
  *
  */
 
-namespace ZCEPracticeTest\FrontBundle\Repository;
+namespace ZCEPracticeTest\Core\Repository;
 
 use Doctrine\ORM\EntityRepository;
 
@@ -28,6 +28,6 @@ use Doctrine\ORM\EntityRepository;
  * @license  Darkmira <darkmira@darkmira.fr>
  * @link     www.darkmira.fr
  */
-class QuestionRepository extends EntityRepository
+class AnswerRepository extends EntityRepository
 {
 }

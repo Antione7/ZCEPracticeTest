@@ -26,7 +26,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @link     www.darkmira.fr
  *
  * @Table(name="category")
- * @Entity(repositoryClass="ZCEPracticeTest\FrontBundle\Repository\CategoryRepository")
+ * @Entity(repositoryClass="ZCEPracticeTest\Core\Repository\CategoryRepository")
  */
 class Category
 {

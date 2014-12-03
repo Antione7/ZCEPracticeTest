@@ -27,7 +27,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @link     www.darkmira.fr
  *
  * @Table(name="question")
- * @Entity(repositoryClass="ZCEPracticeTest\FrontBundle\Repository\QuestionRepository")
+ * @Entity(repositoryClass="ZCEPracticeTest\Core\Repository\QuestionRepository")
  */
 class Question
 {
