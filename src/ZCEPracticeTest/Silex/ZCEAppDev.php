@@ -8,11 +8,13 @@ class ZCEAppDev extends ZCEApp
 {
     /**
      * Constructor
+     *
+     * @param array $values The parameters or objects.
      */
-    public function __construct()
+    public function __construct(array $values = array())
     {
-        parent::__construct();
+        $values['debug'] = true;
         
-        $this->enableDebug();
+        parent::__construct($values);
     }
 }

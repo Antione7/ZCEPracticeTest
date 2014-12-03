@@ -16,7 +16,6 @@ namespace ZCEPracticeTest\Core\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Question entity
@@ -27,8 +26,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @license  Darkmira <darkmira@darkmira.fr>
  * @link     www.darkmira.fr
  *
- * @ORM\Table(name="question")
- * @ORM\Entity(repositoryClass="ZCEPracticeTest\FrontBundle\Repository\QuestionRepository")
+ * @Table(name="question")
+ * @Entity(repositoryClass="ZCEPracticeTest\FrontBundle\Repository\QuestionRepository")
  */
 class Question
 {
@@ -36,9 +35,9 @@ class Question
      * Id of question entity
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @Column(name="id", type="integer")
+     * @Id
+     * @GeneratedValue(strategy="AUTO")
      */
     private $id;
 
@@ -46,7 +45,7 @@ class Question
      * Entitled of question
      * @var string
      *
-     * @ORM\Column(name="entitled", type="text")
+     * @Column(name="entitled", type="text")
      *
      * @Assert\NotBlank()
      * @Assert\Length(
@@ -59,7 +58,7 @@ class Question
      * Code of question, not required
      * @var string
      *
-     * @ORM\Column(name="code", type="text")
+     * @Column(name="code", type="text")
      *
      * @Assert\Length(
      *      max="4096"
@@ -70,15 +69,15 @@ class Question
     /**
      * Array of answers
      * @var array
-     * @ORM\OneToMany(targetEntity="ZCEPracticeTest\FrontBundle\Entity\Answer", mappedBy="question", cascade={"persist", "remove"})
-     * @ORM\JoinColumn(onDelete="CASCADE")
+     * @OneToMany(targetEntity="ZCEPracticeTest\Core\Entity\Answer", mappedBy="question", cascade={"persist", "remove"})
+     * @JoinColumn(onDelete="CASCADE")
      */
     private $answers;
 
     /**
      * @var ZCEPracticeTest\Core\Category
-     * @ORM\ManyToOne(targetEntity="Category")
-     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     * @ManyToOne(targetEntity="Category")
+     * @JoinColumn(name="category_id", referencedColumnName="id")
      */
     private $category;
 

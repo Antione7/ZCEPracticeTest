@@ -6,6 +6,8 @@ use ZCEPracticeTest\Silex\ZCEAppDev;
 
 ini_set('display_errors', '1');
 
-$app = new ZCEAppDev();
+$app = new ZCEAppDev(array(
+    'project.root' => dirname(__DIR__),
+));
 
 $app->run();

@@ -50,7 +50,7 @@ class QuestionListener
     {
         // get questions
         $questions =
-            $this->entityManager->getRepository('ZCEPracticeTestFrontBundle:Question')
+            $this->entityManager->getRepository('ZCE:Question')
                  ->findBy(array(), array(), $event->getLimit());
 
         // parse to json

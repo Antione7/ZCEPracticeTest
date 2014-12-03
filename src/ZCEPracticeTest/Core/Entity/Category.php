@@ -15,7 +15,6 @@
 namespace ZCEPracticeTest\Core\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
-use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Category entity
@@ -26,8 +25,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @license  Darkmira <darkmira@darkmira.fr>
  * @link     www.darkmira.fr
  *
- * @ORM\Table(name="category")
- * @ORM\Entity(repositoryClass="ZCEPracticeTest\FrontBundle\Repository\CategoryRepository")
+ * @Table(name="category")
+ * @Entity(repositoryClass="ZCEPracticeTest\FrontBundle\Repository\CategoryRepository")
  */
 class Category
 {
@@ -35,9 +34,9 @@ class Category
      * Id of category entity
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @Column(name="id", type="integer")
+     * @Id
+     * @GeneratedValue(strategy="AUTO")
      */
     private $id;
 
@@ -45,7 +44,7 @@ class Category
      * Entitled of category
      * @var string
      *
-     * @ORM\Column(name="entitled", type="text")
+     * @Column(name="entitled", type="text")
      *
      * @Assert\NotBlank()
      * @Assert\Length(

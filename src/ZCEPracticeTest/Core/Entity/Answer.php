@@ -15,7 +15,6 @@
 namespace ZCEPracticeTest\Core\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
-use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Question entity
@@ -26,8 +25,8 @@ use Doctrine\ORM\Mapping as ORM;
  * @license  Darkmira <darkmira@darkmira.fr>
  * @link     www.darkmira.fr
  *
- * @ORM\Table(name="answer")
- * @ORM\Entity(repositoryClass="ZCEPracticeTest\FrontBundle\Repository\AnswerRepository")
+ * @Table(name="answer")
+ * @Entity(repositoryClass="ZCEPracticeTest\FrontBundle\Repository\AnswerRepository")
  */
 class Answer
 {
@@ -35,9 +34,9 @@ class Answer
      * Id of question entity
      * @var integer
      *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @Column(name="id", type="integer")
+     * @Id
+     * @GeneratedValue(strategy="AUTO")
      */
     private $id;
 
@@ -45,7 +44,7 @@ class Answer
      * Answer's Entitled
      * @var string
      *
-     * @ORM\Column(name="entitled", type="text")
+     * @Column(name="entitled", type="text")
      *
      * @Assert\NotBlank()
      * @Assert\Length(
@@ -58,14 +57,14 @@ class Answer
      * Answer's value
      * @var boolean
      *
-     * @ORM\Column(name="isValid", type="boolean")
+     * @Column(name="isValid", type="boolean")
      * @Assert\NotBlank()
      */
     private $isValid;
 
     /**
      * @var ZcePracticeTest\Entity\Question
-     * @ORM\ManyToOne(targetEntity="ZCEPracticeTest\FrontBundle\Entity\Question", inversedBy="answers")
+     * @ManyToOne(targetEntity="ZCEPracticeTest\Core\Entity\Question", inversedBy="answers")
      */
     private $question;
 
