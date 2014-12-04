@@ -13,6 +13,7 @@ nbproject
 .idea/*
 
 # Others
+app/config/parameters.yml
 var/*
 *~
 

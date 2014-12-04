@@ -1,0 +1,8 @@
+database:
+    db.options:
+        driver:     pdo_mysql
+        host:       localhost
+        dbname:     zce
+        user:       root
+        password:   root
+        charset:    utf8

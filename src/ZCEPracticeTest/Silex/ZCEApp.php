@@ -2,6 +2,7 @@
 
 namespace ZCEPracticeTest\Silex;
 
+use Symfony\Component\Yaml\Yaml;
 use Silex\Application;
 use Silex\Provider\ServiceControllerServiceProvider;
 use Silex\Provider\DoctrineServiceProvider;
@@ -22,6 +23,7 @@ class ZCEApp extends Application
     {
         parent::__construct($values);
         
+        $this->loadParameters();
         $this->registerDoctrineDBAL();
         $this->registerDoctrineORM();
         $this->registerServices();
@@ -30,18 +32,24 @@ class ZCEApp extends Application
         $this->registerRoutes();
     }
     
+    private function loadParameters()
+    {
+        $parametersFile = $this['project.root'].'/app/config/parameters.yml';
+        
+        if (file_exists($parametersFile)) {
+            $parameters = Yaml::parse($this['project.root'].'/app/config/parameters.yml');
+        } elseif (file_exists($parametersFile.'.dist')) {
+            $parameters = Yaml::parse($this['project.root'].'/app/config/parameters.yml.dist');
+        } else {
+            throw new Exception('No app/config/parameters.yml file found');
+        }
+        
+        $this['parameters'] = $parameters;
+    }
+    
     private function registerDoctrineDBAL()
     {
-        $this->register(new DoctrineServiceProvider(), array(
-            'db.options' => array(
-                'driver'    => 'pdo_mysql',
-                'host'      => 'localhost',
-                'dbname'    => 'zce',
-                'user'      => 'root',
-                'password'  => 'root',
-                'charset'   => 'utf8',
-            ),
-        ));
+        $this->register(new DoctrineServiceProvider(), $this['parameters']['database']);
     }
     
     private function registerDoctrineORM()
