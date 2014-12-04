@@ -41,7 +41,7 @@ class ZCEApp extends Application
         } elseif (file_exists($parametersFile.'.dist')) {
             $parameters = Yaml::parse($this['project.root'].'/app/config/parameters.yml.dist');
         } else {
-            throw new Exception('No app/config/parameters.yml file found');
+            throw new \Exception('No app/config/parameters.yml file found');
         }
         
         $this['parameters'] = $parameters;
