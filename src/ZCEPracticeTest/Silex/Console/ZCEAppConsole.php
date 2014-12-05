@@ -3,6 +3,10 @@
 namespace ZCEPracticeTest\Silex\Console;
 
 use Symfony\Component\Console\Application;
+use Symfony\Component\Console\Helper\HelperSet;
+use Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper;
+use Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper;
+use Doctrine\ORM\Tools\Console\ConsoleRunner;
 use Silex\Application as SilexApplication;
 use ZCEPracticeTest\Core\Command\LoadFixturesCommand;
 
@@ -38,6 +42,15 @@ class ZCEAppConsole extends Application
     public function registerCommands()
     {
         $this->add(new LoadFixturesCommand());
+        
+        // Register Doctrine ORM commands
+        $helperSet = new HelperSet(array(
+            'db' => new ConnectionHelper($this->silexApp['orm.em']->getConnection()),
+            'em' => new EntityManagerHelper($this->silexApp['orm.em'])
+        ));
+
+        $this->setHelperSet($helperSet);
+        ConsoleRunner::addCommands($this);
     }
     
     public function getSilexApplication()
