@@ -1,0 +1,51 @@
+ZCEPracticeTest\Core\Entity\Question:
+    type: entity
+    table: question
+    repositoryClass: ZCEPracticeTest\Core\Repository\QuestionRepository
+    id:
+        id:
+            type: integer
+            scale: 0
+            length: null
+            unique: false
+            nullable: false
+            precision: 0
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        entitled:
+            type: text
+            scale: 0
+            length: null
+            unique: false
+            nullable: false
+            precision: 0
+        code:
+            type: text
+            scale: 0
+            length: null
+            unique: false
+            nullable: false
+            precision: 0
+    oneToMany:
+        answers:
+            targetEntity: ZCEPracticeTest\Core\Entity\Answer
+            cascade:
+                - remove
+                - persist
+            mappedBy: question
+            inversedBy: null
+            orphanRemoval: false
+            orderBy: null
+    manyToOne:
+        category:
+            targetEntity: ZCEPracticeTest\Core\Entity\Category
+            cascade: {  }
+            mappedBy: null
+            inversedBy: null
+            joinColumns:
+                category_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }
