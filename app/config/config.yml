@@ -12,6 +12,8 @@ security:
             logout:
                 logout_path: /user/logout
 
-simple.user: []
+simple.user:
+    userClass: ZCEPracticeTest\Core\Entity\User
+    userTableName: user
 
 swiftmailer: ~

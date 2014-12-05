@@ -105,6 +105,27 @@ class ZCEApp extends Application
         ));
     }
     
+    /**
+     * Register simple user library
+     * Add user management and routes.
+     */
+    private function registerSimpleUser()
+    {
+        $simpleUserProvider = new \SimpleUser\UserServiceProvider();
+        
+        $this->register($simpleUserProvider);
+        
+        $this['user.options'] = $this['config']['simple.user'];
+        
+        $security = $this['security.firewalls'];
+        $security['secured_area']['users'] = $this->share(function ($app) {
+            return $app['user.manager'];
+        });
+        $this['security.firewalls'] = $security;
+        
+        $this->mount('/user', $simpleUserProvider);
+    }
+    
     private function registerServices()
     {
         $this['zce.question_parser'] = $this->share(function () {
@@ -139,20 +160,15 @@ class ZCEApp extends Application
     private function registerRoutes()
     {
         $this
+            ->get('/', function () {
+                return 'home';
+            })
+            ->bind('front-home')
+        ;
+        
+        $this
             ->get('/GET/questions', 'get.controller:questionAction')
             ->bind('front-get-questions')
         ;
-    }
-    
-    /**
-     * Register simple user library
-     * Add user management and routes.
-     */
-    private function registerSimpleUser()
-    {
-        $simpleUserProvider = new \SimpleUser\UserServiceProvider();
-        $this->register($simpleUserProvider);
-        
-        $this->mount('/user', $simpleUserProvider);
     }
 }

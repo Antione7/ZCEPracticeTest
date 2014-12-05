@@ -51,9 +51,12 @@ class User extends BaseUser
     
     /**
      * Constructor
+     * 
+     * @param string $email
      */
-    public function __construct()
+    public function __construct($email)
     {
+        parent::__construct($email);
     }
 
     /**
