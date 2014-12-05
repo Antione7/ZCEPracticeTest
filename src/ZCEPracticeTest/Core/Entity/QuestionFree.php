@@ -14,10 +14,7 @@ namespace ZCEPracticeTest\Core\Entity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Hack table, not used
- * 
- * Custom fields for user. Entity temporarly created
- * to not crash when SimpleUser request this table.
+ * Question Free entity
  *
  * @category Entity
  * @package  Core
@@ -25,10 +22,34 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @license  Darkmira <darkmira@darkmira.fr>
  * @link     www.darkmira.fr
  */
-class UserCustomFields
+class QuestionFree extends Question
 {
     /**
-     * @var integer
+     * @var string
      */
-    protected $userId;
+    private $answer;
+
+    /**
+     * Set answer
+     *
+     * @param string $answer
+     * 
+     * @return QuestionFree
+     */
+    public function setAnswer($answer)
+    {
+        $this->answer = $answer;
+
+        return $this;
+    }
+
+    /**
+     * Get answer
+     *
+     * @return string 
+     */
+    public function getAnswer()
+    {
+        return $this->answer;
+    }
 }

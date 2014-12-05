@@ -32,7 +32,7 @@ class ZCEAppConsole extends Application
             return '';
         });
         
-        $app->run();
+        $app->boot();
         
         $this->registerCommands();
         

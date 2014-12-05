@@ -5,9 +5,7 @@ ZCEPracticeTest\Core\Entity\User:
     id:
         id:
             type: integer
-            length: null
-            unique: false
-            nullable: false
+            id: true
             generator:
                 strategy: IDENTITY
     fields:

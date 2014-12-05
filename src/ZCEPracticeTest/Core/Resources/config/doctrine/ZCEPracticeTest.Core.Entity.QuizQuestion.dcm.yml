@@ -1,0 +1,24 @@
+ZCEPracticeTest\Core\Entity\QuizQuestion:
+    type: entity
+    table: zce_quiz_question
+    repositoryClass: ZCEPracticeTest\Core\Repository\QuizQuestion
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+    manyToOne:
+        quiz:
+            targetEntity: ZCEPracticeTest\Core\Entity\Quiz
+            cascade: { }
+            inversedBy: quizQuestions
+            orphanRemoval: false
+            orderBy: null
+        question:
+            targetEntity: ZCEPracticeTest\Core\Entity\Question
+            cascade: { }
+            orphanRemoval: false
+            orderBy: null
+    lifecycleCallbacks: {  }

@@ -5,20 +5,20 @@ ZCEPracticeTest\Core\Entity\Category:
     id:
         id:
             type: integer
-            scale: 0
-            length: null
-            unique: false
-            nullable: false
-            precision: 0
             id: true
             generator:
                 strategy: IDENTITY
     fields:
         entitled:
-            type: text
-            scale: 0
-            length: null
-            unique: false
-            nullable: false
-            precision: 0
+            type: string
+            length: 255
+    oneToMany:
+        questions:
+            targetEntity: ZCEPracticeTest\Core\Entity\Question
+            cascade: {  }
+            mappedBy: category
+            joinColumns:
+                category_id:
+                    referencedColumnName: id
+            orphanRemoval: false
     lifecycleCallbacks: {  }

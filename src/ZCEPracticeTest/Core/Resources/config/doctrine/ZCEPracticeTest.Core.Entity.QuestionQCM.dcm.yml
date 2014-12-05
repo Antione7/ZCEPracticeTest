@@ -1,0 +1,19 @@
+ZCEPracticeTest\Core\Entity\QuestionQCM:
+    type: entity
+    table: zce_question_qcm
+    repositoryClass: ZCEPracticeTest\Core\Repository\QuestionQCMRepository
+    fields:
+        min:
+            type: integer
+        max:
+            type: integer
+    oneToMany:
+        answers:
+            targetEntity: ZCEPracticeTest\Core\Entity\Answer
+            cascade:
+                - remove
+                - persist
+            mappedBy: question
+            orphanRemoval: false
+            orderBy: null
+    lifecycleCallbacks: {  }

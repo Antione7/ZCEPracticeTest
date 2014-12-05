@@ -4,7 +4,7 @@
  * PHP version 5.5
  *
  * @category Entity
- * @package  FrontBundle
+ * @package  Core
  * @author   Maxence Perrin <mperrin@darkmira.fr>
  * @license  Darkmira <darkmira@darkmira.fr>
  * @link     www.darkmira.fr
@@ -18,7 +18,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * Question entity
  *
  * @category Entity
- * @package  FrontBundle
+ * @package  Core
  * @author   Maxence Perrin <mperrin@darkmira.fr>
  * @license  Darkmira <darkmira@darkmira.fr>
  * @link     www.darkmira.fr
@@ -56,105 +56,112 @@ class Question
     private $code;
 
     /**
-     * Array of answers
-     * 
-     * @var array
+     * @var \Doctrine\Common\Collections\Collection
      */
-    private $answers;
+    protected $quizQuestions;
 
     /**
-     * @var ZCEPracticeTest\Core\Category
+     * @var Category
      */
     private $category;
 
-    public function __construct ()
-    {
-        $this->answers= new ArrayCollection();
-    }
 
     /**
-     * @param array $answers
-     */
-    public function setAnswers ($answers)
-    {
-        $this->answers = $answers;
-    }
-
-    /**
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getAnswers ()
-    {
-        return $this->answers;
-    }
-
-    /**
-     * add answer in collection
-     * @param ZCEPracticeTest\Entity\Answer $answer
-     */
-    public function addAnswer ($answer)
-    {
-        $this->answers->add($answer);
-    }
-
-    /**
-     * @param string $code
-     */
-    public function setCode ($code)
-    {
-        $this->code = $code;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCode ()
-    {
-        return $this->code;
-    }
-
-    /**
+     * Set entitled
+     *
      * @param string $entitled
+     * @return Question
      */
-    public function setEntitled ($entitled)
+    public function setEntitled($entitled)
     {
         $this->entitled = $entitled;
+
+        return $this;
     }
 
     /**
-     * @return string
+     * Get entitled
+     *
+     * @return string 
      */
-    public function getEntitled ()
+    public function getEntitled()
     {
         return $this->entitled;
     }
 
     /**
-     * @param int $id
+     * Set code
+     *
+     * @param string $code
+     * @return Question
      */
-    public function setId ($id)
+    public function setCode($code)
     {
-        $this->id = $id;
+        $this->code = $code;
+
+        return $this;
     }
 
     /**
-     * @return int
+     * Get code
+     *
+     * @return string 
      */
-    public function getId ()
+    public function getCode()
     {
-        return $this->id;
+        return $this->code;
     }
 
     /**
-     * @param \ZCEPracticeTest\Core\Entity\ZCEPracticeTest\Core\Category $category
+     * Add quizQuestions
+     *
+     * @param QuizQuestion $quizQuestions
+     * @return Question
      */
-    public function setCategory(Category $category)
+    public function addQuizQuestion(QuizQuestion $quizQuestions)
+    {
+        $this->quizQuestions[] = $quizQuestions;
+
+        return $this;
+    }
+
+    /**
+     * Remove quizQuestions
+     *
+     * @param QuizQuestion $quizQuestions
+     */
+    public function removeQuizQuestion(QuizQuestion $quizQuestions)
+    {
+        $this->quizQuestions->removeElement($quizQuestions);
+    }
+
+    /**
+     * Get quizQuestions
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getQuizQuestions()
+    {
+        return $this->quizQuestions;
+    }
+
+    /**
+     * Set category
+     *
+     * @param Category $category
+     * @return Question
+     */
+    public function setCategory(Category $category = null)
     {
         $this->category = $category;
+
+        return $this;
     }
 
     /**
-     * @return \ZCEPracticeTest\Core\Entity\ZCEPracticeTest\Core\Category
+     * Get category
+     *
+     * @return Category 
      */
     public function getCategory()
     {
@@ -163,6 +170,7 @@ class Question
 
     /**
      * Return to json format the question entity
+     * 
      * @return array
      */
     public function jsonSerialize ()

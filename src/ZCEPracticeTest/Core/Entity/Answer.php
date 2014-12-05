@@ -4,7 +4,7 @@
  * PHP version 5.5
  *
  * @category Entity
- * @package  FrontBundle
+ * @package  Core
  * @author   Maxence Perrin <mperrin@darkmira.fr>
  * @license  Darkmira <darkmira@darkmira.fr>
  * @link     www.darkmira.fr
@@ -17,7 +17,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Question entity
  *
  * @category Entity
- * @package  FrontBundle
+ * @package  Core
  * @author   Maxence Perrin <mperrin@darkmira.fr>
  * @license  Darkmira <darkmira@darkmira.fr>
  * @link     www.darkmira.fr
@@ -51,36 +51,15 @@ class Answer
     private $isValid;
 
     /**
-     * @var ZcePracticeTest\Entity\Question
+     * @var QuestionQCM
      */
     private $question;
 
-    /**
-     * @param string $entitled
-     */
-    public function setEntitled($entitled)
-    {
-        $this->entitled = $entitled;
-    }
 
     /**
-     * @return string
-     */
-    public function getEntitled()
-    {
-        return $this->entitled;
-    }
-
-    /**
-     * @param int $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @return int
+     * Get id
+     *
+     * @return integer 
      */
     public function getId()
     {
@@ -88,15 +67,45 @@ class Answer
     }
 
     /**
+     * Set entitled
+     *
+     * @param string $entitled
+     * @return Answer
+     */
+    public function setEntitled($entitled)
+    {
+        $this->entitled = $entitled;
+
+        return $this;
+    }
+
+    /**
+     * Get entitled
+     *
+     * @return string 
+     */
+    public function getEntitled()
+    {
+        return $this->entitled;
+    }
+
+    /**
+     * Set isValid
+     *
      * @param boolean $isValid
+     * @return Answer
      */
     public function setIsValid($isValid)
     {
         $this->isValid = $isValid;
+
+        return $this;
     }
 
     /**
-     * @return boolean
+     * Get isValid
+     *
+     * @return boolean 
      */
     public function getIsValid()
     {
@@ -104,15 +113,22 @@ class Answer
     }
 
     /**
-     * @param mixed $question
+     * Set question
+     *
+     * @param QuestionQCM $question
+     * @return Answer
      */
-    public function setQuestion($question)
+    public function setQuestion(QuestionQCM $question = null)
     {
         $this->question = $question;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Get question
+     *
+     * @return QuestionQCM
      */
     public function getQuestion()
     {
@@ -121,6 +137,7 @@ class Answer
 
     /**
      * Return to json format the answer entity
+     * 
      * @return array
      */
     public function jsonSerialize ()
@@ -128,7 +145,7 @@ class Answer
         return array(
             'id' => $this->id,
             'entitled' => $this->entitled,
-            'isValid' => $this->isValid
+            'isValid' => $this->isValid,
         );
     }
 }
