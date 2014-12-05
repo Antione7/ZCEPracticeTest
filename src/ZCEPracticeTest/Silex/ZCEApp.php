@@ -81,11 +81,24 @@ class ZCEApp extends Application
             'orm.proxies_dir' => $this['project.root'].'/var/cache/doctrine/proxies',
             'orm.em.options' => array(
                 'mappings' => array(
+                    
+                    /**
+                     * Core mappings
+                     */
                     array(
                         'type' => 'yml',
                         'namespace' => 'ZCEPracticeTest\Core\Entity',
                         'path' => $this['project.root'].'/src/ZCEPracticeTest/Core/Resources/config/doctrine',
                         'alias' => 'ZCE',
+                    ),
+                    
+                    /**
+                     * SimpleUser mapping (register superclass SimpleUser\User)
+                     */
+                    array(
+                        'type' => 'yml',
+                        'namespace' => 'SimpleUser',
+                        'path' => $this['project.root'].'/src/ZCEPracticeTest/Core/Resources/config/doctrine',
                     ),
                 ),
             ),

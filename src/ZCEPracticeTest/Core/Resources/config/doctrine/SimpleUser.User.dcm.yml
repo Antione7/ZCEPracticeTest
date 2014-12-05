@@ -1,0 +1,43 @@
+SimpleUser\User:
+    type: mappedSuperclass
+    fields:
+        email:
+            type: string
+            length: 100
+            nullable: false
+        password:
+            type: string
+            length: 255
+            nullable: true
+        salt:
+            type: string
+            length: 255
+            nullable: false
+        roles:
+            type: string
+            length: 255
+            nullable: false
+        name:
+            type: string
+            length: 255
+            nullable: false
+        timeCreated:
+            column: time_created
+            type: datetime
+            nullable: false
+        username:
+            type: string
+            length: 100
+            unique: true
+            nullable: true
+        isEnabled:
+            type: boolean
+            nullable: false
+        confirmationToken:
+            type: string
+            length: 100
+            nullable: true
+        timePasswordResetRequested:
+            type: datetime
+            nullable: true
+    lifecycleCallbacks: {  }

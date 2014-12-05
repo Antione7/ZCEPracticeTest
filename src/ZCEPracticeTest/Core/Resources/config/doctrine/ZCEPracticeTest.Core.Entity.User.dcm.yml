@@ -5,36 +5,20 @@ ZCEPracticeTest\Core\Entity\User:
     id:
         id:
             type: integer
-            scale: 0
             length: null
             unique: false
             nullable: false
-            precision: 0
-            id: true
             generator:
                 strategy: IDENTITY
     fields:
         firstName:
             type: string
-            scale: 0
             length: 63
-            unique: false
-            nullable: false
-            precision: 0
+            nullable: true
             column: first_name
         lastName:
             type: string
-            scale: 0
             length: 63
-            unique: false
             nullable: true
-            precision: 0
             column: last_name
-        email:
-            type: string
-            scale: 0
-            length: 127
-            unique: false
-            nullable: true
-            precision: 0
     lifecycleCallbacks: {  }

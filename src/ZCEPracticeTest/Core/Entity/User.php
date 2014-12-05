@@ -12,6 +12,7 @@
 namespace ZCEPracticeTest\Core\Entity;
 
 use Symfony\Component\Validator\Constraints as Assert;
+use SimpleUser\User as BaseUser;
 
 /**
  * User entity
@@ -22,12 +23,12 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @license  Darkmira <darkmira@darkmira.fr>
  * @link     www.darkmira.fr
  */
-class User
+class User extends BaseUser
 {
     /**
      * @var integer
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
@@ -47,15 +48,6 @@ class User
      * )
      */
     private $lastName;
-
-    /**
-     * @var string
-     *
-     * @Assert\Length(
-     *      max="127"
-     * )
-     */
-    private $email;
     
     /**
      * Constructor
@@ -118,28 +110,5 @@ class User
     public function getLastName()
     {
         return $this->lastName;
-    }
-
-    /**
-     * Set email
-     *
-     * @param string $email
-     * @return User
-     */
-    public function setEmail($email)
-    {
-        $this->email = $email;
-
-        return $this;
-    }
-
-    /**
-     * Get email
-     *
-     * @return string 
-     */
-    public function getEmail()
-    {
-        return $this->email;
     }
 }
