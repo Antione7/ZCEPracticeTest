@@ -1,0 +1,24 @@
+ZCEPracticeTest\Core\Entity\User:
+    type: entity
+    table: zce_user
+    repositoryClass: ZCEPracticeTest\Core\Repository\UserRepository
+    id:
+        id:
+            type: integer
+            length: null
+            unique: false
+            nullable: false
+            generator:
+                strategy: IDENTITY
+    fields:
+        firstName:
+            type: string
+            length: 63
+            nullable: true
+            column: first_name
+        lastName:
+            type: string
+            length: 63
+            nullable: true
+            column: last_name
+    lifecycleCallbacks: {  }

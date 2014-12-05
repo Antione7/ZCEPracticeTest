@@ -1,8 +1,6 @@
 <?php
 
 /**
- *
- *
  * PHP version 5.5
  *
  * @category Entity
@@ -10,7 +8,6 @@
  * @author   Maxence Perrin <mperrin@darkmira.fr>
  * @license  Darkmira <darkmira@darkmira.fr>
  * @link     www.darkmira.fr
- *
  */
 namespace ZCEPracticeTest\Core\Entity;
 
@@ -25,27 +22,20 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @author   Maxence Perrin <mperrin@darkmira.fr>
  * @license  Darkmira <darkmira@darkmira.fr>
  * @link     www.darkmira.fr
- *
- * @Table(name="question")
- * @Entity(repositoryClass="ZCEPracticeTest\Core\Repository\QuestionRepository")
  */
 class Question
 {
     /**
      * Id of question entity
+     * 
      * @var integer
-     *
-     * @Column(name="id", type="integer")
-     * @Id
-     * @GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * Entitled of question
+     * 
      * @var string
-     *
-     * @Column(name="entitled", type="text")
      *
      * @Assert\NotBlank()
      * @Assert\Length(
@@ -56,9 +46,8 @@ class Question
 
     /**
      * Code of question, not required
+     * 
      * @var string
-     *
-     * @Column(name="code", type="text")
      *
      * @Assert\Length(
      *      max="4096"
@@ -68,16 +57,13 @@ class Question
 
     /**
      * Array of answers
+     * 
      * @var array
-     * @OneToMany(targetEntity="ZCEPracticeTest\Core\Entity\Answer", mappedBy="question", cascade={"persist", "remove"})
-     * @JoinColumn(onDelete="CASCADE")
      */
     private $answers;
 
     /**
      * @var ZCEPracticeTest\Core\Category
-     * @ManyToOne(targetEntity="Category")
-     * @JoinColumn(name="category_id", referencedColumnName="id")
      */
     private $category;
 
