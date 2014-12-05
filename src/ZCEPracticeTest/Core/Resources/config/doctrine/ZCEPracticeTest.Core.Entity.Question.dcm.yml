@@ -1,6 +1,6 @@
 ZCEPracticeTest\Core\Entity\Question:
     type: entity
-    table: question
+    table: zce_question
     repositoryClass: ZCEPracticeTest\Core\Repository\QuestionRepository
     id:
         id:

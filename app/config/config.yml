@@ -14,6 +14,7 @@ security:
 
 simple.user:
     userClass: ZCEPracticeTest\Core\Entity\User
-    userTableName: user
+    userTableName: zce_user
+    userCustomFieldsTableName: zce_user_custom_fields
 
 swiftmailer: ~

@@ -1,6 +1,6 @@
 ZCEPracticeTest\Core\Entity\User:
     type: entity
-    table: user
+    table: zce_user
     repositoryClass: ZCEPracticeTest\Core\Repository\UserRepository
     id:
         id:

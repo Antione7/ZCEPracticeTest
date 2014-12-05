@@ -1,6 +1,6 @@
 ZCEPracticeTest\Core\Entity\Category:
     type: entity
-    table: category
+    table: zce_category
     repositoryClass: ZCEPracticeTest\Core\Repository\CategoryRepository
     id:
         id:
