@@ -5,7 +5,7 @@ namespace ZCEPracticeTest\Core\Entity;
 /**
  * AnswerQCM
  */
-class AnswerQCM
+class AnswerQCM extends Answer
 {
     /**
      * @var integer

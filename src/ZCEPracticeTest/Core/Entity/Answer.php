@@ -8,11 +8,6 @@ namespace ZCEPracticeTest\Core\Entity;
 class Answer
 {
     /**
-     * @var integer
-     */
-    private $id;
-
-    /**
      * @var boolean
      */
     private $tagged;
@@ -31,17 +26,6 @@ class Answer
      * @var Session
      */
     private $session;
-
-
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set tagged

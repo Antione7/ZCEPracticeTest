@@ -5,7 +5,7 @@ namespace ZCEPracticeTest\Core\Entity;
 /**
  * AnswerFree
  */
-class AnswerFree
+class AnswerFree extends Answer
 {
     /**
      * @var integer
