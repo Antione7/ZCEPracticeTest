@@ -27,13 +27,10 @@ class QuizQuestionLoad extends AbstractFixture implements OrderedFixtureInterfac
      */
     public function load(ObjectManager $objectManager)
     {
-        $quizzes = array(0,0,1,1,1,1,1,0,0,0);
-        $questions = array('free-0', 'free-1', 'qcm-0', 'qcm-1', 'qcm-2', 'qcm-3', 'qcm-4', 'free-2', 'free-3', 'free-4');
-        
         for ($i = 0; $i < 10; $i++) {
             $o = new QuizQuestion();
-            $quiz = $this->getReference('quiz-'.($quizzes[$i]));
-            $question = $this->getReference('question-'.$questions[$i]);
+            $quiz = $this->getReference('quiz-'.($i % 2));
+            $question = $this->getReference(implode('-', array('question', floor($i / 5) ? 'free' : 'qcm', floor($i / 5))));
             $o
                 ->setQuiz($quiz)
                 ->setQuestion($question)
