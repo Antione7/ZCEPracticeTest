@@ -5,7 +5,7 @@ namespace ZCEPracticeTest\Core\Entity;
 /**
  * Question
  */
-class Question
+abstract class Question
 {
     /**
      * @var integer

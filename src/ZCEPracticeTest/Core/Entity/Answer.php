@@ -5,7 +5,7 @@ namespace ZCEPracticeTest\Core\Entity;
 /**
  * Answer
  */
-class Answer
+abstract class Answer
 {
     /**
      * @var boolean
