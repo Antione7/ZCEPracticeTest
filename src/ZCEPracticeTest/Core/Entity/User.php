@@ -4,7 +4,7 @@
  * PHP version 5.5
  *
  * @category Entity
- * @package  FrontBundle
+ * @package  Core
  * @author   Julien Maulny <jmaulny@darkmira.fr>
  * @license  Darkmira <darkmira@darkmira.fr>
  * @link     www.darkmira.fr

@@ -11,8 +11,6 @@
  */
 namespace ZCEPracticeTest\Core\Entity;
 
-use Symfony\Component\Validator\Constraints as Assert;
-
 /**
  * Question Free entity
  *
