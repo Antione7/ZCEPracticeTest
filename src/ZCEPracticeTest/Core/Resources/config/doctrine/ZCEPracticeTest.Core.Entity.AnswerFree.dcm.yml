@@ -1,0 +1,14 @@
+ZCEPracticeTest\Core\Entity\AnswerFree:
+    type: entity
+    table: zce_answer_free
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        answer:
+            type: string
+            nullable: true
+    lifecycleCallbacks: {  }

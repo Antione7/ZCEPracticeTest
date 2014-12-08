@@ -2,8 +2,6 @@
 
 namespace ZCEPracticeTest\Core\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Question
  */
@@ -38,7 +36,7 @@ class Question
     private $code;
 
     /**
-     * @var \ZCEPracticeTest\Core\Entity\Category
+     * @var Category
      */
     private $category;
 
@@ -102,10 +100,10 @@ class Question
     /**
      * Set category
      *
-     * @param \ZCEPracticeTest\Core\Entity\Category $category
+     * @param Category $category
      * @return Question
      */
-    public function setCategory(\ZCEPracticeTest\Core\Entity\Category $category = null)
+    public function setCategory(Category $category = null)
     {
         $this->category = $category;
 
@@ -115,7 +113,7 @@ class Question
     /**
      * Get category
      *
-     * @return \ZCEPracticeTest\Core\Entity\Category 
+     * @return Category 
      */
     public function getCategory()
     {

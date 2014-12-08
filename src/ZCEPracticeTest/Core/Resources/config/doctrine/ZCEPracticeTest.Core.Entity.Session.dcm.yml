@@ -1,0 +1,28 @@
+ZCEPracticeTest\Core\Entity\Session:
+    type: entity
+    table: zce_session
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields: []
+    manyToOne:
+        user:
+            targetEntity: ZCEPracticeTest\Core\Entity\User
+            cascade: {  }
+            inversedBy: sessions
+            joinColumns:
+                category_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        quiz:
+            targetEntity: ZCEPracticeTest\Core\Entity\Quiz
+            cascade: {  }
+            inversedBy: sessions
+            joinColumns:
+                category_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

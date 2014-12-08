@@ -1,0 +1,40 @@
+ZCEPracticeTest\Core\Entity\Answer:
+    type: entity
+    table: zce_answer
+    inheritanceType: JOINED
+    discriminatorColumn:
+        name: type
+        type: integer
+    discriminatorMap:
+        0: Answer
+        1: AnswerQCM
+        2: AnswerFree
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        tagged:
+            type: boolean
+        dateCreated:
+            type: datetime
+    manyToOne:
+        question:
+            targetEntity: ZCEPracticeTest\Core\Entity\Question
+            cascade: {  }
+            inversedBy: answers
+            joinColumns:
+                category_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        session:
+            targetEntity: ZCEPracticeTest\Core\Entity\Session
+            cascade: {  }
+            inversedBy: answers
+            joinColumns:
+                category_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

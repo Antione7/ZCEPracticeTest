@@ -19,4 +19,11 @@ ZCEPracticeTest\Core\Entity\User:
             length: 63
             nullable: true
             column: last_name
+    oneToMany:
+        sessions:
+            targetEntity: ZCEPracticeTest\Core\Entity\Session
+            cascade: { }
+            mappedBy: user
+            orphanRemoval: false
+            orderBy: null
     lifecycleCallbacks: {  }

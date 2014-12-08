@@ -48,7 +48,12 @@ class User extends BaseUser
      * )
      */
     private $lastName;
-    
+
+    /**
+     * @var Session[]
+     */
+    private $sessions;
+
     /**
      * Constructor
      * 
@@ -57,6 +62,8 @@ class User extends BaseUser
     public function __construct($email)
     {
         parent::__construct($email);
+        
+        $this->sessions = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -113,5 +120,38 @@ class User extends BaseUser
     public function getLastName()
     {
         return $this->lastName;
+    }
+
+    /**
+     * Add sessions
+     *
+     * @param Session $sessions
+     * @return User
+     */
+    public function addSession(Session $sessions)
+    {
+        $this->sessions[] = $sessions;
+
+        return $this;
+    }
+
+    /**
+     * Remove sessions
+     *
+     * @param Session $sessions
+     */
+    public function removeSession(Session $sessions)
+    {
+        $this->sessions->removeElement($sessions);
+    }
+
+    /**
+     * Get sessions
+     *
+     * @return Session[] 
+     */
+    public function getSessions()
+    {
+        return $this->sessions;
     }
 }

@@ -11,8 +11,6 @@
  */
 namespace ZCEPracticeTest\Core\Entity;
 
-use Symfony\Component\Validator\Constraints as Assert;
-
 /**
  * Quiz entity
  *
@@ -35,11 +33,17 @@ class Quiz
     private $quizQuestions;
 
     /**
+     * @var Session[]
+     */
+    private $sessions;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->quizQuestions = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->sessions = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -83,5 +87,38 @@ class Quiz
     public function getQuizQuestions()
     {
         return $this->quizQuestions;
+    }
+
+    /**
+     * Add sessions
+     *
+     * @param Session $sessions
+     * @return Quiz
+     */
+    public function addSession(Session $sessions)
+    {
+        $this->sessions[] = $sessions;
+
+        return $this;
+    }
+
+    /**
+     * Remove sessions
+     *
+     * @param Session $sessions
+     */
+    public function removeSession(Session $sessions)
+    {
+        $this->sessions->removeElement($sessions);
+    }
+
+    /**
+     * Get sessions
+     *
+     * @return Session[]
+     */
+    public function getSessions()
+    {
+        return $this->sessions;
     }
 }

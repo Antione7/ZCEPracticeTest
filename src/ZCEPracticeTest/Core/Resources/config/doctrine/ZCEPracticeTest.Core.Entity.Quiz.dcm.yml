@@ -16,4 +16,10 @@ ZCEPracticeTest\Core\Entity\Quiz:
             mappedBy: quiz
             orphanRemoval: false
             orderBy: null
+        sessions:
+            targetEntity: ZCEPracticeTest\Core\Entity\Session
+            cascade: { }
+            mappedBy: quiz
+            orphanRemoval: false
+            orderBy: null
     lifecycleCallbacks: {  }

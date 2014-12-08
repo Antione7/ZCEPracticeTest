@@ -2,8 +2,6 @@
 
 namespace ZCEPracticeTest\Core\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * QuestionQCMChoice
  */
