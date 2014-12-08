@@ -66,7 +66,7 @@ class Category
      * 
      * @return Category
      */
-    public function setEntitled(string $entitled)
+    public function setEntitled($entitled)
     {
         $this->entitled = $entitled;
 

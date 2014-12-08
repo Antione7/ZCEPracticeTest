@@ -1,28 +1,13 @@
 <?php
 
-/**
- * PHP version 5.5
- *
- * @category Entity
- * @package  Core
- * @author   Maxence Perrin <mperrin@darkmira.fr>
- * @license  Darkmira <darkmira@darkmira.fr>
- * @link     www.darkmira.fr
- */
 namespace ZCEPracticeTest\Core\Entity;
 
-use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Question entity
- *
- * @category Entity
- * @package  Core
- * @author   Maxence Perrin <mperrin@darkmira.fr>
- * @license  Darkmira <darkmira@darkmira.fr>
- * @link     www.darkmira.fr
+ * QuestionQCMChoice
  */
-class Answer
+class QuestionQCMChoice
 {
     /**
      * @var integer
@@ -30,8 +15,6 @@ class Answer
     private $id;
 
     /**
-     * Answer's Entitled
-     * 
      * @var string
      *
      * @Assert\NotBlank()
@@ -42,8 +25,6 @@ class Answer
     private $entitled;
 
     /**
-     * Answer's value
-     * 
      * @var boolean
      * 
      * @Assert\NotBlank()
@@ -70,7 +51,7 @@ class Answer
      * Set entitled
      *
      * @param string $entitled
-     * @return Answer
+     * @return QuestionQCMChoice
      */
     public function setEntitled($entitled)
     {
@@ -93,7 +74,7 @@ class Answer
      * Set isValid
      *
      * @param boolean $isValid
-     * @return Answer
+     * @return QuestionQCMChoice
      */
     public function setIsValid($isValid)
     {
@@ -116,7 +97,7 @@ class Answer
      * Set question
      *
      * @param QuestionQCM $question
-     * @return Answer
+     * @return QuestionQCMChoice
      */
     public function setQuestion(QuestionQCM $question = null)
     {

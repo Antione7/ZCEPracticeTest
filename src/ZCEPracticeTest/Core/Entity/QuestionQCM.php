@@ -25,26 +25,33 @@ use Symfony\Component\Validator\Constraints as Assert;
 class QuestionQCM extends Question
 {
     /**
+     * Minimum amount of choices to be checked
+     * 
      * @var integer
      */
     private $min;
 
     /**
+     * Maximum amount of choices to be checked
+     * (Set 0 to disable max)
+     * 
      * @var integer
      */
     private $max;
 
     /**
-     * @var Answer[]
+     * @var QuestionQCMChoice[]
      */
-    private $answers;
+    private $questionQCMChoices;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->answers = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->setMin(0);
+        $this->setMax(0);
+        $this->questionQCMChoices = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -96,36 +103,36 @@ class QuestionQCM extends Question
     }
 
     /**
-     * Add answers
+     * Add questionQCMChoices
      *
-     * @param Answer $answers
+     * @param QuestionQCMChoice $questionQCMChoices
      * 
      * @return QuestionQCM
      */
-    public function addAnswer(Answer $answers)
+    public function addQuestionQCMChoice(QuestionQCMChoice $questionQCMChoice)
     {
-        $this->answers[] = $answers;
+        $this->questionQCMChoices[] = $questionQCMChoice;
 
         return $this;
     }
 
     /**
-     * Remove answers
+     * Remove questionQCMChoices
      *
-     * @param Answer $answers
+     * @param QuestionQCMChoice $questionQCMChoices
      */
-    public function removeAnswer(Answer $answers)
+    public function removeQuestionQCMChoice(QuestionQCMChoice $questionQCMChoices)
     {
-        $this->answers->removeElement($answers);
+        $this->questionQCMChoices->removeElement($questionQCMChoices);
     }
 
     /**
-     * Get answers
+     * Get questionQCMChoices
      *
-     * @return Answer[]
+     * @return QuestionQCMChoice[]
      */
-    public function getAnswers()
+    public function getQuestionQCMChoices()
     {
-        return $this->answers;
+        return $this->questionQCMChoices;
     }
 }

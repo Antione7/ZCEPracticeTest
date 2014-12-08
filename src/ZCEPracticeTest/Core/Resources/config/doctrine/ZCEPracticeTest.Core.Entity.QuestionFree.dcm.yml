@@ -6,4 +6,5 @@ ZCEPracticeTest\Core\Entity\QuestionFree:
         answer:
             type: string
             length: 255
+            nullable: true
     lifecycleCallbacks: {  }

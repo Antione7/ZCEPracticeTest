@@ -28,6 +28,6 @@ use Doctrine\ORM\EntityRepository;
  * @license  Darkmira <darkmira@darkmira.fr>
  * @link     www.darkmira.fr
  */
-class AnswerRepository extends EntityRepository
+class QuestionQCMChoiceRepository extends EntityRepository
 {
 }

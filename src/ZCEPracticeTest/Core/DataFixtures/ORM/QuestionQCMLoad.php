@@ -17,9 +17,9 @@ namespace ZCEPracticeTest\Core\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use ZCEPracticeTest\Core\Entity\Category;
+use ZCEPracticeTest\Core\Entity\QuestionQCM;
 
-class CategoryLoad extends AbstractFixture implements OrderedFixtureInterface
+class QuestionQCMLoad extends AbstractFixture implements OrderedFixtureInterface
 {
     /**
      * Load default dataset of question
@@ -28,10 +28,15 @@ class CategoryLoad extends AbstractFixture implements OrderedFixtureInterface
     public function load(ObjectManager $objectManager)
     {
         for ($i = 0; $i < 5; $i++) {
-            $category = new Category();
-            $category->setEntitled('Category ' . $i);
-            $objectManager->persist($category);
-            $this->addReference($category->getEntitled(), $category);
+            $o = new QuestionQCM();
+            
+            $o
+                ->setEntitled('Question QCM '.($i+1))
+                ->setCategory($this->getReference('category-arrays'))
+            ;
+            
+            $this->addReference('question-qcm-'.$i, $o);
+            $objectManager->persist($o);
         }
 
         $objectManager->flush();

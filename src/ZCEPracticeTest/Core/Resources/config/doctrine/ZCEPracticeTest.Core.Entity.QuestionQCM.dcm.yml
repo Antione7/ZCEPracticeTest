@@ -8,8 +8,8 @@ ZCEPracticeTest\Core\Entity\QuestionQCM:
         max:
             type: integer
     oneToMany:
-        answers:
-            targetEntity: ZCEPracticeTest\Core\Entity\Answer
+        questionQCMChoices:
+            targetEntity: ZCEPracticeTest\Core\Entity\QuestionQCMChoice
             cascade:
                 - remove
                 - persist

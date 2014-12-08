@@ -1,33 +1,15 @@
 <?php
 
-/**
- * PHP version 5.5
- *
- * @category Entity
- * @package  Core
- * @author   Maxence Perrin <mperrin@darkmira.fr>
- * @license  Darkmira <darkmira@darkmira.fr>
- * @link     www.darkmira.fr
- */
 namespace ZCEPracticeTest\Core\Entity;
 
-use Symfony\Component\Validator\Constraints as Assert;
-use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Question entity
- *
- * @category Entity
- * @package  Core
- * @author   Maxence Perrin <mperrin@darkmira.fr>
- * @license  Darkmira <darkmira@darkmira.fr>
- * @link     www.darkmira.fr
+ * Question
  */
 class Question
 {
     /**
-     * Id of question entity
-     * 
      * @var integer
      */
     private $id;
@@ -56,15 +38,20 @@ class Question
     private $code;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    protected $quizQuestions;
-
-    /**
-     * @var Category
+     * @var \ZCEPracticeTest\Core\Entity\Category
      */
     private $category;
 
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Set entitled
@@ -113,45 +100,12 @@ class Question
     }
 
     /**
-     * Add quizQuestions
-     *
-     * @param QuizQuestion $quizQuestions
-     * @return Question
-     */
-    public function addQuizQuestion(QuizQuestion $quizQuestions)
-    {
-        $this->quizQuestions[] = $quizQuestions;
-
-        return $this;
-    }
-
-    /**
-     * Remove quizQuestions
-     *
-     * @param QuizQuestion $quizQuestions
-     */
-    public function removeQuizQuestion(QuizQuestion $quizQuestions)
-    {
-        $this->quizQuestions->removeElement($quizQuestions);
-    }
-
-    /**
-     * Get quizQuestions
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getQuizQuestions()
-    {
-        return $this->quizQuestions;
-    }
-
-    /**
      * Set category
      *
-     * @param Category $category
+     * @param \ZCEPracticeTest\Core\Entity\Category $category
      * @return Question
      */
-    public function setCategory(Category $category = null)
+    public function setCategory(\ZCEPracticeTest\Core\Entity\Category $category = null)
     {
         $this->category = $category;
 
@@ -161,7 +115,7 @@ class Question
     /**
      * Get category
      *
-     * @return Category 
+     * @return \ZCEPracticeTest\Core\Entity\Category 
      */
     public function getCategory()
     {
@@ -175,16 +129,10 @@ class Question
      */
     public function jsonSerialize ()
     {
-        $answers = array();
-        foreach ($this->answers as $answer) {
-            $answers[] = $answer->jsonSerialize();
-        }
-
         return array(
             'id' => $this->id,
             'entitled' => $this->entitled,
             'code' => $this->code,
-            'answers' => $answers
         );
     }
 }

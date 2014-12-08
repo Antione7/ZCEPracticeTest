@@ -1,5 +1,14 @@
 ZCEPracticeTest\Core\Entity\Question:
-    type: mappedSuperclass
+    type: entity
+    table: zce_question
+    inheritanceType: JOINED
+    discriminatorColumn:
+        name: type
+        type: integer
+    discriminatorMap:
+        0: Question
+        1: QuestionQCM
+        2: QuestionFree
     id:
         id:
             type: integer
@@ -9,18 +18,12 @@ ZCEPracticeTest\Core\Entity\Question:
     fields:
         entitled:
             type: text
-            scale: 0
-            length: null
-            unique: false
+            length: 511
             nullable: false
-            precision: 0
         code:
             type: text
-            scale: 0
-            length: null
-            unique: false
-            nullable: false
-            precision: 0
+            length: 511
+            nullable: true
     manyToOne:
         category:
             targetEntity: ZCEPracticeTest\Core\Entity\Category

@@ -1,7 +1,7 @@
-ZCEPracticeTest\Core\Entity\Answer:
+ZCEPracticeTest\Core\Entity\QuestionQCMChoice:
     type: entity
-    table: zce_answer
-    repositoryClass: ZCEPracticeTest\Core\Repository\AnswerRepository
+    table: zce_question_qcm_choice
+    repositoryClass: ZCEPracticeTest\Core\Repository\QuestionQCMChoiceRepository
     id:
         id:
             type: integer
@@ -27,7 +27,7 @@ ZCEPracticeTest\Core\Entity\Answer:
         question:
             targetEntity: ZCEPracticeTest\Core\Entity\QuestionQCM
             cascade: {  }
-            inversedBy: answers
+            inversedBy: questionQCMChoices
             joinColumns:
                 question_id:
                     referencedColumnName: id
