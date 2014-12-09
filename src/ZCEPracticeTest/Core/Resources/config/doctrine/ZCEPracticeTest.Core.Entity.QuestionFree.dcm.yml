@@ -1,0 +1,10 @@
+ZCEPracticeTest\Core\Entity\QuestionFree:
+    type: entity
+    table: zce_question_free
+    repositoryClass: ZCEPracticeTest\Core\Repository\QuestionFreeRepository
+    fields:
+        answer:
+            type: string
+            length: 255
+            nullable: true
+    lifecycleCallbacks: {  }

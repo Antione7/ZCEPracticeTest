@@ -5,9 +5,7 @@ ZCEPracticeTest\Core\Entity\User:
     id:
         id:
             type: integer
-            length: null
-            unique: false
-            nullable: false
+            id: true
             generator:
                 strategy: IDENTITY
     fields:
@@ -21,4 +19,11 @@ ZCEPracticeTest\Core\Entity\User:
             length: 63
             nullable: true
             column: last_name
+    oneToMany:
+        sessions:
+            targetEntity: ZCEPracticeTest\Core\Entity\Session
+            cascade: { }
+            mappedBy: user
+            orphanRemoval: false
+            orderBy: null
     lifecycleCallbacks: {  }

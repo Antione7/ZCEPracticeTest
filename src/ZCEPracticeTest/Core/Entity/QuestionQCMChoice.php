@@ -5,7 +5,7 @@
  *
  * @category Entity
  * @package  Core
- * @author   Maxence Perrin <mperrin@darkmira.fr>
+ * @author   Julien Maulny <jmaulny@darkmira.fr>
  * @license  Darkmira <darkmira@darkmira.fr>
  * @link     www.darkmira.fr
  */
@@ -14,15 +14,15 @@ namespace ZCEPracticeTest\Core\Entity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Question entity
+ * QuestionQCMChoice entity
  *
  * @category Entity
  * @package  Core
- * @author   Maxence Perrin <mperrin@darkmira.fr>
+ * @author   Julien Maulny <jmaulny@darkmira.fr>
  * @license  Darkmira <darkmira@darkmira.fr>
  * @link     www.darkmira.fr
  */
-abstract class Question
+class QuestionQCMChoice
 {
     /**
      * @var integer
@@ -30,8 +30,6 @@ abstract class Question
     private $id;
 
     /**
-     * Entitled of question
-     * 
      * @var string
      *
      * @Assert\NotBlank()
@@ -42,20 +40,16 @@ abstract class Question
     private $entitled;
 
     /**
-     * Code of question, not required
+     * @var boolean
      * 
-     * @var string
-     *
-     * @Assert\Length(
-     *      max="4096"
-     * )
+     * @Assert\NotBlank()
      */
-    private $code;
+    private $isValid;
 
     /**
-     * @var Category
+     * @var QuestionQCM
      */
-    private $category;
+    private $question;
 
 
     /**
@@ -72,7 +66,7 @@ abstract class Question
      * Set entitled
      *
      * @param string $entitled
-     * @return Question
+     * @return QuestionQCMChoice
      */
     public function setEntitled($entitled)
     {
@@ -92,53 +86,53 @@ abstract class Question
     }
 
     /**
-     * Set code
+     * Set isValid
      *
-     * @param string $code
-     * @return Question
+     * @param boolean $isValid
+     * @return QuestionQCMChoice
      */
-    public function setCode($code)
+    public function setIsValid($isValid)
     {
-        $this->code = $code;
+        $this->isValid = $isValid;
 
         return $this;
     }
 
     /**
-     * Get code
+     * Get isValid
      *
-     * @return string 
+     * @return boolean 
      */
-    public function getCode()
+    public function getIsValid()
     {
-        return $this->code;
+        return $this->isValid;
     }
 
     /**
-     * Set category
+     * Set question
      *
-     * @param Category $category
-     * @return Question
+     * @param QuestionQCM $question
+     * @return QuestionQCMChoice
      */
-    public function setCategory(Category $category = null)
+    public function setQuestion(QuestionQCM $question = null)
     {
-        $this->category = $category;
+        $this->question = $question;
 
         return $this;
     }
 
     /**
-     * Get category
+     * Get question
      *
-     * @return Category 
+     * @return QuestionQCM
      */
-    public function getCategory()
+    public function getQuestion()
     {
-        return $this->category;
+        return $this->question;
     }
 
     /**
-     * Return to json format the question entity
+     * Return to json format the answer entity
      * 
      * @return array
      */
@@ -147,7 +141,7 @@ abstract class Question
         return array(
             'id' => $this->id,
             'entitled' => $this->entitled,
-            'code' => $this->code,
+            'isValid' => $this->isValid,
         );
     }
 }

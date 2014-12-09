@@ -4,20 +4,18 @@
  * PHP version 5.5
  *
  * @category Entity
- * @package  FrontBundle
+ * @package  Core
  * @author   Maxence Perrin <mperrin@darkmira.fr>
  * @license  Darkmira <darkmira@darkmira.fr>
  * @link     www.darkmira.fr
  */
 namespace ZCEPracticeTest\Core\Entity;
 
-use Symfony\Component\Validator\Constraints as Assert;
-
 /**
  * Category entity
  *
  * @category Entity
- * @package  FrontBundle
+ * @package  Core
  * @author   Maxence Perrin <mperrin@darkmira.fr>
  * @license  Darkmira <darkmira@darkmira.fr>
  * @link     www.darkmira.fr
@@ -32,25 +30,50 @@ class Category
     private $id;
 
     /**
-     * Entitled of category
      * @var string
-     *
-     * @Assert\NotBlank()
-     * @Assert\Length(
-     *      max="200"
-     * )
      */
     private $entitled;
 
     /**
+     * @var Question[]
+     */
+    private $questions;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->questions = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set entitled
+     *
      * @param string $entitled
+     * 
+     * @return Category
      */
     public function setEntitled($entitled)
     {
         $this->entitled = $entitled;
+
+        return $this;
     }
 
     /**
+     * Get entitled
+     *
      * @return string
      */
     public function getEntitled()
@@ -59,18 +82,36 @@ class Category
     }
 
     /**
-     * @param int $id
+     * Add questions
+     *
+     * @param Question $questions
+     * 
+     * @return Category
      */
-    public function setId($id)
+    public function addQuestion(Question $questions)
     {
-        $this->id = $id;
+        $this->questions[] = $questions;
+
+        return $this;
     }
 
     /**
-     * @return int
+     * Remove questions
+     *
+     * @param Question $questions
      */
-    public function getId()
+    public function removeQuestion(Question $questions)
     {
-        return $this->id;
+        $this->questions->removeElement($questions);
+    }
+
+    /**
+     * Get questions
+     *
+     * @return Question[]
+     */
+    public function getQuestions()
+    {
+        return $this->questions;
     }
 }

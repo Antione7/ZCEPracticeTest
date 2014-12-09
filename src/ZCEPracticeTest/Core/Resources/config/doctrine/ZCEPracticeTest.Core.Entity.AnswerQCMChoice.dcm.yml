@@ -1,0 +1,27 @@
+ZCEPracticeTest\Core\Entity\AnswerQCMChoice:
+    type: entity
+    table: zce_answer_qcm_choice
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields: []
+    manyToOne:
+        answerQCM:
+            targetEntity: ZCEPracticeTest\Core\Entity\AnswerQCM
+            cascade: {  }
+            inversedBy: answerQCMChoices
+            joinColumns:
+                category_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+        session:
+            targetEntity: ZCEPracticeTest\Core\Entity\QuestionQCMChoice
+            cascade: {  }
+            joinColumns:
+                category_id:
+                    referencedColumnName: id
+            orphanRemoval: false
+    lifecycleCallbacks: {  }

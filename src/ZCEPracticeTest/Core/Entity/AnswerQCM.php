@@ -12,10 +12,7 @@
 namespace ZCEPracticeTest\Core\Entity;
 
 /**
- * Hack table, not used
- * 
- * Custom fields for user. Entity temporarly created
- * to not crash when SimpleUser request this table.
+ * AnswerQCM entity
  *
  * @category Entity
  * @package  Core
@@ -23,10 +20,21 @@ namespace ZCEPracticeTest\Core\Entity;
  * @license  Darkmira <darkmira@darkmira.fr>
  * @link     www.darkmira.fr
  */
-class UserCustomFields
+class AnswerQCM extends Answer
 {
     /**
      * @var integer
      */
-    protected $userId;
+    private $id;
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 }

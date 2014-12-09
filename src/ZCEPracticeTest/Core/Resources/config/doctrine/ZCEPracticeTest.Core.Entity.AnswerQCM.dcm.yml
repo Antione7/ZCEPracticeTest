@@ -1,0 +1,11 @@
+ZCEPracticeTest\Core\Entity\AnswerQCM:
+    type: entity
+    table: zce_answer_qcm
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields: []
+    lifecycleCallbacks: {  }

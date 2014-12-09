@@ -4,115 +4,107 @@
  * PHP version 5.5
  *
  * @category Entity
- * @package  FrontBundle
+ * @package  Core
  * @author   Maxence Perrin <mperrin@darkmira.fr>
  * @license  Darkmira <darkmira@darkmira.fr>
  * @link     www.darkmira.fr
  */
 namespace ZCEPracticeTest\Core\Entity;
 
-use Symfony\Component\Validator\Constraints as Assert;
-
 /**
- * Question entity
+ * Answer entity
  *
  * @category Entity
- * @package  FrontBundle
+ * @package  Core
  * @author   Maxence Perrin <mperrin@darkmira.fr>
  * @license  Darkmira <darkmira@darkmira.fr>
  * @link     www.darkmira.fr
  */
-class Answer
+abstract class Answer
 {
     /**
-     * @var integer
-     */
-    private $id;
-
-    /**
-     * Answer's Entitled
-     * 
-     * @var string
-     *
-     * @Assert\NotBlank()
-     * @Assert\Length(
-     *      max="4096"
-     * )
-     */
-    private $entitled;
-
-    /**
-     * Answer's value
-     * 
      * @var boolean
-     * 
-     * @Assert\NotBlank()
      */
-    private $isValid;
+    private $tagged;
 
     /**
-     * @var ZcePracticeTest\Entity\Question
+     * @var \DateTime
+     */
+    private $dateCreated;
+
+    /**
+     * @var Question
      */
     private $question;
 
     /**
-     * @param string $entitled
+     * @var Session
      */
-    public function setEntitled($entitled)
+    private $session;
+
+    /**
+     * Set tagged
+     *
+     * @param boolean $tagged
+     * @return Answer
+     */
+    public function setTagged($tagged)
     {
-        $this->entitled = $entitled;
+        $this->tagged = $tagged;
+
+        return $this;
     }
 
     /**
-     * @return string
+     * Get tagged
+     *
+     * @return boolean 
      */
-    public function getEntitled()
+    public function getTagged()
     {
-        return $this->entitled;
+        return $this->tagged;
     }
 
     /**
-     * @param int $id
+     * Set dateCreated
+     *
+     * @param \DateTime $dateCreated
+     * @return Answer
      */
-    public function setId($id)
+    public function setDateCreated($dateCreated)
     {
-        $this->id = $id;
+        $this->dateCreated = $dateCreated;
+
+        return $this;
     }
 
     /**
-     * @return int
+     * Get dateCreated
+     *
+     * @return \DateTime 
      */
-    public function getId()
+    public function getDateCreated()
     {
-        return $this->id;
+        return $this->dateCreated;
     }
 
     /**
-     * @param boolean $isValid
+     * Set question
+     *
+     * @param Question $question
+     * @return Answer
      */
-    public function setIsValid($isValid)
-    {
-        $this->isValid = $isValid;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function getIsValid()
-    {
-        return $this->isValid;
-    }
-
-    /**
-     * @param mixed $question
-     */
-    public function setQuestion($question)
+    public function setQuestion(Question $question = null)
     {
         $this->question = $question;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Get question
+     *
+     * @return Question 
      */
     public function getQuestion()
     {
@@ -120,15 +112,25 @@ class Answer
     }
 
     /**
-     * Return to json format the answer entity
-     * @return array
+     * Set session
+     *
+     * @param Session $session
+     * @return Answer
      */
-    public function jsonSerialize ()
+    public function setSession(Session $session = null)
     {
-        return array(
-            'id' => $this->id,
-            'entitled' => $this->entitled,
-            'isValid' => $this->isValid
-        );
+        $this->session = $session;
+
+        return $this;
+    }
+
+    /**
+     * Get session
+     *
+     * @return Session 
+     */
+    public function getSession()
+    {
+        return $this->session;
     }
 }

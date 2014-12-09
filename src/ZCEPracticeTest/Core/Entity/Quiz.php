@@ -11,11 +11,8 @@
  */
 namespace ZCEPracticeTest\Core\Entity;
 
-use Symfony\Component\Validator\Constraints as Assert;
-use SimpleUser\User as BaseUser;
-
 /**
- * User entity
+ * Quiz entity
  *
  * @category Entity
  * @package  Core
@@ -23,31 +20,17 @@ use SimpleUser\User as BaseUser;
  * @license  Darkmira <darkmira@darkmira.fr>
  * @link     www.darkmira.fr
  */
-class User extends BaseUser
+class Quiz
 {
     /**
      * @var integer
      */
-    protected $id;
+    private $id;
 
     /**
-     * @var string
-     *
-     * @Assert\NotBlank()
-     * @Assert\Length(
-     *      max="63"
-     * )
+     * @var QuizQuestion[]
      */
-    private $firstName;
-
-    /**
-     * @var string
-     * 
-     * @Assert\Length(
-     *      max="63"
-     * )
-     */
-    private $lastName;
+    private $quizQuestions;
 
     /**
      * @var Session[]
@@ -56,13 +39,10 @@ class User extends BaseUser
 
     /**
      * Constructor
-     * 
-     * @param string $email
      */
-    public function __construct($email)
+    public function __construct()
     {
-        parent::__construct($email);
-        
+        $this->quizQuestions = new \Doctrine\Common\Collections\ArrayCollection();
         $this->sessions = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -77,56 +57,43 @@ class User extends BaseUser
     }
 
     /**
-     * Set firstName
+     * Add quizQuestions
      *
-     * @param string $firstName
-     * @return User
+     * @param QuizQuestion $quizQuestions
+     * @return Quiz
      */
-    public function setFirstName($firstName)
+    public function addQuizQuestion(QuizQuestion $quizQuestions)
     {
-        $this->firstName = $firstName;
+        $this->quizQuestions[] = $quizQuestions;
 
         return $this;
     }
 
     /**
-     * Get firstName
+     * Remove quizQuestions
      *
-     * @return string 
+     * @param QuizQuestion $quizQuestions
      */
-    public function getFirstName()
+    public function removeQuizQuestion(QuizQuestion $quizQuestions)
     {
-        return $this->firstName;
+        $this->quizQuestions->removeElement($quizQuestions);
     }
 
     /**
-     * Set lastName
+     * Get quizQuestions
      *
-     * @param string $lastName
-     * @return User
+     * @return QuizQuestion[]
      */
-    public function setLastName($lastName)
+    public function getQuizQuestions()
     {
-        $this->lastName = $lastName;
-
-        return $this;
-    }
-
-    /**
-     * Get lastName
-     *
-     * @return string 
-     */
-    public function getLastName()
-    {
-        return $this->lastName;
+        return $this->quizQuestions;
     }
 
     /**
      * Add sessions
      *
      * @param Session $sessions
-     * @return User
+     * @return Quiz
      */
     public function addSession(Session $sessions)
     {
@@ -148,7 +115,7 @@ class User extends BaseUser
     /**
      * Get sessions
      *
-     * @return Session[] 
+     * @return Session[]
      */
     public function getSessions()
     {
