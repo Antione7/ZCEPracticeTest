@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit
+    bootstrap="./vendor/autoload.php"
+    colors="true"
+>
+
+    <testsuites>
+        <testsuite name="ZCE app test suite">
+            <directory suffix="Test.php">./src/ZCEPracticeTest/Core/Tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory>./</directory>
+            <exclude>
+                <directory>./vendor</directory>
+            </exclude>
+        </whitelist>
+    </filter>
+</phpunit>
