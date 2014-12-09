@@ -6,8 +6,8 @@
 >
 
     <testsuites>
-        <testsuite name="ZCE app test suite">
-            <directory suffix="Test.php">./src/ZCEPracticeTest/Core/Tests</directory>
+        <testsuite name="ZCE Practice test core test suite">
+            <directory>./src/ZCEPracticeTest/Core/Tests</directory>
         </testsuite>
     </testsuites>
 
