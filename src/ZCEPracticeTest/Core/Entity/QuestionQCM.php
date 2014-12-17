@@ -133,4 +133,24 @@ class QuestionQCM extends Question
     {
         return $this->questionQCMChoices;
     }
+    
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $data = parent::jsonSerialize();
+        
+        $data['min'] = $this->getMin();
+        $data['max'] = $this->getMax();
+        $choices = array();
+        
+        foreach ($this->getQuestionQCMChoices() as $questionQCMChoice) {
+            $choices []= $questionQCMChoice->jsonSerialize();
+        }
+        
+        $data['questionQCMChoice'] = $choices;
+        
+        return $data;
+    }
 }

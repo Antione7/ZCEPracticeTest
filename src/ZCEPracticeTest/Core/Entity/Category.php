@@ -20,7 +20,7 @@ namespace ZCEPracticeTest\Core\Entity;
  * @license  Darkmira <darkmira@darkmira.fr>
  * @link     www.darkmira.fr
  */
-class Category
+class Category implements \JsonSerializable
 {
     /**
      * Id of category entity
@@ -113,5 +113,16 @@ class Category
     public function getQuestions()
     {
         return $this->questions;
+    }
+    
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return array(
+            'id' => $this->getId(),
+            'entitled' => $this->getEntitled(),
+        );
     }
 }

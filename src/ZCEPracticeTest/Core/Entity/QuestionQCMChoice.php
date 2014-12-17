@@ -22,7 +22,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @license  Darkmira <darkmira@darkmira.fr>
  * @link     www.darkmira.fr
  */
-class QuestionQCMChoice
+class QuestionQCMChoice implements \JsonSerializable
 {
     /**
      * @var integer
@@ -139,9 +139,9 @@ class QuestionQCMChoice
     public function jsonSerialize ()
     {
         return array(
-            'id' => $this->id,
-            'entitled' => $this->entitled,
-            'isValid' => $this->isValid,
+            'id' => $this->getId(),
+            'entitled' => $this->getEntitled(),
+            'isValid' => $this->getIsValid(),
         );
     }
 }
