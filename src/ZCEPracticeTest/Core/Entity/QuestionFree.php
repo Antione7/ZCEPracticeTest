@@ -50,4 +50,16 @@ class QuestionFree extends Question
     {
         return $this->answer;
     }
+    
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $data = parent::jsonSerialize();
+        
+        $data['answer'] = $this->getAnswer();
+        
+        return $data;
+    }
 }

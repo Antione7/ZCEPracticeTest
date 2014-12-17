@@ -5,10 +5,9 @@ namespace ZCEPracticeTest\Silex;
 use Symfony\Component\Yaml\Yaml;
 use Silex\Application;
 use Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider;
-use ZCEPracticeTest\Core\Service\QuestionParser;
-use ZCEPracticeTest\Core\Event\QuestionEvent;
-use ZCEPracticeTest\Core\Listener\QuestionListener;
-use ZCEPracticeTest\Core\Controller\GetController;
+use ZCEPracticeTest\Core\Service\QuestionManager;
+use ZCEPracticeTest\Core\Service\QuizFactory;
+use ZCEPracticeTest\Rest\Provider\RestAPIProvider;
 
 class ZCEApp extends Application
 {
@@ -27,9 +26,8 @@ class ZCEApp extends Application
         $this->registerDoctrineORM();
         $this->registerServices();
         $this->registerListeners();
-        $this->registerControllers();
-        $this->registerRoutes();
         $this->registerSimpleUser();
+        $this->registerRestAPI();
     }
     
     private function loadParameters()
@@ -126,49 +124,27 @@ class ZCEApp extends Application
         $this->mount('/user', $simpleUserProvider);
     }
     
+    private function registerRestAPI()
+    {
+        $restAPIProvider = new RestAPIProvider();
+        
+        $this->register($restAPIProvider);
+        $this->mount('/api', $restAPIProvider);
+    }
+    
     private function registerServices()
     {
-        $this['zce.question_parser'] = $this->share(function () {
-            return new QuestionParser();
+        $this['zce.core.question_manager'] = $this->share(function () {
+            return new QuestionManager();
         });
         
-        $this['zce.listener.question'] = $this->share(function () {
-            return new QuestionListener($this['orm.em'], $this['zce.question_parser']);
+        $this['zce.core.quiz_factory'] = $this->share(function () {
+            return new QuizFactory($this['zce.core.question_manager']);
         });
     }
     
     private function registerListeners()
     {
         $dispatcher = $this['dispatcher'];
-        
-        $dispatcher->addListener(QuestionEvent::QUESTION_INIT, array($this['zce.listener.question'], 'onQuestionsInit'));
-    }
-    
-    /**
-     * Register controllers as services as they are dependencies
-     */
-    private function registerControllers()
-    {
-        $this['get.controller'] = $this->share(function () {
-            return new GetController($this['dispatcher']);
-        });
-    }
-    
-    /**
-     * Register routes
-     */
-    private function registerRoutes()
-    {
-        $this
-            ->get('/', function () {
-                return 'home';
-            })
-            ->bind('front-home')
-        ;
-        
-        $this
-            ->get('/GET/questions', 'get.controller:questionAction')
-            ->bind('front-get-questions')
-        ;
     }
 }
