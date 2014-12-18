@@ -25,4 +25,13 @@ ZCEPracticeTest\Core\Entity\Session:
                 topic_id:
                     referencedColumnName: id
             orphanRemoval: false
+    oneToMany:
+        answers:
+            targetEntity: ZCEPracticeTest\Core\Entity\Answer
+            mappedBy: session
+            cascade:
+                - remove
+                - persist
+            orphanRemoval: false
+            orderBy: null
     lifecycleCallbacks: {  }

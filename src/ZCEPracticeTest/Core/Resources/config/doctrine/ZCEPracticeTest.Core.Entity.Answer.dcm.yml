@@ -20,7 +20,6 @@ ZCEPracticeTest\Core\Entity\Answer:
         question:
             targetEntity: ZCEPracticeTest\Core\Entity\Question
             cascade: {  }
-            inversedBy: answers
             joinColumns:
                 topic_id:
                     referencedColumnName: id
@@ -33,4 +32,10 @@ ZCEPracticeTest\Core\Entity\Answer:
                 topic_id:
                     referencedColumnName: id
             orphanRemoval: false
+    oneToMany:
+        answerQCMChoices:
+            targetEntity: ZCEPracticeTest\Core\Entity\AnswerQCMChoice
+            mappedBy: answer
+            orphanRemoval: false
+            orderBy: null
     lifecycleCallbacks: {  }

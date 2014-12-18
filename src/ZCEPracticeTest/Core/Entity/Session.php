@@ -28,6 +28,11 @@ class Session
     private $id;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $answers;
+
+    /**
      * @var User
      */
     private $user;
@@ -37,6 +42,13 @@ class Session
      */
     private $quiz;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->answers = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -46,6 +58,29 @@ class Session
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Add answers
+     *
+     * @param Answer $answers
+     * @return Session
+     */
+    public function addAnswer(Answer $answers)
+    {
+        $this->answers[] = $answers;
+
+        return $this;
+    }
+
+    /**
+     * Get answers
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAnswers()
+    {
+        return $this->answers;
     }
 
     /**

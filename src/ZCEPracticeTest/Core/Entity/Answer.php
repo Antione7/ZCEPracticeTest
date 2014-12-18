@@ -43,6 +43,11 @@ class Answer
     private $dateCreated;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $answerQCMChoices;
+
+    /**
      * @var Question
      */
     private $question;
@@ -52,6 +57,13 @@ class Answer
      */
     private $session;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->answerQCMChoices = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -130,6 +142,29 @@ class Answer
     public function getDateCreated()
     {
         return $this->dateCreated;
+    }
+
+    /**
+     * Add answerQCMChoices
+     *
+     * @param AnswerQCMChoice $answerQCMChoices
+     * @return Answer
+     */
+    public function addAnswerQCMChoice(AnswerQCMChoice $answerQCMChoices)
+    {
+        $this->answerQCMChoices[] = $answerQCMChoices;
+
+        return $this;
+    }
+
+    /**
+     * Get answerQCMChoices
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAnswerQCMChoices()
+    {
+        return $this->answerQCMChoices;
     }
 
     /**
