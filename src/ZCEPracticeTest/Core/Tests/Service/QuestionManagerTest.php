@@ -12,9 +12,8 @@
 namespace ZCEPracticeTest\Core\Tests\Service;
 
 use ZCEPracticeTest\Core\Exception\ZCEPracticeTestException;
-use ZCEPracticeTest\Core\Entity\Category;
-use ZCEPracticeTest\Core\Entity\QuestionQCM;
-use ZCEPracticeTest\Core\Entity\QuestionFree;
+use ZCEPracticeTest\Core\Entity\Topic;
+use ZCEPracticeTest\Core\Entity\Question;
 use ZCEPracticeTest\Core\Entity\Quiz;
 use ZCEPracticeTest\Core\Service\QuestionManager;
 use ZCEPracticeTest\Core\Service\QuizFactory;
@@ -30,7 +29,7 @@ class QuestionManagerTest extends \PHPUnit_Framework_TestCase
 {
     private $questionManager;
     
-    private $categories;
+    private $topics;
     
     private $questions;
     
@@ -38,47 +37,47 @@ class QuestionManagerTest extends \PHPUnit_Framework_TestCase
     {
         $this->questionManager = new QuestionManager();
         
-        $this->categories = array(
-            (new Category())->setEntitled('Category 1'),
-            (new Category())->setEntitled('Category 2'),
-            (new Category())->setEntitled('Category 3'),
+        $this->topics = array(
+            (new Topic())->setEntitled('Topic 1'),
+            (new Topic())->setEntitled('Topic 2'),
+            (new Topic())->setEntitled('Topic 3'),
         );
         
         $this->questions = array(
-            (new QuestionQCM())->setCategory($this->categories[0]),
+            (new Question())->setTopic($this->topics[0]),
             
-            (new QuestionQCM())->setCategory($this->categories[1]),
-            (new QuestionQCM())->setCategory($this->categories[1]),
-            (new QuestionFree())->setCategory($this->categories[1]),
-            (new QuestionFree())->setCategory($this->categories[1]),
+            (new Question())->setTopic($this->topics[1]),
+            (new Question())->setTopic($this->topics[1]),
+            (new Question())->setTopic($this->topics[1]),
+            (new Question())->setTopic($this->topics[1]),
             
-            (new QuestionQCM())->setCategory($this->categories[2]),
-            (new QuestionQCM())->setCategory($this->categories[2]),
-            (new QuestionQCM())->setCategory($this->categories[2]),
-            (new QuestionFree())->setCategory($this->categories[2]),
-            (new QuestionFree())->setCategory($this->categories[2]),
-            (new QuestionQCM())->setCategory($this->categories[2]),
-            (new QuestionQCM())->setCategory($this->categories[2]),
+            (new Question())->setTopic($this->topics[2]),
+            (new Question())->setTopic($this->topics[2]),
+            (new Question())->setTopic($this->topics[2]),
+            (new Question())->setTopic($this->topics[2]),
+            (new Question())->setTopic($this->topics[2]),
+            (new Question())->setTopic($this->topics[2]),
+            (new Question())->setTopic($this->topics[2]),
         );
     }
     
-    public function testSortQuestionByCategories()
+    public function testSortQuestionByTopics()
     {
-        $category0 = $this->categories[0];
-        $category1 = $this->categories[1];
-        $category2 = $this->categories[2];
+        $topic0 = $this->topics[0];
+        $topic1 = $this->topics[1];
+        $topic2 = $this->topics[2];
         
-        $categories = $this->questionManager->sortQuestionsByCategories($this->questions);
+        $topics = $this->questionManager->sortQuestionsByTopics($this->questions);
         
-        $this->assertCount(3, $categories);
-        $this->assertCount(1, $categories[$category0]);
-        $this->assertCount(4, $categories[$category1]);
-        $this->assertCount(7, $categories[$category2]);
-        $this->assertEquals($categories[$category0][0]->getCategory(), $category0);
-        $this->assertEquals($categories[$category1][0]->getCategory(), $category1);
-        $this->assertEquals($categories[$category1][3]->getCategory(), $category1);
-        $this->assertEquals($categories[$category2][0]->getCategory(), $category2);
-        $this->assertEquals($categories[$category2][6]->getCategory(), $category2);
+        $this->assertCount(3, $topics);
+        $this->assertCount(1, $topics[$topic0]);
+        $this->assertCount(4, $topics[$topic1]);
+        $this->assertCount(7, $topics[$topic2]);
+        $this->assertEquals($topics[$topic0][0]->getTopic(), $topic0);
+        $this->assertEquals($topics[$topic1][0]->getTopic(), $topic1);
+        $this->assertEquals($topics[$topic1][3]->getTopic(), $topic1);
+        $this->assertEquals($topics[$topic2][0]->getTopic(), $topic2);
+        $this->assertEquals($topics[$topic2][6]->getTopic(), $topic2);
     }
     
     public function testGetRandomsQuestions()

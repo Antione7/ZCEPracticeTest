@@ -13,7 +13,7 @@ namespace ZCEPracticeTest\Core\Service;
 
 use SplObjectStorage;
 use ZCEPracticeTest\Core\Exception\QuizFactoryException;
-use ZCEPracticeTest\Core\Entity\Category;
+use ZCEPracticeTest\Core\Entity\Topic;
 use ZCEPracticeTest\Core\Entity\Question;
 use ZCEPracticeTest\Core\Entity\Quiz;
 use ZCEPracticeTest\Core\Service\QuestionManager;
@@ -66,44 +66,44 @@ class QuizFactory
     
     /**
      * Create a quiz of questions as a quiz.
-     * Defines which categories you want and how much:
+     * Defines which topics you want and how much:
      * 
      * $quiz = $quizFactory->createCategorizedRandomQuiz($questionRepository->findAll(), 70, array(
-     *      array($category0, $percentage0),
-     *      array($category1, $percentage1),
-     *      array($category2, $percentage2),
+     *      array($topic0, $percentage0),
+     *      array($topic1, $percentage1),
+     *      array($topic2, $percentage2),
      * ));
      * 
      * @param Question[] $questions to use
      * @param integer $quizSize number of questions to put in quiz
-     * @param array $percentages of questions of each categories
+     * @param array $percentages of questions of each topics
      * 
      * @return Quiz
      * 
-     * @throws QuizFactoryException if there is not enough questions in a category
+     * @throws QuizFactoryException if there is not enough questions in a topic
      */
     public function createCategorizedRandomQuiz(array $questions, $quizSize, array $percentages)
     {
         $this->checkPercentages($percentages);
         
         $quizBuilder = new QuizBuilder();
-        $numberOfQuestions = $this->calculateNumberQuestionsPerCategories($quizSize, $percentages);
-        $categorizedQuestions = $this->questionManager->sortQuestionsByCategories($questions);
+        $numberOfQuestions = $this->calculateNumberQuestionsPerTopics($quizSize, $percentages);
+        $categorizedQuestions = $this->questionManager->sortQuestionsByTopics($questions);
         
         foreach ($percentages as $percentage) {
-            $category = $percentage[0];
+            $topic = $percentage[0];
             
-            if (!isset($categorizedQuestions[$category])) {
-                throw new QuizFactoryException('No any questions in category '.$category->getEntitled());
+            if (!isset($categorizedQuestions[$topic])) {
+                throw new QuizFactoryException('No any questions in topic '.$topic->getEntitled());
             }
             
-            $size = $numberOfQuestions[$category];
-            $candidates = $categorizedQuestions[$category];
+            $size = $numberOfQuestions[$topic];
+            $candidates = $categorizedQuestions[$topic];
             
             try {
                 $randomQuestions = $this->questionManager->getRandomQuestions($candidates, $size);
             } catch (ZCEPracticeTestException $ex) {
-                throw new QuizFactoryException($ex->getMessage().' in category '.$category->getEntitled());
+                throw new QuizFactoryException($ex->getMessage().' in topic '.$topic->getEntitled());
             }
             
             $quizBuilder->addQuestions($randomQuestions);
@@ -113,27 +113,27 @@ class QuizFactory
     }
     
     /**
-     * Convert percentages per categories to a number of questions.
-     * Fill with random categories if sum of rounded numbers is not enough.
+     * Convert percentages per topics to a number of questions.
+     * Fill with random topics if sum of rounded numbers is not enough.
      * 
      * @param integer $quizSize
      * @param array $percentages
      * 
      * @return Question[]
      */
-    private function calculateNumberQuestionsPerCategories($quizSize, array $percentages)
+    private function calculateNumberQuestionsPerTopics($quizSize, array $percentages)
     {
         $questionsNumber = new SplObjectStorage();
         $sum = $this->getPercentagesSum($percentages);
         $size = 0;
         
         foreach ($percentages as $percentage) {
-            $category = $percentage[0];
+            $topic = $percentage[0];
             $value = $percentage[1];
             
-            $questionsNumber[$category] = floor(($quizSize * $value) / $sum);
+            $questionsNumber[$topic] = floor(($quizSize * $value) / $sum);
             
-            $size += $questionsNumber[$category];
+            $size += $questionsNumber[$topic];
         }
         
         $questionsNumber->rewind();
@@ -171,7 +171,7 @@ class QuizFactory
     
     /**
      * Check if percentages array is well formed
-     * (array of [Category, double])
+     * (array of [Topic, double])
      * 
      * @param array $percentages
      * 
@@ -180,16 +180,16 @@ class QuizFactory
     private function checkPercentages(array $percentages)
     {
         foreach ($percentages as $percentage) {
-            if (!($percentage[0] instanceof Category)) {
+            if (!($percentage[0] instanceof Topic)) {
                 throw new QuizFactoryException(sprintf(
-                    'percentages must be an array of [category, number]. Got instance of "%s" as category',
+                    'percentages must be an array of [topic, number]. Got instance of "%s" as topic',
                     get_class($percentage[0])
                 ));
             }
             
             if (!is_numeric($percentage[1])) {
                 throw new QuizFactoryException(sprintf(
-                    'percentages must be an array of [category, number]. Got "%s" as number',
+                    'percentages must be an array of [topic, number]. Got "%s" as number',
                     $percentage[1]
                 ));
             }
