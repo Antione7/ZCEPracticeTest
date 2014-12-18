@@ -1,7 +1,7 @@
-ZCEPracticeTest\Core\Entity\Category:
+ZCEPracticeTest\Core\Entity\Topic:
     type: entity
-    table: zce_category
-    repositoryClass: ZCEPracticeTest\Core\Repository\CategoryRepository
+    table: zce_topic
+    repositoryClass: ZCEPracticeTest\Core\Repository\TopicRepository
     id:
         id:
             type: integer
@@ -16,9 +16,9 @@ ZCEPracticeTest\Core\Entity\Category:
         questions:
             targetEntity: ZCEPracticeTest\Core\Entity\Question
             cascade: {  }
-            mappedBy: category
+            mappedBy: topic
             joinColumns:
-                category_id:
+                topic_id:
                     referencedColumnName: id
             orphanRemoval: false
     lifecycleCallbacks: {  }

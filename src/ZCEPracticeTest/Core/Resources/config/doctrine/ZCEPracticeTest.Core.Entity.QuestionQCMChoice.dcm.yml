@@ -10,22 +10,13 @@ ZCEPracticeTest\Core\Entity\QuestionQCMChoice:
                 strategy: IDENTITY
     fields:
         entitled:
-            type: text
-            scale: 0
-            length: null
-            unique: false
-            nullable: false
-            precision: 0
+            type: string
+            length: 255
         isValid:
             type: boolean
-            scale: 0
-            length: null
-            unique: false
-            nullable: false
-            precision: 0
     manyToOne:
         question:
-            targetEntity: ZCEPracticeTest\Core\Entity\QuestionQCM
+            targetEntity: ZCEPracticeTest\Core\Entity\Question
             cascade: {  }
             inversedBy: questionQCMChoices
             joinColumns:

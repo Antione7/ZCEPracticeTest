@@ -12,7 +12,7 @@
 namespace ZCEPracticeTest\Core\Entity;
 
 /**
- * Category entity
+ * Topic entity
  *
  * @category Entity
  * @package  Core
@@ -20,7 +20,7 @@ namespace ZCEPracticeTest\Core\Entity;
  * @license  Darkmira <darkmira@darkmira.fr>
  * @link     www.darkmira.fr
  */
-class Category implements \JsonSerializable
+class Topic implements \JsonSerializable
 {
     /**
      * Id of category entity

@@ -14,7 +14,7 @@ ZCEPracticeTest\Core\Entity\Session:
             cascade: {  }
             inversedBy: sessions
             joinColumns:
-                category_id:
+                topic_id:
                     referencedColumnName: id
             orphanRemoval: false
         quiz:
@@ -22,7 +22,7 @@ ZCEPracticeTest\Core\Entity\Session:
             cascade: {  }
             inversedBy: sessions
             joinColumns:
-                category_id:
+                topic_id:
                     referencedColumnName: id
             orphanRemoval: false
     lifecycleCallbacks: {  }

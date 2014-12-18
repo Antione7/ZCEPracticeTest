@@ -26,4 +26,16 @@ use Doctrine\ORM\EntityRepository;
  */
 class QuestionRepository extends EntityRepository
 {
+    public function getAll()
+    {
+        $q = $this->createQueryBuilder('q');
+        
+        $q
+            ->addSelect('c, qc')
+            ->leftJoin('q.category', 'c')
+            ->leftJoin('ZCE:QuestionQCMChoice', 'qc', \Doctrine\ORM\Query\Expr\Join::WITH, 'c = qc.question')
+        ;
+        
+        return $q->getQuery()->getResult();
+    }
 }

@@ -1,14 +1,6 @@
 ZCEPracticeTest\Core\Entity\Answer:
     type: entity
     table: zce_answer
-    inheritanceType: JOINED
-    discriminatorColumn:
-        name: type
-        type: integer
-    discriminatorMap:
-        0: Answer
-        1: AnswerQCM
-        2: AnswerFree
     id:
         id:
             type: integer
@@ -16,6 +8,10 @@ ZCEPracticeTest\Core\Entity\Answer:
             generator:
                 strategy: IDENTITY
     fields:
+        freeAnswer:
+            type: string
+            length: 255
+            nullable: true
         tagged:
             type: boolean
         dateCreated:
@@ -26,7 +22,7 @@ ZCEPracticeTest\Core\Entity\Answer:
             cascade: {  }
             inversedBy: answers
             joinColumns:
-                category_id:
+                topic_id:
                     referencedColumnName: id
             orphanRemoval: false
         session:
@@ -34,7 +30,7 @@ ZCEPracticeTest\Core\Entity\Answer:
             cascade: {  }
             inversedBy: answers
             joinColumns:
-                category_id:
+                topic_id:
                     referencedColumnName: id
             orphanRemoval: false
     lifecycleCallbacks: {  }

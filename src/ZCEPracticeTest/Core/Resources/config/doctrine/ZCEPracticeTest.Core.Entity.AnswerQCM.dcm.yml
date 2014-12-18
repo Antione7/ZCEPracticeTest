@@ -1,5 +1,0 @@
-ZCEPracticeTest\Core\Entity\AnswerQCM:
-    type: entity
-    table: zce_answer_qcm
-    fields: []
-    lifecycleCallbacks: {  }
