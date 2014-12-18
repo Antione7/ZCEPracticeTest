@@ -28,6 +28,26 @@ class Session
     private $id;
 
     /**
+     * @var boolean
+     */
+    private $success;
+
+    /**
+     * @var \DateTime
+     */
+    private $dateStart;
+
+    /**
+     * @var \DateTime
+     */
+    private $dateFinished;
+
+    /**
+     * @var integer
+     */
+    private $nbTopicsValidated;
+
+    /**
      * @var Answer[]
      */
     private $answers;
@@ -61,6 +81,98 @@ class Session
     }
 
     /**
+     * Set success
+     *
+     * @param boolean $success
+     * @return Session
+     */
+    public function setSuccess($success)
+    {
+        $this->success = $success;
+
+        return $this;
+    }
+
+    /**
+     * Get success
+     *
+     * @return boolean 
+     */
+    public function getSuccess()
+    {
+        return $this->success;
+    }
+
+    /**
+     * Set dateStart
+     *
+     * @param \DateTime $dateStart
+     * @return Session
+     */
+    public function setDateStart($dateStart)
+    {
+        $this->dateStart = $dateStart;
+
+        return $this;
+    }
+
+    /**
+     * Get dateStart
+     *
+     * @return \DateTime 
+     */
+    public function getDateStart()
+    {
+        return $this->dateStart;
+    }
+
+    /**
+     * Set dateFinished
+     *
+     * @param \DateTime $dateFinished
+     * @return Session
+     */
+    public function setDateFinished($dateFinished)
+    {
+        $this->dateFinished = $dateFinished;
+
+        return $this;
+    }
+
+    /**
+     * Get dateFinished
+     *
+     * @return \DateTime 
+     */
+    public function getDateFinished()
+    {
+        return $this->dateFinished;
+    }
+
+    /**
+     * Set nbTopicsValidated
+     *
+     * @param integer $nbTopicsValidated
+     * @return Session
+     */
+    public function setNbTopicsValidated($nbTopicsValidated)
+    {
+        $this->nbTopicsValidated = $nbTopicsValidated;
+
+        return $this;
+    }
+
+    /**
+     * Get nbTopicsValidated
+     *
+     * @return integer 
+     */
+    public function getNbTopicsValidated()
+    {
+        return $this->nbTopicsValidated;
+    }
+
+    /**
      * Add answers
      *
      * @param Answer $answers
@@ -71,6 +183,16 @@ class Session
         $this->answers[] = $answers;
 
         return $this;
+    }
+
+    /**
+     * Remove answers
+     *
+     * @param Answer $answers
+     */
+    public function removeAnswer(Answer $answers)
+    {
+        $this->answers->removeElement($answers);
     }
 
     /**

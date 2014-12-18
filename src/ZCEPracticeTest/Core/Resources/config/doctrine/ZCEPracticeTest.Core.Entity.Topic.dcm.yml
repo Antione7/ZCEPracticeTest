@@ -19,8 +19,5 @@ ZCEPracticeTest\Core\Entity\Topic:
             targetEntity: ZCEPracticeTest\Core\Entity\Question
             cascade: {  }
             mappedBy: topic
-            joinColumns:
-                topic_id:
-                    referencedColumnName: id
             orphanRemoval: false
     lifecycleCallbacks: {  }

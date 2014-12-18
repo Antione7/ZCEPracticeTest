@@ -1,6 +1,6 @@
 <?php
 
-namespace ZCEPracticeTest\Silex\Core;
+namespace ZCEPracticeTest\Silex;
 
 use Symfony\Component\Yaml\Yaml;
 use Silex\Application;
@@ -8,6 +8,8 @@ use Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider;
 use SimpleUser\UserServiceProvider;
 use ZCEPracticeTest\Core\Service\QuestionManager;
 use ZCEPracticeTest\Core\Service\QuizFactory;
+use ZCEPracticeTest\Silex\Provider\RestAPIProvider;
+use ZCEPracticeTest\Silex\Provider\FrontProvider;
 
 class ZCEApp extends Application
 {
@@ -29,6 +31,8 @@ class ZCEApp extends Application
         $this->registerServices();
         $this->registerListeners();
         $this->registerSimpleUser();
+        $this->registerRestAPI();
+        $this->registerFront();
     }
     
     private function loadParameters()
@@ -142,5 +146,21 @@ class ZCEApp extends Application
     private function registerListeners()
     {
         $dispatcher = $this['dispatcher'];
+    }
+    
+    private function registerRestAPI()
+    {
+        $restAPIProvider = new RestAPIProvider();
+        
+        $this->register($restAPIProvider);
+        $this->mount('/api', $restAPIProvider);
+    }
+    
+    private function registerFront()
+    {
+        $frontProvider = new FrontProvider();
+        
+        $this->register($frontProvider);
+        $this->mount('/', $frontProvider);
     }
 }

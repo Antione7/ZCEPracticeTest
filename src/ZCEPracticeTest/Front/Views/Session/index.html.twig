@@ -1,0 +1,9 @@
+{% extends "@views/layout.html.twig" %}
+
+{% block body %}
+    {% for session in sessions %}
+        {% if session.success != null %}
+            <button type="button" class="btn btn-success">{{ session.success ? 'PASS' : 'FAIL' }}</button>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

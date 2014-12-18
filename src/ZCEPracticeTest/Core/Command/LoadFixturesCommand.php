@@ -1,16 +1,32 @@
 <?php
 
-namespace ZCEPracticeTest\Silex\Core\Command;
+namespace ZCEPracticeTest\Core\Command;
 
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Command\Command;
 use Doctrine\Common\DataFixtures\Loader;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
-use ZCEPracticeTest\Silex\Core\Command\ZCECommand;
+use Doctrine\ORM\EntityManager;
 
-class LoadFixturesCommand extends ZCECommand
+class LoadFixturesCommand extends Command
 {
+    /**
+     * @var EntityManager
+     */
+    private $em;
+    
+    /**
+     * @param EntityManager $em
+     */
+    public function __construct(EntityManager $em)
+    {
+        parent::__construct();
+        
+        $this->em = $em;
+    }
+    
     protected function configure()
     {
         $this
@@ -21,9 +37,7 @@ class LoadFixturesCommand extends ZCECommand
     
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $app = $this->getSilexApplication();
         $loader = new Loader();
-        $em = $app['orm.em'];
         
         $output->writeln('');
         
@@ -38,7 +52,7 @@ class LoadFixturesCommand extends ZCECommand
         $output->writeln('Purge database...');
         
         $purger = new ORMPurger();
-        $executor = new ORMExecutor($em, $purger);
+        $executor = new ORMExecutor($this->em, $purger);
         
         $output->writeln('Load fixtures...');
         $output->writeln('');

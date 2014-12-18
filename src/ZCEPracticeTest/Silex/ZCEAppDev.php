@@ -1,13 +1,16 @@
 <?php
 
-require_once __DIR__.'/App.php';
+namespace ZCEPracticeTest\Silex;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Doctrine\DBAL\Logging\DebugStack;
 
-class AppDev extends App
+class ZCEAppDev extends ZCEApp
 {
+    /**
+     * @var boolean
+     */
     const DEBUG_QUERIES = false;
     
     /**

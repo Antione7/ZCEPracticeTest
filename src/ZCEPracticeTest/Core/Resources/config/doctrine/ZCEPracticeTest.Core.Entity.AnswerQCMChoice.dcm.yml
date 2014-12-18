@@ -13,15 +13,9 @@ ZCEPracticeTest\Core\Entity\AnswerQCMChoice:
             targetEntity: ZCEPracticeTest\Core\Entity\Answer
             cascade: {  }
             inversedBy: answerQCMChoices
-            joinColumns:
-                topic_id:
-                    referencedColumnName: id
             orphanRemoval: false
         questionQCMChoice:
             targetEntity: ZCEPracticeTest\Core\Entity\QuestionQCMChoice
             cascade: {  }
-            joinColumns:
-                topic_id:
-                    referencedColumnName: id
             orphanRemoval: false
     lifecycleCallbacks: {  }

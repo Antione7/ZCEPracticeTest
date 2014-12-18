@@ -20,17 +20,11 @@ ZCEPracticeTest\Core\Entity\Answer:
         question:
             targetEntity: ZCEPracticeTest\Core\Entity\Question
             cascade: {  }
-            joinColumns:
-                topic_id:
-                    referencedColumnName: id
             orphanRemoval: false
         session:
             targetEntity: ZCEPracticeTest\Core\Entity\Session
             cascade: {  }
             inversedBy: answers
-            joinColumns:
-                topic_id:
-                    referencedColumnName: id
             orphanRemoval: false
     oneToMany:
         answerQCMChoices:

@@ -1,11 +1,12 @@
 <?php
 
 require_once __DIR__.'/../vendor/autoload.php';
-require_once __DIR__.'/../app/AppDev.php';
+
+use ZCEPracticeTest\Silex\ZCEAppDev;
 
 ini_set('display_errors', '1');
 
-$app = new AppDev(array(
+$app = new ZCEAppDev(array(
     'project.root' => dirname(__DIR__),
 ));
 
