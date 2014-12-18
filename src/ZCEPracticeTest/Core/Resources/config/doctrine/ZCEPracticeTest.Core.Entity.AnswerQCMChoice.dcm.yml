@@ -9,19 +9,19 @@ ZCEPracticeTest\Core\Entity\AnswerQCMChoice:
                 strategy: IDENTITY
     fields: []
     manyToOne:
-        answerQCM:
-            targetEntity: ZCEPracticeTest\Core\Entity\AnswerQCM
+        answer:
+            targetEntity: ZCEPracticeTest\Core\Entity\Answer
             cascade: {  }
             inversedBy: answerQCMChoices
             joinColumns:
-                category_id:
+                topic_id:
                     referencedColumnName: id
             orphanRemoval: false
-        session:
+        questionQCMChoice:
             targetEntity: ZCEPracticeTest\Core\Entity\QuestionQCMChoice
             cascade: {  }
             joinColumns:
-                category_id:
+                topic_id:
                     referencedColumnName: id
             orphanRemoval: false
     lifecycleCallbacks: {  }

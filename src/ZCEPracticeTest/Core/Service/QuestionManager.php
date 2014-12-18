@@ -30,26 +30,26 @@ use ZCEPracticeTest\Core\Entity\Question;
 class QuestionManager
 {
     /**
-     * Return an SplObjectStorage with categories as indexes,
+     * Return an SplObjectStorage with topics as indexes,
      * and questions as values
      * 
      * @param Question[] $questions
      * 
      * @return SplObjectStorage
      */
-    public function sortQuestionsByCategories(array $questions)
+    public function sortQuestionsByTopics(array $questions)
     {
         $sortedQuestions = new SplObjectStorage();
         
         foreach ($questions as $question) {
-            if (!isset($sortedQuestions[$question->getCategory()])) {
+            if (!isset($sortedQuestions[$question->getTopic()])) {
                 $array = array();
             } else {
-                $array = $sortedQuestions[$question->getCategory()];
+                $array = $sortedQuestions[$question->getTopic()];
             }
             
             $array []= $question;
-            $sortedQuestions[$question->getCategory()] = $array;
+            $sortedQuestions[$question->getTopic()] = $array;
         }
         
         return $sortedQuestions;

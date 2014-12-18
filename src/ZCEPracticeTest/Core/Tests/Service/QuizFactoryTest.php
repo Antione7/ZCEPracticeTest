@@ -11,9 +11,8 @@
  */
 namespace ZCEPracticeTest\Core\Tests\Service;
 
-use ZCEPracticeTest\Core\Entity\Category;
-use ZCEPracticeTest\Core\Entity\QuestionQCM;
-use ZCEPracticeTest\Core\Entity\QuestionFree;
+use ZCEPracticeTest\Core\Entity\Topic;
+use ZCEPracticeTest\Core\Entity\Question;
 use ZCEPracticeTest\Core\Entity\Quiz;
 use ZCEPracticeTest\Core\Service\QuestionManager;
 use ZCEPracticeTest\Core\Service\QuizFactory;
@@ -33,9 +32,9 @@ class QuizFactoryTest extends \PHPUnit_Framework_TestCase
     private $quizFactory;
     
     /**
-     * @var Category[]
+     * @var Topic[]
      */
-    private $categories;
+    private $topics;
     
     /**
      * @var Question[]
@@ -46,21 +45,16 @@ class QuizFactoryTest extends \PHPUnit_Framework_TestCase
     {
         $this->quizFactory = new QuizFactory(new QuestionManager());
         
-        $this->categories = array(
-            (new Category())->setEntitled('Category 1'),
-            (new Category())->setEntitled('Category 2'),
-            (new Category())->setEntitled('Category 3'),
+        $this->topics = array(
+            (new Topic())->setEntitled('Topic 1'),
+            (new Topic())->setEntitled('Topic 2'),
+            (new Topic())->setEntitled('Topic 3'),
         );
         
         $this->questions = array();
         for ($i = 0; $i < 72; $i++) {
-            if ($i % 2) {
-                $question = new QuestionQCM();
-            } else {
-                $question = new QuestionFree();
-            }
-            
-            $question->setCategory($this->categories[$i % 3]);
+            $question = new Question();
+            $question->setTopic($this->topics[$i % 3]);
             $this->questions []= $question;
         }
     }
@@ -69,12 +63,12 @@ class QuizFactoryTest extends \PHPUnit_Framework_TestCase
     {
         // Percentages set 1
         $quiz = $this->quizFactory->createCategorizedRandomQuiz($this->questions, 24, array(
-            array($this->categories[0], 0.50),
-            array($this->categories[1], 0.25),
-            array($this->categories[2], 0.25),
+            array($this->topics[0], 0.50),
+            array($this->topics[1], 0.25),
+            array($this->topics[2], 0.25),
         ));
         
-        $counts = $this->countQuestionCategories($quiz);
+        $counts = $this->countQuestionTopics($quiz);
         
         $this->assertEquals($counts[0], 12);
         $this->assertEquals($counts[1], 6);
@@ -82,12 +76,12 @@ class QuizFactoryTest extends \PHPUnit_Framework_TestCase
         
         // Percentages set 2
         $quiz = $this->quizFactory->createCategorizedRandomQuiz($this->questions, 24, array(
-            array($this->categories[0], 0.125),
-            array($this->categories[1], 0.250),
-            array($this->categories[2], 0.625),
+            array($this->topics[0], 0.125),
+            array($this->topics[1], 0.250),
+            array($this->topics[2], 0.625),
         ));
         
-        $counts = $this->countQuestionCategories($quiz);
+        $counts = $this->countQuestionTopics($quiz);
         
         $this->assertEquals($counts[0], 3);
         $this->assertEquals($counts[1], 6);
@@ -98,12 +92,12 @@ class QuizFactoryTest extends \PHPUnit_Framework_TestCase
     {
         // Percentages set 1
         $quiz = $this->quizFactory->createCategorizedRandomQuiz($this->questions, 24, array(
-            array($this->categories[0], 8),
-            array($this->categories[1], 8),
-            array($this->categories[2], 8),
+            array($this->topics[0], 8),
+            array($this->topics[1], 8),
+            array($this->topics[2], 8),
         ));
         
-        $counts = $this->countQuestionCategories($quiz);
+        $counts = $this->countQuestionTopics($quiz);
         
         $this->assertEquals($counts[0], 8);
         $this->assertEquals($counts[1], 8);
@@ -111,12 +105,12 @@ class QuizFactoryTest extends \PHPUnit_Framework_TestCase
         
         // Percentages set 2
         $quiz = $this->quizFactory->createCategorizedRandomQuiz($this->questions, 24, array(
-            array($this->categories[0], 3),
-            array($this->categories[1], 7),
-            array($this->categories[2], 14),
+            array($this->topics[0], 3),
+            array($this->topics[1], 7),
+            array($this->topics[2], 14),
         ));
         
-        $counts = $this->countQuestionCategories($quiz);
+        $counts = $this->countQuestionTopics($quiz);
         
         $this->assertEquals($counts[0], 3);
         $this->assertEquals($counts[1], 7);
@@ -130,12 +124,12 @@ class QuizFactoryTest extends \PHPUnit_Framework_TestCase
     public function testCreateQuizPercentagesDivisionRestIsNotForgotten()
     {
         $quiz = $this->quizFactory->createCategorizedRandomQuiz($this->questions, 24, array(
-            array($this->categories[0], 0.8),
-            array($this->categories[1], 0.1),
-            array($this->categories[2], 0.1),
+            array($this->topics[0], 0.8),
+            array($this->topics[1], 0.1),
+            array($this->topics[2], 0.1),
         ));
         
-        $counts = $this->countQuestionCategories($quiz);
+        $counts = $this->countQuestionTopics($quiz);
         
         $this->assertCount(24, $quiz->getQuizQuestions());
         $this->assertGreaterThan(16, $counts[0]);
@@ -146,51 +140,51 @@ class QuizFactoryTest extends \PHPUnit_Framework_TestCase
     public function testCreateQuizPercentagesMultiplesAndHaveSomeQuestions()
     {
         $quiz = $this->quizFactory->createCategorizedRandomQuiz($this->questions, 10, array(
-            array($this->categories[0], 4),
-            array($this->categories[1], 3),
-            array($this->categories[2], 3),
+            array($this->topics[0], 4),
+            array($this->topics[1], 3),
+            array($this->topics[2], 3),
         ));
         
-        $counts = $this->countQuestionCategories($quiz);
+        $counts = $this->countQuestionTopics($quiz);
         
         $this->assertEquals($counts[0], 4);
         $this->assertEquals($counts[1], 3);
         $this->assertEquals($counts[2], 3);
         
         $quiz = $this->quizFactory->createCategorizedRandomQuiz($this->questions, 10, array(
-            array($this->categories[0], 7),
-            array($this->categories[1], 3),
-            array($this->categories[2], 0),
+            array($this->topics[0], 7),
+            array($this->topics[1], 3),
+            array($this->topics[2], 0),
         ));
         
-        $counts = $this->countQuestionCategories($quiz);
+        $counts = $this->countQuestionTopics($quiz);
         
         $this->assertEquals($counts[0], 7);
         $this->assertEquals($counts[1], 3);
         $this->assertEquals($counts[2], 0);
     }
     
-    public function testCreateQuizWithNotEnoughQuestionInCategoryThrowsException()
+    public function testCreateQuizWithNotEnoughQuestionInTopicThrowsException()
     {
         $this->setExpectedException('\ZCEPracticeTest\Core\Exception\QuizFactoryException');
         
         $quiz = $this->quizFactory->createCategorizedRandomQuiz($this->questions, 10, array(
-            array($this->categories[0], 4),
-            array($this->categories[1], 3),
-            array($this->categories[2], 3),
-            array(new Category(), 3),
+            array($this->topics[0], 4),
+            array($this->topics[1], 3),
+            array($this->topics[2], 3),
+            array(new Topic(), 3),
         ));
     }
     
-    private function countQuestionCategories(Quiz $quiz)
+    private function countQuestionTopics(Quiz $quiz)
     {
         $counts = array(0, 0, 0);
         
         foreach ($quiz->getQuizQuestions() as $quizQuestion) {
-            $category = $quizQuestion->getQuestion()->getCategory();
+            $topic = $quizQuestion->getQuestion()->getTopic();
             
             for ($i = 0; $i < 3; $i++) {
-                if ($category === $this->categories[$i]) {
+                if ($topic === $this->topics[$i]) {
                     $counts[$i]++;
                     continue;
                 }

@@ -1,8 +1,0 @@
-ZCEPracticeTest\Core\Entity\AnswerFree:
-    type: entity
-    table: zce_answer_free
-    fields:
-        answer:
-            type: string
-            nullable: true
-    lifecycleCallbacks: {  }

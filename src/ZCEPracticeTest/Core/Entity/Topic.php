@@ -12,7 +12,7 @@
 namespace ZCEPracticeTest\Core\Entity;
 
 /**
- * Category entity
+ * Topic entity
  *
  * @category Entity
  * @package  Core
@@ -20,11 +20,9 @@ namespace ZCEPracticeTest\Core\Entity;
  * @license  Darkmira <darkmira@darkmira.fr>
  * @link     www.darkmira.fr
  */
-class Category implements \JsonSerializable
+class Topic implements \JsonSerializable
 {
     /**
-     * Id of category entity
-     * 
      * @var integer
      */
     private $id;
@@ -33,6 +31,11 @@ class Category implements \JsonSerializable
      * @var string
      */
     private $entitled;
+
+    /**
+     * @var boolean
+     */
+    private $isPrimary;
 
     /**
      * @var Question[]
@@ -62,7 +65,7 @@ class Category implements \JsonSerializable
      *
      * @param string $entitled
      * 
-     * @return Category
+     * @return Topic
      */
     public function setEntitled($entitled)
     {
@@ -74,7 +77,7 @@ class Category implements \JsonSerializable
     /**
      * Get entitled
      *
-     * @return string
+     * @return string 
      */
     public function getEntitled()
     {
@@ -82,11 +85,34 @@ class Category implements \JsonSerializable
     }
 
     /**
+     * Set isPrimary
+     *
+     * @param boolean $isPrimary
+     * @return Topic
+     */
+    public function setIsPrimary($isPrimary)
+    {
+        $this->isPrimary = $isPrimary;
+
+        return $this;
+    }
+
+    /**
+     * Get isPrimary
+     *
+     * @return boolean 
+     */
+    public function getIsPrimary()
+    {
+        return $this->isPrimary;
+    }
+
+    /**
      * Add questions
      *
      * @param Question $questions
      * 
-     * @return Category
+     * @return Topic
      */
     public function addQuestion(Question $questions)
     {
@@ -122,6 +148,7 @@ class Category implements \JsonSerializable
     {
         return array(
             'id' => $this->getId(),
+            'isPrimary' => $this->getIsPrimary(),
             'entitled' => $this->getEntitled(),
         );
     }

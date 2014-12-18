@@ -51,8 +51,7 @@ class QuizQuestion
     /**
      * Set quiz
      *
-     * @param Quiz $quizze
-     * 
+     * @param Quiz $quiz
      * @return QuizQuestion
      */
     public function setQuiz(Quiz $quiz = null)

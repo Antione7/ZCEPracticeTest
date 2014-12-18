@@ -41,13 +41,11 @@ class QuestionQCMChoice implements \JsonSerializable
 
     /**
      * @var boolean
-     * 
-     * @Assert\NotBlank()
      */
     private $isValid;
 
     /**
-     * @var QuestionQCM
+     * @var Question
      */
     private $question;
 
@@ -111,10 +109,10 @@ class QuestionQCMChoice implements \JsonSerializable
     /**
      * Set question
      *
-     * @param QuestionQCM $question
+     * @param Question $question
      * @return QuestionQCMChoice
      */
-    public function setQuestion(QuestionQCM $question = null)
+    public function setQuestion(Question $question = null)
     {
         $this->question = $question;
 
@@ -124,7 +122,7 @@ class QuestionQCMChoice implements \JsonSerializable
     /**
      * Get question
      *
-     * @return QuestionQCM
+     * @return Question 
      */
     public function getQuestion()
     {

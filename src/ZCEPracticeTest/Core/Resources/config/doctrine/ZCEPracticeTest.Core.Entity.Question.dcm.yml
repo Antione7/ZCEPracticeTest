@@ -1,14 +1,7 @@
 ZCEPracticeTest\Core\Entity\Question:
     type: entity
     table: zce_question
-    inheritanceType: JOINED
-    discriminatorColumn:
-        name: type
-        type: integer
-    discriminatorMap:
-        0: Question
-        1: QuestionQCM
-        2: QuestionFree
+    repositoryClass: ZCEPracticeTest\Core\Repository\QuestionRepository
     id:
         id:
             type: integer
@@ -16,21 +9,38 @@ ZCEPracticeTest\Core\Entity\Question:
             generator:
                 strategy: IDENTITY
     fields:
+        type:
+            type: integer
         entitled:
-            type: text
+            type: string
             length: 511
-            nullable: false
         code:
-            type: text
+            type: string
             length: 511
             nullable: true
+        freeAnswer:
+            type: string
+            length: 255
+            nullable: true
+        nbAnswers:
+            type: integer
+            nullable: true
+    oneToMany:
+        questionQCMChoices:
+            targetEntity: ZCEPracticeTest\Core\Entity\QuestionQCMChoice
+            cascade:
+                - remove
+                - persist
+            mappedBy: question
+            orphanRemoval: false
+            orderBy: null
     manyToOne:
-        category:
-            targetEntity: ZCEPracticeTest\Core\Entity\Category
+        topic:
+            targetEntity: ZCEPracticeTest\Core\Entity\Topic
             cascade: {  }
             inversedBy: questions
             joinColumns:
-                category_id:
+                topic_id:
                     referencedColumnName: id
             orphanRemoval: false
     lifecycleCallbacks: {  }

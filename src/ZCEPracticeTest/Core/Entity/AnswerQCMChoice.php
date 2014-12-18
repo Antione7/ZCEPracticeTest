@@ -28,14 +28,14 @@ class AnswerQCMChoice
     private $id;
 
     /**
-     * @var AnswerQCM
+     * @var Answer
      */
-    private $answerQCM;
+    private $answer;
 
     /**
      * @var QuestionQCMChoice
      */
-    private $session;
+    private $questionQCMChoice;
 
 
     /**
@@ -49,48 +49,48 @@ class AnswerQCMChoice
     }
 
     /**
-     * Set answerQCM
+     * Set answer
      *
-     * @param AnswerQCM $answerQCM
+     * @param Answer $answer
      * @return AnswerQCMChoice
      */
-    public function setAnswerQCM(AnswerQCM $answerQCM = null)
+    public function setAnswer(Answer $answer = null)
     {
-        $this->answerQCM = $answerQCM;
+        $this->answer = $answer;
 
         return $this;
     }
 
     /**
-     * Get answerQCM
+     * Get answer
      *
-     * @return AnswerQCM 
+     * @return Answer 
      */
-    public function getAnswerQCM()
+    public function getAnswer()
     {
-        return $this->answerQCM;
+        return $this->answer;
     }
 
     /**
-     * Set session
+     * Set questionQCMChoice
      *
-     * @param QuestionQCMChoice $session
+     * @param QuestionQCMChoice $questionQCMChoice
      * @return AnswerQCMChoice
      */
-    public function setSession(QuestionQCMChoice $session = null)
+    public function setQuestionQCMChoice(QuestionQCMChoice $questionQCMChoice = null)
     {
-        $this->session = $session;
+        $this->questionQCMChoice = $questionQCMChoice;
 
         return $this;
     }
 
     /**
-     * Get session
+     * Get questionQCMChoice
      *
      * @return QuestionQCMChoice 
      */
-    public function getSession()
+    public function getQuestionQCMChoice()
     {
-        return $this->session;
+        return $this->questionQCMChoice;
     }
 }

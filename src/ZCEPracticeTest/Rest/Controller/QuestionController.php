@@ -45,7 +45,7 @@ class QuestionController
      */
     public function questionAction ()
     {
-        $questions = $this->questionRepository->findAll();
+        $questions = $this->questionRepository->getAll();
         
         return new JsonResponse((object) $questions);
     }

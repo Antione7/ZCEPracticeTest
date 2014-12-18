@@ -20,12 +20,17 @@ namespace ZCEPracticeTest\Core\Entity;
  * @license  Darkmira <darkmira@darkmira.fr>
  * @link     www.darkmira.fr
  */
-abstract class Answer
+class Answer
 {
     /**
      * @var integer
      */
     private $id;
+
+    /**
+     * @var string
+     */
+    private $freeAnswer;
 
     /**
      * @var boolean
@@ -38,6 +43,11 @@ abstract class Answer
     private $dateCreated;
 
     /**
+     * @var AnswerQCMChoice[]
+     */
+    private $answerQCMChoices;
+
+    /**
      * @var Question
      */
     private $question;
@@ -47,6 +57,13 @@ abstract class Answer
      */
     private $session;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->answerQCMChoices = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -56,6 +73,29 @@ abstract class Answer
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set freeAnswer
+     *
+     * @param string $freeAnswer
+     * @return Answer
+     */
+    public function setFreeAnswer($freeAnswer)
+    {
+        $this->freeAnswer = $freeAnswer;
+
+        return $this;
+    }
+
+    /**
+     * Get freeAnswer
+     *
+     * @return string 
+     */
+    public function getFreeAnswer()
+    {
+        return $this->freeAnswer;
     }
 
     /**
@@ -102,6 +142,29 @@ abstract class Answer
     public function getDateCreated()
     {
         return $this->dateCreated;
+    }
+
+    /**
+     * Add answerQCMChoices
+     *
+     * @param AnswerQCMChoice $answerQCMChoices
+     * @return Answer
+     */
+    public function addAnswerQCMChoice(AnswerQCMChoice $answerQCMChoices)
+    {
+        $this->answerQCMChoices[] = $answerQCMChoices;
+
+        return $this;
+    }
+
+    /**
+     * Get answerQCMChoices
+     *
+     * @return AnswerQCMChoice[] 
+     */
+    public function getAnswerQCMChoices()
+    {
+        return $this->answerQCMChoices;
     }
 
     /**

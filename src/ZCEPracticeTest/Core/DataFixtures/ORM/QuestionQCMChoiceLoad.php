@@ -28,15 +28,29 @@ class QuestionQCMChoiceLoad extends AbstractFixture implements OrderedFixtureInt
     public function load(ObjectManager $objectManager)
     {
         for ($i = 0; $i < 5; $i++) {
+            $o = array(
+                new QuestionQCMChoice(),
+                new QuestionQCMChoice(),
+                new QuestionQCMChoice(),
+                new QuestionQCMChoice(),
+            );
+            
+            $o[0]->setEntitled('Hello');
+            $o[1]->setEntitled('Hello World');
+            $o[2]->setEntitled('HelloWorld');
+            $o[3]->setEntitled('A fatal error');
+            
+            $o[0]->setIsValid(false);
+            $o[1]->setIsValid(false);
+            $o[2]->setIsValid(true);
+            $o[3]->setIsValid(false);
+            
             for ($j = 0; $j < 4; $j++) {
-                $o = new QuestionQCMChoice();
-                $o
-                    ->setEntitled(($j % 2) ? 'Good' : 'Bad')
-                    ->setIsValid(!!($j % 2))
+                $o[$j]
                     ->setQuestion($this->getReference('question-qcm-'.$i))
                 ;
                 
-                $objectManager->persist($o);
+                $objectManager->persist($o[$j]);
             }
         }
 
