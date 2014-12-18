@@ -43,7 +43,7 @@ class Answer
     private $dateCreated;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var AnswerQCMChoice[]
      */
     private $answerQCMChoices;
 
@@ -160,7 +160,7 @@ class Answer
     /**
      * Get answerQCMChoices
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return AnswerQCMChoice[] 
      */
     public function getAnswerQCMChoices()
     {

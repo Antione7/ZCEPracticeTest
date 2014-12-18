@@ -27,6 +27,16 @@ class Question implements \JsonSerializable
     /**
      * @var integer
      */
+    const TYPE_QCM = 1;
+    
+    /**
+     * @var integer
+     */
+    const TYPE_FREE = 2;
+    
+    /**
+     * @var integer
+     */
     private $id;
 
     /**
@@ -71,7 +81,7 @@ class Question implements \JsonSerializable
     private $nbAnswers;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var QuestionQCMChoice[]
      */
     private $questionQCMChoices;
 
@@ -229,7 +239,7 @@ class Question implements \JsonSerializable
     /**
      * Get questionQCMChoices
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return QuestionQCMChoice[]
      */
     public function getQuestionQCMChoices()
     {
@@ -264,11 +274,21 @@ class Question implements \JsonSerializable
      */
     public function jsonSerialize()
     {
+        $choices = array();
+        
+        foreach ($this->getQuestionQCMChoices() as $choice) {
+            $choices []= $choice->jsonSerialize();
+        }
+        
         return array(
             'id' => $this->getId(),
+            'type' => $this->getType(),
             'entitled' => $this->getEntitled(),
             'code' => $this->getCode(),
-            'category' => $this->getCategory(),
+            'freeAnswer' => $this->getFreeAnswer(),
+            'nbAnswers' => $this->getNbAnswers(),
+            'topic' => $this->getTopic(),
+            'questionQCMChoices' => $choices,
         );
     }
 }

@@ -31,9 +31,9 @@ class QuestionRepository extends EntityRepository
         $q = $this->createQueryBuilder('q');
         
         $q
-            ->addSelect('c, qc')
-            ->leftJoin('q.category', 'c')
-            ->leftJoin('ZCE:QuestionQCMChoice', 'qc', \Doctrine\ORM\Query\Expr\Join::WITH, 'c = qc.question')
+            ->addSelect('t, qc')
+            ->leftJoin('q.topic', 't')
+            ->leftJoin('q.questionQCMChoices', 'qc')
         ;
         
         return $q->getQuery()->getResult();

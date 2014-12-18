@@ -24,6 +24,7 @@ ZCEPracticeTest\Core\Entity\Question:
             nullable: true
         nbAnswers:
             type: integer
+            nullable: true
     oneToMany:
         questionQCMChoices:
             targetEntity: ZCEPracticeTest\Core\Entity\QuestionQCMChoice

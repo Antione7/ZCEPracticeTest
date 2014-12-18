@@ -8,6 +8,7 @@ use ZCEPracticeTest\Silex\ZCEApp;
 
 class ZCEAppDev extends ZCEApp
 {
+    const DEBUG_QUERIES = false;
     /**
      * Constructor
      *
@@ -30,8 +31,10 @@ class ZCEAppDev extends ZCEApp
         $this->after(function(Request $request, Response $response) use ($logger) {
             $response->headers->set('debug-doctrine-queries', count($logger->queries));
             
-            foreach ($logger->queries as $query) {
-                var_dump($query['sql']);
+            if (self::DEBUG_QUERIES) {
+                foreach ($logger->queries as $query) {
+                    var_dump($query['sql']);
+                }
             }
         });
     }

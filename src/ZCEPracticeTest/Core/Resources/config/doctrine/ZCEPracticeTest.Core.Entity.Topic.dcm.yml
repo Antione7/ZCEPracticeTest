@@ -12,6 +12,8 @@ ZCEPracticeTest\Core\Entity\Topic:
         entitled:
             type: string
             length: 255
+        isPrimary:
+            type: boolean
     oneToMany:
         questions:
             targetEntity: ZCEPracticeTest\Core\Entity\Question

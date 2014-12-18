@@ -28,7 +28,7 @@ class Session
     private $id;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var Answer[]
      */
     private $answers;
 
@@ -76,7 +76,7 @@ class Session
     /**
      * Get answers
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return Answer[] 
      */
     public function getAnswers()
     {

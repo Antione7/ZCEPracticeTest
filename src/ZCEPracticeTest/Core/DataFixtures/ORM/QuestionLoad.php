@@ -17,7 +17,7 @@ namespace ZCEPracticeTest\Core\DataFixtures\ORM;
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use ZCEPracticeTest\Core\Entity\QuestionFree;
+use ZCEPracticeTest\Core\Entity\Question;
 
 class QuestionFreeLoad extends AbstractFixture implements OrderedFixtureInterface
 {
@@ -27,12 +27,35 @@ class QuestionFreeLoad extends AbstractFixture implements OrderedFixtureInterfac
      */
     public function load(ObjectManager $objectManager)
     {
+        $code = <<<'CODE'
+<?php
+$v = 'World';
+echo 'Hello'.$v;
+CODE;
+        
         for ($i = 0; $i < 5; $i++) {
-            $o = new QuestionFree();
+            $o = new Question();
             
             $o
-                ->setEntitled('Question Free '.($i+1))
-                ->setCategory($this->getReference('category-spl'))
+                ->setType(Question::TYPE_QCM)
+                ->setEntitled(($i+1).') What is the output of the following code ?')
+                ->setCode($code)
+                ->setTopic($this->getReference('topic-php-basics'))
+                ->setNbAnswers(1)
+            ;
+            
+            $this->addReference('question-qcm-'.$i, $o);
+            $objectManager->persist($o);
+        }
+        
+        for ($i = 0; $i < 5; $i++) {
+            $o = new Question();
+            
+            $o
+                ->setType(Question::TYPE_FREE)
+                ->setEntitled(($i+1).') Which function opens a handler on a file ?')
+                ->setFreeAnswer('fopen')
+                ->setTopic($this->getReference('topic-io'))
             ;
             
             $this->addReference('question-free-'.$i, $o);
