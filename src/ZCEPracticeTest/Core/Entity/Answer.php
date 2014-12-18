@@ -20,12 +20,17 @@ namespace ZCEPracticeTest\Core\Entity;
  * @license  Darkmira <darkmira@darkmira.fr>
  * @link     www.darkmira.fr
  */
-abstract class Answer
+class Answer
 {
     /**
      * @var integer
      */
     private $id;
+
+    /**
+     * @var string
+     */
+    private $freeAnswer;
 
     /**
      * @var boolean
@@ -56,6 +61,29 @@ abstract class Answer
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set freeAnswer
+     *
+     * @param string $freeAnswer
+     * @return Answer
+     */
+    public function setFreeAnswer($freeAnswer)
+    {
+        $this->freeAnswer = $freeAnswer;
+
+        return $this;
+    }
+
+    /**
+     * Get freeAnswer
+     *
+     * @return string 
+     */
+    public function getFreeAnswer()
+    {
+        return $this->freeAnswer;
     }
 
     /**

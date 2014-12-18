@@ -23,8 +23,6 @@ namespace ZCEPracticeTest\Core\Entity;
 class Topic implements \JsonSerializable
 {
     /**
-     * Id of category entity
-     * 
      * @var integer
      */
     private $id;
@@ -62,7 +60,7 @@ class Topic implements \JsonSerializable
      *
      * @param string $entitled
      * 
-     * @return Category
+     * @return Topic
      */
     public function setEntitled($entitled)
     {
@@ -74,7 +72,7 @@ class Topic implements \JsonSerializable
     /**
      * Get entitled
      *
-     * @return string
+     * @return string 
      */
     public function getEntitled()
     {
@@ -86,7 +84,7 @@ class Topic implements \JsonSerializable
      *
      * @param Question $questions
      * 
-     * @return Category
+     * @return Topic
      */
     public function addQuestion(Question $questions)
     {

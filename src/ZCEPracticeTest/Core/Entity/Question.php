@@ -22,12 +22,17 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @license  Darkmira <darkmira@darkmira.fr>
  * @link     www.darkmira.fr
  */
-abstract class Question implements \JsonSerializable
+class Question implements \JsonSerializable
 {
     /**
      * @var integer
      */
     private $id;
+
+    /**
+     * @var integer
+     */
+    private $type;
 
     /**
      * Entitled of question
@@ -42,7 +47,8 @@ abstract class Question implements \JsonSerializable
     private $entitled;
 
     /**
-     * Code of question, not required
+     * Code of question to display through as colored syntax,
+     * not required
      * 
      * @var string
      *
@@ -53,10 +59,34 @@ abstract class Question implements \JsonSerializable
     private $code;
 
     /**
-     * @var Category
+     * Expected free answer
+     * 
+     * @var string
      */
-    private $category;
+    private $freeAnswer;
 
+    /**
+     * @var integer
+     */
+    private $nbAnswers;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     */
+    private $questionQCMChoices;
+
+    /**
+     * @var Topic
+     */
+    private $topic;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->questionQCMChoices = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -66,6 +96,29 @@ abstract class Question implements \JsonSerializable
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set type
+     *
+     * @param integer $type
+     * @return Question
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return integer 
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 
     /**
@@ -115,26 +168,95 @@ abstract class Question implements \JsonSerializable
     }
 
     /**
-     * Set category
+     * Set freeAnswer
      *
-     * @param Category $category
+     * @param string $freeAnswer
      * @return Question
      */
-    public function setCategory(Category $category = null)
+    public function setFreeAnswer($freeAnswer)
     {
-        $this->category = $category;
+        $this->freeAnswer = $freeAnswer;
 
         return $this;
     }
 
     /**
-     * Get category
+     * Get freeAnswer
      *
-     * @return Category 
+     * @return string 
      */
-    public function getCategory()
+    public function getFreeAnswer()
     {
-        return $this->category;
+        return $this->freeAnswer;
+    }
+
+    /**
+     * Set nbAnswers
+     *
+     * @param integer $nbAnswers
+     * @return Question
+     */
+    public function setNbAnswers($nbAnswers)
+    {
+        $this->nbAnswers = $nbAnswers;
+
+        return $this;
+    }
+
+    /**
+     * Get nbAnswers
+     *
+     * @return integer 
+     */
+    public function getNbAnswers()
+    {
+        return $this->nbAnswers;
+    }
+
+    /**
+     * Add questionQCMChoices
+     *
+     * @param QuestionQCMChoice $questionQCMChoices
+     * @return Question
+     */
+    public function addQuestionQCMChoice(QuestionQCMChoice $questionQCMChoices)
+    {
+        $this->questionQCMChoices[] = $questionQCMChoices;
+
+        return $this;
+    }
+
+    /**
+     * Get questionQCMChoices
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getQuestionQCMChoices()
+    {
+        return $this->questionQCMChoices;
+    }
+
+    /**
+     * Set topic
+     *
+     * @param Topic $topic
+     * @return Question
+     */
+    public function setTopic(Topic $topic = null)
+    {
+        $this->topic = $topic;
+
+        return $this;
+    }
+
+    /**
+     * Get topic
+     *
+     * @return Topic 
+     */
+    public function getTopic()
+    {
+        return $this->topic;
     }
     
     /**
