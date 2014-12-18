@@ -1,6 +1,6 @@
 <?php
 
-namespace ZCEPracticeTest\Silex\Console;
+namespace ZCEPracticeTest\Silex\Core;
 
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Helper\HelperSet;
@@ -8,7 +8,7 @@ use Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper;
 use Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper;
 use Doctrine\ORM\Tools\Console\ConsoleRunner;
 use Silex\Application as SilexApplication;
-use ZCEPracticeTest\Core\Command\LoadFixturesCommand;
+use ZCEPracticeTest\Silex\Core\Command\LoadFixturesCommand;
 
 class ZCEAppConsole extends Application
 {

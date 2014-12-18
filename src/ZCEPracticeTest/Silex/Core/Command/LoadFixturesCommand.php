@@ -1,13 +1,13 @@
 <?php
 
-namespace ZCEPracticeTest\Core\Command;
+namespace ZCEPracticeTest\Silex\Core\Command;
 
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Doctrine\Common\DataFixtures\Loader;
 use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
-use ZCEPracticeTest\Silex\Console\ZCECommand;
+use ZCEPracticeTest\Silex\Core\Command\ZCECommand;
 
 class LoadFixturesCommand extends ZCECommand
 {

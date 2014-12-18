@@ -1,13 +1,13 @@
 <?php
 
-namespace ZCEPracticeTest\Silex;
+namespace ZCEPracticeTest\Silex\Core;
 
 use Symfony\Component\Yaml\Yaml;
 use Silex\Application;
 use Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider;
+use SimpleUser\UserServiceProvider;
 use ZCEPracticeTest\Core\Service\QuestionManager;
 use ZCEPracticeTest\Core\Service\QuizFactory;
-use ZCEPracticeTest\Rest\Provider\RestAPIProvider;
 
 class ZCEApp extends Application
 {
@@ -20,14 +20,15 @@ class ZCEApp extends Application
     {
         parent::__construct($values);
         
+        
         $this->loadParameters();
         $this->loadConfig();
         $this->registerProviders();
+        $this->registerDoctrineDBAL($this['parameters']['database']);
         $this->registerDoctrineORM();
         $this->registerServices();
         $this->registerListeners();
         $this->registerSimpleUser();
-        $this->registerRestAPI();
     }
     
     private function loadParameters()
@@ -63,7 +64,6 @@ class ZCEApp extends Application
     
     private function registerProviders()
     {
-        $this->register(new \Silex\Provider\DoctrineServiceProvider(), $this['parameters']['database']);
         $this->register(new \Silex\Provider\SecurityServiceProvider());
         $this->register(new \Silex\Provider\RememberMeServiceProvider());
         $this->register(new \Silex\Provider\SessionServiceProvider());
@@ -73,13 +73,17 @@ class ZCEApp extends Application
         $this->register(new \Silex\Provider\SwiftmailerServiceProvider());
     }
     
+    public function registerDoctrineDBAL($dbParameters)
+    {
+        $this->register(new \Silex\Provider\DoctrineServiceProvider(), $dbParameters);
+    }
+    
     private function registerDoctrineORM()
     {
         $this->register(new DoctrineOrmServiceProvider(), array(
             'orm.proxies_dir' => $this['project.root'].'/var/cache/doctrine/proxies',
             'orm.em.options' => array(
                 'mappings' => array(
-                    
                     /**
                      * Core mappings
                      */
@@ -109,7 +113,7 @@ class ZCEApp extends Application
      */
     private function registerSimpleUser()
     {
-        $simpleUserProvider = new \SimpleUser\UserServiceProvider();
+        $simpleUserProvider = new UserServiceProvider();
         
         $this->register($simpleUserProvider);
         
@@ -122,14 +126,6 @@ class ZCEApp extends Application
         $this['security.firewalls'] = $security;
         
         $this->mount('/user', $simpleUserProvider);
-    }
-    
-    private function registerRestAPI()
-    {
-        $restAPIProvider = new RestAPIProvider();
-        
-        $this->register($restAPIProvider);
-        $this->mount('/api', $restAPIProvider);
     }
     
     private function registerServices()

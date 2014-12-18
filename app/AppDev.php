@@ -1,14 +1,15 @@
 <?php
 
-namespace ZCEPracticeTest\Silex;
+require_once __DIR__.'/App.php';
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use ZCEPracticeTest\Silex\ZCEApp;
+use Doctrine\DBAL\Logging\DebugStack;
 
-class ZCEAppDev extends ZCEApp
+class AppDev extends App
 {
     const DEBUG_QUERIES = false;
+    
     /**
      * Constructor
      *
@@ -25,7 +26,7 @@ class ZCEAppDev extends ZCEApp
     
     private function logDoctrine()
     {
-        $logger = new \Doctrine\DBAL\Logging\DebugStack();
+        $logger = new DebugStack();
         $this['db.config']->setSQLLogger($logger);
         
         $this->after(function(Request $request, Response $response) use ($logger) {

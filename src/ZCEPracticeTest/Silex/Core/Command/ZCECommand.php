@@ -1,6 +1,6 @@
 <?php
 
-namespace ZCEPracticeTest\Silex\Console;
+namespace ZCEPracticeTest\Silex\Core\Command;
 
 use Symfony\Component\Console\Command\Command;
 

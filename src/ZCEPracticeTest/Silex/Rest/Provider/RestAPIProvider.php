@@ -1,6 +1,6 @@
 <?php
 
-namespace ZCEPracticeTest\Rest\Provider;
+namespace ZCEPracticeTest\Silex\Rest\Provider;
 
 use Silex\ServiceProviderInterface;
 use Silex\ControllerProviderInterface;
