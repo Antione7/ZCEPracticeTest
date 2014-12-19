@@ -154,4 +154,14 @@ class User extends BaseUser
     {
         return $this->sessions;
     }
+    
+    /**
+     * @param integer $size
+     * 
+     * @return string
+     */
+    public function getGravatarImage($size = 64)
+    {
+        return '//www.gravatar.com/avatar/' . md5(strtolower(trim($this->getEmail()))) . '?s=' . $size . '&d=identicon';
+    }
 }

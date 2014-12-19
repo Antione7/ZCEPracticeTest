@@ -11,7 +11,6 @@
  */
 namespace ZCEPracticeTest\Rest\Controller;
 
-use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\ORM\EntityRepository;
 
@@ -20,32 +19,32 @@ use Doctrine\ORM\EntityRepository;
  *
  * @category Controller
  * @package  Rest
- * @author   Maxence Perrin <mperrin@darkmira.fr>
+ * @author   Julien Maulny <jmaulny@darkmira.fr>
  * @license  Darkmira <darkmira@darkmira.fr>
  * @link     www.darkmira.fr
  */
-class QuestionController
+class SessionController
 {
     /**
      * @var EntityRepository
      */
-    private $questionRepository;
+    private $sessionRepository;
     
     /**
-     * @param EntityRepository $questionRepository
+     * @param EntityRepository $sessionRepository
      */
-    public function __construct(EntityRepository $questionRepository)
+    public function __construct(EntityRepository $sessionRepository)
     {
-        $this->questionRepository = $questionRepository;
+        $this->sessionRepository = $sessionRepository;
     }
     
     /**
      * @return JsonResponse
      */
-    public function questionAction ()
+    public function createAction ()
     {
-        $questions = $this->questionRepository->getAll();
+        $data = null;
         
-        return new JsonResponse((object) $questions);
+        return new JsonResponse((object) $data);
     }
 }

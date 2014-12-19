@@ -9,6 +9,7 @@ use Silex\ControllerProviderInterface;
 use Silex\Application;
 use ZCEPracticeTest\Front\Controller\FrontController;
 use ZCEPracticeTest\Front\Controller\SessionController;
+use ZCEPracticeTest\Front\Controller\QuizController;
 
 class FrontProvider implements ServiceProviderInterface, ControllerProviderInterface
 {
@@ -68,6 +69,16 @@ class FrontProvider implements ServiceProviderInterface, ControllerProviderInter
         $controllers
             ->get('/sessions', 'session.controller:indexAction')
             ->bind('session-index')
+        ;
+        
+        $controllers
+            ->get('/sessions/new', 'session.controller:newAction')
+            ->bind('session-new')
+        ;
+        
+        $controllers
+            ->get('/sessions/{sessionId}', 'session.controller:quizAction')
+            ->bind('session-quiz')
         ;
 
         return $controllers;

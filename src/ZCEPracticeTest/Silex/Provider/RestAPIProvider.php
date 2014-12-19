@@ -16,6 +16,12 @@ class RestAPIProvider implements ServiceProviderInterface, ControllerProviderInt
             
             return new QuestionController($questionRepository);
         });
+        
+        $app['session.controller'] = $app->share(function () use ($app) {
+            $sessionRepository = $app['orm.em']->getRepository('ZCE:Session');
+            
+            return new SessionController($sessionRepository);
+        });
     }
     
     public function boot(Application $app)
@@ -28,6 +34,10 @@ class RestAPIProvider implements ServiceProviderInterface, ControllerProviderInt
         
         $controllers
             ->get('/questions', 'question.controller:questionAction')
+        ;
+        
+        $controllers
+            ->post('/session', 'session.controller:createAction')
         ;
 
         return $controllers;

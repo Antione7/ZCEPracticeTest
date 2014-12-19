@@ -14,6 +14,7 @@ namespace ZCEPracticeTest\Front\Controller;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Doctrine\ORM\EntityRepository;
 use Twig_Environment as Twig;
+use ZCEPracticeTest\Core\Exception\UserException;
 
 /**
  * Get Controller.
@@ -57,6 +58,25 @@ class SessionController
         
         return $this->twig->render('@session/index.html.twig', array(
             'sessions' => $sessions,
+        ));
+    }
+    
+    public function newAction()
+    {
+        return $this->twig->render('@session/new.html.twig');
+    }
+    
+    public function quizAction($sessionId)
+    {
+        $user = $this->tokenInterface->getUser();
+        $session = $this->sessionRepository->getFullSession($sessionId, $user->getId());
+        
+        if (null === $session) {
+            throw new UserException('session.and.user.not.found', 404);
+        }
+        
+        return $this->twig->render('@session/quiz.html.twig', array(
+            'session' => $session,
         ));
     }
 }

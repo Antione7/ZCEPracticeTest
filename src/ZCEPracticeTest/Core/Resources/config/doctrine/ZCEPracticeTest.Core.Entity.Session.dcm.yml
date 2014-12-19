@@ -1,6 +1,7 @@
 ZCEPracticeTest\Core\Entity\Session:
     type: entity
     table: zce_session
+    repositoryClass: ZCEPracticeTest\Core\Repository\SessionRepository
     id:
         id:
             type: integer

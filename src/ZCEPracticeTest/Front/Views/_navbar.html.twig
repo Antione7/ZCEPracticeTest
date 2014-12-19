@@ -22,10 +22,12 @@
                 {% else %}
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            <img src="{{ app.user.gravatarImage(20) }}" alt="{{ app.user.displayName }}" />
                             {{ app.user.displayName }}
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{ path('user.view', {'id': app.user.id}) }}">{{ 'my.account'|trans }}</a></li>
                             <li><a href="{{ path('session-index') }}">{{ 'my.sessions'|trans }}</a></li>
                             <li class="divider"></li>
                             <li><a href="{{ path('user.logout') }}">{{ 'log.out'|trans }}</a></li>

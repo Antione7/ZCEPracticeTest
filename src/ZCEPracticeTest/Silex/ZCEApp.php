@@ -89,7 +89,7 @@ class ZCEApp extends Application
         $this->register(new \Silex\Provider\UrlGeneratorServiceProvider());
         $this->register(new \Silex\Provider\TwigServiceProvider());
         $this->register(new \Silex\Provider\SwiftmailerServiceProvider());
-        $this->register(new \Silex\Provider\TranslationServiceProvider(), $this['config']['translation']);
+        $this->register(new \Silex\Provider\TranslationServiceProvider(), $this['parameters']['translation']);
     }
     
     /**
