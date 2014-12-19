@@ -41,7 +41,7 @@ class SessionController
     /**
      * @return JsonResponse
      */
-    public function createAction ()
+    public function createAction()
     {
         $data = null;
         

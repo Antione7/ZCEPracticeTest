@@ -11,7 +11,6 @@
  */
 namespace ZCEPracticeTest\Rest\Controller;
 
-use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\ORM\EntityRepository;
 

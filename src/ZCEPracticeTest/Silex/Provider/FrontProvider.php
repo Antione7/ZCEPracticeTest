@@ -15,11 +15,11 @@ class FrontProvider implements ServiceProviderInterface, ControllerProviderInter
 {
     public function register(Application $app)
     {
-        $app['front.controller'] = $app->share(function () use ($app) {
+        $app['zce.front.front.controller'] = $app->share(function () use ($app) {
             return new FrontController($app['twig']);
         });
         
-        $app['session.controller'] = $app->share(function () use ($app) {
+        $app['zce.front.session.controller'] = $app->share(function () use ($app) {
             $sessionRepository = $app['orm.em']->getRepository('ZCE:Session');
             
             return new SessionController($app['twig'], $app['security']->getToken(), $sessionRepository);
@@ -57,27 +57,27 @@ class FrontProvider implements ServiceProviderInterface, ControllerProviderInter
         $controllers->value('locale', $app['locale']);
         
         $controllers
-            ->get('/', 'front.controller:indexAction')
+            ->get('/', 'zce.front.front.controller:indexAction')
             ->bind('front-index')
         ;
         
         $controllers
-            ->get('/about', 'front.controller:aboutAction')
+            ->get('/about', 'zce.front.front.controller:aboutAction')
             ->bind('front-about')
         ;
         
         $controllers
-            ->get('/sessions', 'session.controller:indexAction')
+            ->get('/sessions', 'zce.front.session.controller:indexAction')
             ->bind('session-index')
         ;
         
         $controllers
-            ->get('/sessions/new', 'session.controller:newAction')
+            ->get('/sessions/new', 'zce.front.session.controller:newAction')
             ->bind('session-new')
         ;
         
         $controllers
-            ->get('/sessions/{sessionId}', 'session.controller:quizAction')
+            ->get('/sessions/{sessionId}', 'zce.front.session.controller:quizAction')
             ->bind('session-quiz')
         ;
 
