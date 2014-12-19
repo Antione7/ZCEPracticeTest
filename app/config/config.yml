@@ -16,5 +16,11 @@ simple.user:
     userClass: ZCEPracticeTest\Core\Entity\User
     userTableName: zce_user
     userCustomFieldsTableName: zce_user_custom_fields
+    templates:
+        layout: @views/User/layout.html.twig
 
 swiftmailer: ~
+
+translation:
+    locale: fr # Fixed to fr for now
+    locale_fallbacks: [en]

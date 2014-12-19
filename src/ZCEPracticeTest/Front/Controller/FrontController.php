@@ -38,4 +38,9 @@ class FrontController
     {
         return $this->twig->render('@front/index.html.twig');
     }
+    
+    public function aboutAction($locale)
+    {
+        return $this->twig->render('@front/about.'.$locale.'.html.twig');
+    }
 }

@@ -22,6 +22,7 @@ class ZCEApp extends Application
     {
         parent::__construct($values);
         
+        $this['controllers']->value('locale', $this['locale']);
         
         $this->loadParameters();
         $this->loadConfig();
@@ -35,6 +36,11 @@ class ZCEApp extends Application
         $this->registerFront();
     }
     
+    /**
+     * Load environment parameters and inject them into application
+     * 
+     * @throws \Exception if not parameters file
+     */
     private function loadParameters()
     {
         $parametersFile = $this['project.root'].'/app/config/parameters.yml';
@@ -50,6 +56,11 @@ class ZCEApp extends Application
         $this['parameters'] = $parameters;
     }
     
+    /**
+     * Load config parameters
+     * 
+     * @throws \Exception if not config file
+     */
     private function loadConfig()
     {
         $configFile = $this['project.root'].'/app/config/config.yml';
@@ -66,6 +77,9 @@ class ZCEApp extends Application
         $this['swiftmailer.options'] = $config['swiftmailer'];
     }
     
+    /**
+     * Register all needed providers
+     */
     private function registerProviders()
     {
         $this->register(new \Silex\Provider\SecurityServiceProvider());
@@ -75,13 +89,22 @@ class ZCEApp extends Application
         $this->register(new \Silex\Provider\UrlGeneratorServiceProvider());
         $this->register(new \Silex\Provider\TwigServiceProvider());
         $this->register(new \Silex\Provider\SwiftmailerServiceProvider());
+        $this->register(new \Silex\Provider\TranslationServiceProvider(), $this['config']['translation']);
     }
     
+    /**
+     * Register doctrine DBAL with db parameters
+     * 
+     * @param array $dbParameters
+     */
     public function registerDoctrineDBAL($dbParameters)
     {
         $this->register(new \Silex\Provider\DoctrineServiceProvider(), $dbParameters);
     }
     
+    /**
+     * Register and configure doctrine ORM
+     */
     private function registerDoctrineORM()
     {
         $this->register(new DoctrineOrmServiceProvider(), array(

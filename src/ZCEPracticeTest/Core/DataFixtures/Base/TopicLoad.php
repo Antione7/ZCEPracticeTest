@@ -12,7 +12,7 @@
  * @link     www.darkmira.fr
  *
  */
-namespace ZCEPracticeTest\Core\DataFixtures\ORM;
+namespace ZCEPracticeTest\Core\DataFixtures\Base;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;

@@ -55,8 +55,6 @@ class SessionController
             'user' => $user,
         ));
         
-        \Doctrine\Common\Util\Debug::dump($sessions);
-        
         return $this->twig->render('@session/index.html.twig', array(
             'sessions' => $sessions,
         ));

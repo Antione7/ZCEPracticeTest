@@ -11,7 +11,27 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="{{ path('front-index') }}">Home</a></li>
+                <li class="active"><a href="{{ path('front-index') }}">{{ 'home'|trans }}</a></li>
+                <li class="active"><a href="{{ path('front-about') }}">{{ 'about'|trans }}</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Link</a></li>
+                {% if app.user is null %}
+                    <li><a href="{{ path('user.login') }}">{{ 'log.in'|trans }}</a></li>
+                    <li><a href="{{ path('user.register') }}">{{ 'create.account'|trans }}</a></li>
+                {% else %}
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                            {{ app.user.displayName }}
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{ path('session-index') }}">{{ 'my.sessions'|trans }}</a></li>
+                            <li class="divider"></li>
+                            <li><a href="{{ path('user.logout') }}">{{ 'log.out'|trans }}</a></li>
+                        </ul>
+                    </li>
+                {% endif %}
             </ul>
         </div>
     </div>

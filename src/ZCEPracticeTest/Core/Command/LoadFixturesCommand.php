@@ -3,6 +3,7 @@
 namespace ZCEPracticeTest\Core\Command;
 
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Command\Command;
 use Doctrine\Common\DataFixtures\Loader;
@@ -32,6 +33,7 @@ class LoadFixturesCommand extends Command
         $this
             ->setName('fixtures:load')
             ->setDescription('Purge database and load fixtures')
+            ->addOption('test', 't', InputOption::VALUE_NONE, 'Load dummy fixtures')
         ;
     }
     
@@ -41,7 +43,12 @@ class LoadFixturesCommand extends Command
         
         $output->writeln('');
         
-        $loader->loadFromDirectory(__DIR__.'/../DataFixtures/ORM');
+        $loader->loadFromDirectory(__DIR__.'/../DataFixtures/Base');
+        
+        if ($input->getOption('test')) {
+            $loader->loadFromDirectory(__DIR__.'/../DataFixtures/Test');
+        }
+        
         $fixtures = $loader->getFixtures();
         
         foreach ($fixtures as $fixture) {

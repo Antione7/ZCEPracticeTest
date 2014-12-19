@@ -2,8 +2,9 @@
 
 namespace ZCEPracticeTest\Silex\Provider;
 
+use Symfony\Component\Yaml\Yaml;
+use Symfony\Component\Translation\Loader\YamlFileLoader;
 use Silex\ServiceProviderInterface;
-use Silex\Provider\TwigServiceProvider;
 use Silex\ControllerProviderInterface;
 use Silex\Application;
 use ZCEPracticeTest\Front\Controller\FrontController;
@@ -22,6 +23,16 @@ class FrontProvider implements ServiceProviderInterface, ControllerProviderInter
             
             return new SessionController($app['twig'], $app['security']->getToken(), $sessionRepository);
         });
+        
+        // Import Front translation into twig templates
+        $app['translator'] = $app->share($app->extend('translator', function ($translator, $app) {
+            $translator->addLoader('yaml', new YamlFileLoader());
+
+            $translator->addResource('yaml', $app['project.root'] . '/src/ZCEPracticeTest/Front/Translation/trans.en.yml', 'en');
+            $translator->addResource('yaml', $app['project.root'] . '/src/ZCEPracticeTest/Front/Translation/trans.fr.yml', 'fr');
+
+            return $translator;
+        }));
     }
     
     public function boot(Application $app)
@@ -42,9 +53,16 @@ class FrontProvider implements ServiceProviderInterface, ControllerProviderInter
     {
         $controllers = $app['controllers_factory'];
         
+        $controllers->value('locale', $app['locale']);
+        
         $controllers
             ->get('/', 'front.controller:indexAction')
             ->bind('front-index')
+        ;
+        
+        $controllers
+            ->get('/about', 'front.controller:aboutAction')
+            ->bind('front-about')
         ;
         
         $controllers

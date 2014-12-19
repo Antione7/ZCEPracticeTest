@@ -1,0 +1,9 @@
+about: À propos
+create.account: Créer un compte
+home: Accueil
+log.in: Se connecter
+log.out: Se déconnecter
+my.sessions: Mes sessions
+new.session: Nouvelle session
+on.%date%.at.%time%: Le %date% à %time%
+topics.validated.%count%: %count% / 10 Topic validé | %count% / 10 Topics validés

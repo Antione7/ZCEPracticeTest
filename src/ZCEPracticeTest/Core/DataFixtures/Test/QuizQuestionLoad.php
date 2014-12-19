@@ -12,14 +12,14 @@
  * @link     www.darkmira.fr
  *
  */
-namespace ZCEPracticeTest\Core\DataFixtures\ORM;
+namespace ZCEPracticeTest\Core\DataFixtures\Test;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
-use ZCEPracticeTest\Core\Entity\Quiz;
+use ZCEPracticeTest\Core\Entity\QuizQuestion;
 
-class QuizLoad extends AbstractFixture implements OrderedFixtureInterface
+class QuizQuestionLoad extends AbstractFixture implements OrderedFixtureInterface
 {
     /**
      * Load default dataset of question
@@ -27,9 +27,14 @@ class QuizLoad extends AbstractFixture implements OrderedFixtureInterface
      */
     public function load(ObjectManager $objectManager)
     {
-        for ($i = 0; $i < 2; $i++) {
-            $o = new Quiz();
-            $this->setReference('quiz-'.$i, $o);
+        for ($i = 0; $i < 10; $i++) {
+            $o = new QuizQuestion();
+            $quiz = $this->getReference('quiz-'.($i % 2));
+            $question = $this->getReference(implode('-', array('question', floor($i / 5) ? 'free' : 'qcm', floor($i / 5))));
+            $o
+                ->setQuiz($quiz)
+                ->setQuestion($question)
+            ;
             $objectManager->persist($o);
         }
 
@@ -41,6 +46,6 @@ class QuizLoad extends AbstractFixture implements OrderedFixtureInterface
      */
     public function getOrder()
     {
-        return 0;
+        return 2;
     }
 }
