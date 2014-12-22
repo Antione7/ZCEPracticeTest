@@ -70,12 +70,7 @@ class FrontProvider implements ServiceProviderInterface, ControllerProviderInter
         ;
         
         $controllers
-            ->get('/sessions/new', 'zce.front.session.controller:newAction')
-            ->bind('session-new')
-        ;
-        
-        $controllers
-            ->get('/sessions/{sessionId}', 'zce.front.session.controller:quizAction')
+            ->get('/sessions/quiz', 'zce.front.session.controller:quizAction')
             ->bind('session-quiz')
         ;
 

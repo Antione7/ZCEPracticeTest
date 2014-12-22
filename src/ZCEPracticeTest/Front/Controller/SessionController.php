@@ -61,22 +61,8 @@ class SessionController
         ));
     }
     
-    public function newAction()
+    public function quizAction()
     {
-        return $this->twig->render('@session/new.html.twig');
-    }
-    
-    public function quizAction($sessionId)
-    {
-        $user = $this->tokenInterface->getUser();
-        $session = $this->sessionRepository->getFullSession($sessionId, $user->getId());
-        
-        if (null === $session) {
-            throw new UserException('session.and.user.not.found', 404);
-        }
-        
-        return $this->twig->render('@session/quiz.html.twig', array(
-            'session' => $session,
-        ));
+        return $this->twig->render('@session/quiz.html.twig');
     }
 }

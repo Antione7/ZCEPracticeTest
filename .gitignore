@@ -4,6 +4,7 @@ composer.lock
 
 # Vendors
 vendor
+web/bower_components
 
 # PHPUnit
 phpunit.xml
