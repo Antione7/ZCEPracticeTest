@@ -11,7 +11,6 @@
  */
 namespace ZCEPracticeTest\Core\Entity;
 
-use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use SimpleUser\User as BaseUser;
 
@@ -24,7 +23,7 @@ use SimpleUser\User as BaseUser;
  * @license  Darkmira <darkmira@darkmira.fr>
  * @link     www.darkmira.fr
  */
-class User extends BaseUser implements UserInterface, \JsonSerializable
+class User extends BaseUser implements \JsonSerializable
 {
     /**
      * @var integer

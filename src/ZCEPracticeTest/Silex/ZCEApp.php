@@ -31,8 +31,8 @@ class ZCEApp extends Application
         $this->registerDoctrineDBAL($this['parameters']['database']);
         $this->registerDoctrineORM();
         $this->registerServices();
-        $this->registerListeners();
         $this->registerSimpleUser();
+        $this->registerListeners();
         $this->registerRestAPI();
         $this->registerFront();
     }

@@ -74,12 +74,13 @@ class SessionController
      */
     public function createAction()
     {
-        $user = $this->token->getUser();
+        $userSession = $this->token->getUser();
         
-        if (!($user instanceof User)) {
+        if (!($userSession instanceof User)) {
             throw new UserException('user.not.logged');
         }
         
+        $user = $this->om->merge($userSession);
         $quiz = $this->zcpeQuizFactory->createStandardZCPEQuiz();
         $session = new Session();
         
