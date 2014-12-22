@@ -2,14 +2,12 @@
 
 namespace ZCEPracticeTest\Silex\Provider;
 
-use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Translation\Loader\YamlFileLoader;
 use Silex\ServiceProviderInterface;
 use Silex\ControllerProviderInterface;
 use Silex\Application;
 use ZCEPracticeTest\Front\Controller\FrontController;
 use ZCEPracticeTest\Front\Controller\SessionController;
-use ZCEPracticeTest\Front\Controller\QuizController;
 
 class FrontProvider implements ServiceProviderInterface, ControllerProviderInterface
 {

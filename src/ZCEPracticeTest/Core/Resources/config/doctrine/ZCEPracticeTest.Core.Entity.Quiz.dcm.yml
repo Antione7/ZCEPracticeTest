@@ -12,7 +12,8 @@ ZCEPracticeTest\Core\Entity\Quiz:
     oneToMany:
         quizQuestions:
             targetEntity: ZCEPracticeTest\Core\Entity\QuizQuestion
-            cascade: { }
+            cascade:
+                - all
             mappedBy: quiz
             orphanRemoval: false
             orderBy: null

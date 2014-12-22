@@ -20,7 +20,7 @@ namespace ZCEPracticeTest\Core\Entity;
  * @license  Darkmira <darkmira@darkmira.fr>
  * @link     www.darkmira.fr
  */
-class Session
+class Session implements \JsonSerializable
 {
     /**
      * @var integer
@@ -67,6 +67,7 @@ class Session
      */
     public function __construct()
     {
+        $this->setDateStart(new \DateTime());
         $this->answers = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -249,5 +250,28 @@ class Session
     public function getQuiz()
     {
         return $this->quiz;
+    }
+    
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $answers = array();
+        
+        foreach ($this->getAnswers() as $answer) {
+            $answers []= $answer->jsonSerialize();
+        }
+        
+        return array(
+            'id' => $this->getId(),
+            'success' => $this->getSuccess(),
+            'dateStart' => $this->getDateStart(),
+            'dateFinished' => $this->getDateFinished(),
+            'nbTopicsValidated' => $this->getNbTopicsValidated(),
+            'answers' => $answers,
+            'user' => $this->getUser()->jsonSerialize(),
+            'quiz' => $this->getQuiz()->jsonSerialize(),
+        );
     }
 }

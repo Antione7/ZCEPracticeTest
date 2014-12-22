@@ -77,11 +77,14 @@ class TopicLoad extends AbstractFixture implements OrderedFixtureInterface
             ),
         );
         
+        $i = 0;
+        
         foreach ($objects as $key => $object) {
             $o = new Topic();
             $o->setEntitled($object[0]);
             $o->setIsPrimary($object[1]);
             $this->addReference('topic-'.$key, $o);
+            $this->addReference('topic-'.($i++), $o);
             $objectManager->persist($o);
         }
 

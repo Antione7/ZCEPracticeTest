@@ -33,7 +33,8 @@ class LoadFixturesCommand extends Command
         $this
             ->setName('fixtures:load')
             ->setDescription('Purge database and load fixtures')
-            ->addOption('test', 't', InputOption::VALUE_NONE, 'Load dummy fixtures')
+            ->addOption('test', null, InputOption::VALUE_NONE, 'Load dummy fixtures')
+            ->addOption('mass-test', null, InputOption::VALUE_NONE, 'Load many and many dummies fixtures')
         ;
     }
     
@@ -47,6 +48,10 @@ class LoadFixturesCommand extends Command
         
         if ($input->getOption('test')) {
             $loader->loadFromDirectory(__DIR__.'/../DataFixtures/Test');
+        }
+        
+        if ($input->getOption('mass-test')) {
+            $loader->loadFromDirectory(__DIR__.'/../DataFixtures/MassTest');
         }
         
         $fixtures = $loader->getFixtures();

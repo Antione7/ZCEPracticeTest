@@ -8,6 +8,7 @@ use Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider;
 use SimpleUser\UserServiceProvider;
 use ZCEPracticeTest\Core\Service\QuestionManager;
 use ZCEPracticeTest\Core\Service\QuizFactory;
+use ZCEPracticeTest\Core\Service\ZCPEQuizFactory;
 use ZCEPracticeTest\Silex\Provider\RestAPIProvider;
 use ZCEPracticeTest\Silex\Provider\FrontProvider;
 
@@ -163,6 +164,14 @@ class ZCEApp extends Application
         
         $this['zce.core.quiz_factory'] = $this->share(function () {
             return new QuizFactory($this['zce.core.question_manager']);
+        });
+        
+        $this['zce.core.zcpe_quiz_factory'] = $this->share(function () {
+            return new ZCPEQuizFactory(
+                $this['zce.core.quiz_factory'],
+                $this['orm.em']->getRepository('ZCE:Topic'),
+                $this['orm.em']->getRepository('ZCE:Question')
+            );
         });
     }
     

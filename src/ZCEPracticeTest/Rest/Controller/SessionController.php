@@ -12,7 +12,13 @@
 namespace ZCEPracticeTest\Rest\Controller;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Doctrine\Common\Persistence\ObjectManager;
 use Doctrine\ORM\EntityRepository;
+use ZCEPracticeTest\Core\Exception\UserException;
+use ZCEPracticeTest\Core\Entity\Session;
+use ZCEPracticeTest\Core\Entity\User;
+use ZCEPracticeTest\Core\Service\ZCPEQuizFactory;
 
 /**
  * Get Controller.
@@ -26,16 +32,41 @@ use Doctrine\ORM\EntityRepository;
 class SessionController
 {
     /**
+     * @var ZCPEQuizFactory
+     */
+    private $zcpeQuizFactory;
+    
+    /**
      * @var EntityRepository
      */
     private $sessionRepository;
     
     /**
-     * @param EntityRepository $sessionRepository
+     * @var TokenInterface
      */
-    public function __construct(EntityRepository $sessionRepository)
-    {
+    private $token;
+    
+    /**
+     * @var ObjectManager
+     */
+    private $om;
+    
+    /**
+     * @param EntityRepository $sessionRepository
+     * @param ZCPEQuizFactory $zcpeQuizFactory
+     * @param TokenInterface $token
+     * @param ObjectManager $om
+     */
+    public function __construct(
+            EntityRepository $sessionRepository,
+            ZCPEQuizFactory $zcpeQuizFactory,
+            TokenInterface $token,
+            ObjectManager $om
+    ) {
         $this->sessionRepository = $sessionRepository;
+        $this->zcpeQuizFactory = $zcpeQuizFactory;
+        $this->token = $token;
+        $this->om = $om;
     }
     
     /**
@@ -43,8 +74,23 @@ class SessionController
      */
     public function createAction()
     {
-        $data = null;
+        $user = $this->token->getUser();
         
-        return new JsonResponse((object) $data);
+        if (!($user instanceof User)) {
+            throw new UserException('user.not.logged');
+        }
+        
+        $quiz = $this->zcpeQuizFactory->createStandardZCPEQuiz();
+        $session = new Session();
+        
+        $session
+            ->setUser($user)
+            ->setQuiz($quiz)
+        ;
+        
+        $this->om->persist($session);
+        $this->om->flush();
+        
+        return new JsonResponse($session);
     }
 }

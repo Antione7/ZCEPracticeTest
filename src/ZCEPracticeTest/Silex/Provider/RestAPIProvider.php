@@ -19,9 +19,12 @@ class RestAPIProvider implements ServiceProviderInterface, ControllerProviderInt
         });
         
         $app['zce.rest.session.controller'] = $app->share(function () use ($app) {
-            $sessionRepository = $app['orm.em']->getRepository('ZCE:Session');
-            
-            return new SessionController($sessionRepository);
+            return new SessionController(
+                $app['orm.em']->getRepository('ZCE:Session'),
+                $app['zce.core.zcpe_quiz_factory'],
+                $app['security']->getToken(),
+                $app['orm.em']
+            );
         });
     }
     

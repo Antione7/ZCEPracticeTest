@@ -24,12 +24,14 @@ ZCEPracticeTest\Core\Entity\Session:
     manyToOne:
         user:
             targetEntity: ZCEPracticeTest\Core\Entity\User
-            cascade: {  }
+            cascade:
+                - persist
             inversedBy: sessions
             orphanRemoval: false
         quiz:
             targetEntity: ZCEPracticeTest\Core\Entity\Quiz
-            cascade: {  }
+            cascade:
+                - persist
             inversedBy: sessions
             orphanRemoval: false
     oneToMany:
