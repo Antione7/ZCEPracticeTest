@@ -1,0 +1,50 @@
+{% raw %}
+    <div class="row">
+        <div class="col-md-2 col-sd-12 row text-center">
+            <h1 class="col-md-12 col-xs-6">{{ questionIndex() + 1 }} / {{ quiz.questions.length }}</h1>
+            <div class="col-md-12 col-xs-6">
+                <div class="quiz-question-sign-container">
+                        <div class="quiz-question-sign-{{ questionOddity() }}">
+                            <span class="glyphicon glyphicon-question-sign"></span>
+                        </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-10">
+            <h4 class="well" btf-markdown="currentQuestion.text"></h4>
+            <form role="form" class="well">
+                <div class="form-group" ng-show="currentQuestion.type == 'radio'">
+                    <label class="radio" ng-repeat="answer in currentQuestion.answers">
+                        <input type="radio" ng-model="currentQuestion.selectedAnswer" ng-value="answer"/>
+                        <span btf-markdown="answer.text"></span>
+                    </label>
+                </div>
+                <div class="form-group" ng-show="currentQuestion.type == 'checkbox'">
+                    <label class="checkbox" ng-repeat="answer in currentQuestion.answers">
+                        <input type="checkbox" ng-model="answer.checked"/>
+                        <span btf-markdown="answer.text"></span>
+                    </label>
+                </div>
+                <div class="form-group" ng-show="currentQuestion.type == 'free'">
+                    <input type="text" ng-model="currentQuestion.typedAnswer" placeholder="Your answer" class="form-control"/>
+                </div>
+            </form>
+
+            <div class="progress progress-striped">
+                <div class="progress-bar progress-bar-info" role="progressbar" style="width: {{ questionIndex() * 100 / quiz.questions.length }}%;"></div>
+            </div>
+
+            <ul class="pager">
+                <li class="previous" ng-show="showPrevious()" ng-click="previous()">
+                    <a class="quiz-previous-button" href="">&larr; Pr&eacute;c&eacute;dent</a>
+                </li>
+                <li class="next" ng-show="showNext()" ng-click="next()">
+                    <a class="quiz-next-button" href="">Suivant &rarr;</a>
+                </li>
+                <li class="next" ng-show="!hasNext()" ng-click="finish()">
+                    <a class="quiz-finish-button" href="">Terminer &rarr;</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+{% endraw %}

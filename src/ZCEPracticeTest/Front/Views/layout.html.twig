@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ app.locale }}">
+<html lang="{{ app.locale }}" ng-app>
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,9 +7,10 @@
         
         <title>{% block title %}ZCE Practice Test{% endblock %}</title>
 
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
-        <link href="{{ app.request.basepath }}/css/flat-ui.min.css" rel="stylesheet">
-        <link href="{{ app.request.basepath }}/css/style.css" rel="stylesheet">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ app.request.basepath }}/css/flat-ui.min.css">
+        <link rel="stylesheet" href="{{ app.request.basepath }}/css/style.css">
+        {#<link rel="stylesheet" href="{{ app.request.basepath }}/bower_components/quizz/src/css/quizz.css">#}
         
         {% block stylesheets %}
         {% endblock %}
@@ -28,15 +29,22 @@
             {% endblock %}
         </div>
         
+        {% raw %}
+            <p>1 + 2 = {{ 1 + 2 }}</p>
+        {% endraw %}
+        
         <div id="js-vars"
+            data-base-url="{{ app.request.baseUrl }}"
             data-basepath="{{ app.request.basepath }}"
         ></div>
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular{{ app.debug ? '' : '.min' }}.js"></script>
         <script src="{{ app.request.basepath }}/bower_components/angular-animate/angular-animate.js"></script>
         <script src="{{ app.request.basepath }}/bower_components/showdown/compressed/showdown.js"></script>
+        <script src="{{ app.request.basepath }}/bower_components/quizz/src/js/directives/markdown.js"></script>
+        <script src="{{ app.request.basepath }}/bower_components/quizz/src/js/controllers/QuizzCtrl.js"></script>
         <script src="{{ app.request.basepath }}/js/main.js"></script>
         {% block javascripts %}
         {% endblock %}

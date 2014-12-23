@@ -14,7 +14,6 @@ namespace ZCEPracticeTest\Front\Controller;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Doctrine\ORM\EntityRepository;
 use Twig_Environment as Twig;
-use ZCEPracticeTest\Core\Exception\UserException;
 
 /**
  * Get Controller.

@@ -11,8 +11,6 @@
     "tests"
   ],
   "dependencies": {
-    "angular-animate": "git://github.com/angular/bower-angular-animate.git#1.2.10",
-    "angular-mocks": "git://github.com/angular/bower-angular-mocks.git#1.2.10",
-    "showdown": "git://github.com/coreyti/showdown.git#~0.3.1"
+    "quizz": "git://github.com/Ninja-Squad/quizz.git#*"
   }
 }

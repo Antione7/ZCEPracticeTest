@@ -1,16 +1,17 @@
 $(function () {
+    initSessionPage();
     bindStartButton();
 });
 
 var ZCEApi =
 {
-    basepath: $('#js-vars').data('basepath')+'/index.php/',
+    baseUrl: $('#js-vars').data('base-url')+'/',
     
     createSession: function (callback)
     {
         $.ajax({
             type: 'POST',
-            url: ZCEApi.basepath+'api/session'
+            url: ZCEApi.baseUrl+'api/session'
         }).done(function (r) {
             callback && callback(r);
         });
@@ -24,7 +25,7 @@ var ZCEApi =
         
         $.ajax({
             type: 'GET',
-            url: ZCEApi.basepath+'api/questions',
+            url: ZCEApi.baseUrl+'api/questions',
             data: data
         }).done(function (r) {
             callback && callback(r);
@@ -40,10 +41,19 @@ function bindStartButton() {
     }
 }
 
+function initSessionPage() {
+    if ($('#quiz-page').size()) {
+        console.log('init page');
+        angular.module('quizz', ['controllers-quizz']);
+        angular.module('zcpe-quiz', ['quizz', 'btford.markdown', 'ngAnimate']);
+    }
+}
+
 function createAndRunSession() {
     ZCEApi.createSession(function (data) {
-        console.log('data', data);
         var quiz = createQuiz(data);
+        
+        angular.module('zcpe-quiz').constant('quizz', quiz);
     });
 }
 
