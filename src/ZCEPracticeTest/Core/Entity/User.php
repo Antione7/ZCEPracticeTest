@@ -23,7 +23,7 @@ use SimpleUser\User as BaseUser;
  * @license  Darkmira <darkmira@darkmira.fr>
  * @link     www.darkmira.fr
  */
-class User extends BaseUser
+class User extends BaseUser implements \JsonSerializable
 {
     /**
      * @var integer
@@ -153,5 +153,30 @@ class User extends BaseUser
     public function getSessions()
     {
         return $this->sessions;
+    }
+    
+    /**
+     * @param integer $size
+     * 
+     * @return string
+     */
+    public function getGravatarImage($size = 64)
+    {
+        return '//www.gravatar.com/avatar/' . md5(strtolower(trim($this->getEmail()))) . '?s=' . $size . '&d=identicon';
+    }
+    
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return array(
+            'id' => $this->getId(),
+            'firstName' => $this->getFirstName(),
+            'lastName' => $this->getLastName(),
+            'displayName' => $this->getDisplayName(),
+            'gravatarImage' => $this->getGravatarImage(),
+            'timeCreate' => new \DateTime('@'.$this->getTimeCreated()),
+        );
     }
 }

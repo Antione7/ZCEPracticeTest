@@ -5,9 +5,12 @@ namespace ZCEPracticeTest\Silex;
 use Symfony\Component\Yaml\Yaml;
 use Silex\Application;
 use Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider;
+use SimpleUser\UserServiceProvider;
 use ZCEPracticeTest\Core\Service\QuestionManager;
 use ZCEPracticeTest\Core\Service\QuizFactory;
-use ZCEPracticeTest\Rest\Provider\RestAPIProvider;
+use ZCEPracticeTest\Core\Service\ZCPEQuizFactory;
+use ZCEPracticeTest\Silex\Provider\RestAPIProvider;
+use ZCEPracticeTest\Silex\Provider\FrontProvider;
 
 class ZCEApp extends Application
 {
@@ -20,16 +23,25 @@ class ZCEApp extends Application
     {
         parent::__construct($values);
         
+        $this['controllers']->value('locale', $this['locale']);
+        
         $this->loadParameters();
         $this->loadConfig();
         $this->registerProviders();
+        $this->registerDoctrineDBAL($this['parameters']['database']);
         $this->registerDoctrineORM();
         $this->registerServices();
-        $this->registerListeners();
         $this->registerSimpleUser();
+        $this->registerListeners();
         $this->registerRestAPI();
+        $this->registerFront();
     }
     
+    /**
+     * Load environment parameters and inject them into application
+     * 
+     * @throws \Exception if not parameters file
+     */
     private function loadParameters()
     {
         $parametersFile = $this['project.root'].'/app/config/parameters.yml';
@@ -45,6 +57,11 @@ class ZCEApp extends Application
         $this['parameters'] = $parameters;
     }
     
+    /**
+     * Load config parameters
+     * 
+     * @throws \Exception if not config file
+     */
     private function loadConfig()
     {
         $configFile = $this['project.root'].'/app/config/config.yml';
@@ -61,9 +78,11 @@ class ZCEApp extends Application
         $this['swiftmailer.options'] = $config['swiftmailer'];
     }
     
+    /**
+     * Register all needed providers
+     */
     private function registerProviders()
     {
-        $this->register(new \Silex\Provider\DoctrineServiceProvider(), $this['parameters']['database']);
         $this->register(new \Silex\Provider\SecurityServiceProvider());
         $this->register(new \Silex\Provider\RememberMeServiceProvider());
         $this->register(new \Silex\Provider\SessionServiceProvider());
@@ -71,15 +90,28 @@ class ZCEApp extends Application
         $this->register(new \Silex\Provider\UrlGeneratorServiceProvider());
         $this->register(new \Silex\Provider\TwigServiceProvider());
         $this->register(new \Silex\Provider\SwiftmailerServiceProvider());
+        $this->register(new \Silex\Provider\TranslationServiceProvider(), $this['parameters']['translation']);
     }
     
+    /**
+     * Register doctrine DBAL with db parameters
+     * 
+     * @param array $dbParameters
+     */
+    public function registerDoctrineDBAL($dbParameters)
+    {
+        $this->register(new \Silex\Provider\DoctrineServiceProvider(), $dbParameters);
+    }
+    
+    /**
+     * Register and configure doctrine ORM
+     */
     private function registerDoctrineORM()
     {
         $this->register(new DoctrineOrmServiceProvider(), array(
             'orm.proxies_dir' => $this['project.root'].'/var/cache/doctrine/proxies',
             'orm.em.options' => array(
                 'mappings' => array(
-                    
                     /**
                      * Core mappings
                      */
@@ -109,7 +141,7 @@ class ZCEApp extends Application
      */
     private function registerSimpleUser()
     {
-        $simpleUserProvider = new \SimpleUser\UserServiceProvider();
+        $simpleUserProvider = new UserServiceProvider();
         
         $this->register($simpleUserProvider);
         
@@ -124,14 +156,6 @@ class ZCEApp extends Application
         $this->mount('/user', $simpleUserProvider);
     }
     
-    private function registerRestAPI()
-    {
-        $restAPIProvider = new RestAPIProvider();
-        
-        $this->register($restAPIProvider);
-        $this->mount('/api', $restAPIProvider);
-    }
-    
     private function registerServices()
     {
         $this['zce.core.question_manager'] = $this->share(function () {
@@ -141,10 +165,34 @@ class ZCEApp extends Application
         $this['zce.core.quiz_factory'] = $this->share(function () {
             return new QuizFactory($this['zce.core.question_manager']);
         });
+        
+        $this['zce.core.zcpe_quiz_factory'] = $this->share(function () {
+            return new ZCPEQuizFactory(
+                $this['zce.core.quiz_factory'],
+                $this['orm.em']->getRepository('ZCE:Topic'),
+                $this['orm.em']->getRepository('ZCE:Question')
+            );
+        });
     }
     
     private function registerListeners()
     {
         $dispatcher = $this['dispatcher'];
+    }
+    
+    private function registerRestAPI()
+    {
+        $restAPIProvider = new RestAPIProvider();
+        
+        $this->register($restAPIProvider);
+        $this->mount('/api', $restAPIProvider);
+    }
+    
+    private function registerFront()
+    {
+        $frontProvider = new FrontProvider();
+        
+        $this->register($frontProvider);
+        $this->mount('/', $frontProvider);
     }
 }

@@ -12,7 +12,7 @@
  * @link     www.darkmira.fr
  *
  */
-namespace ZCEPracticeTest\Core\DataFixtures\ORM;
+namespace ZCEPracticeTest\Core\DataFixtures\Base;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
@@ -77,11 +77,14 @@ class TopicLoad extends AbstractFixture implements OrderedFixtureInterface
             ),
         );
         
+        $i = 0;
+        
         foreach ($objects as $key => $object) {
             $o = new Topic();
             $o->setEntitled($object[0]);
             $o->setIsPrimary($object[1]);
             $this->addReference('topic-'.$key, $o);
+            $this->addReference('topic-'.($i++), $o);
             $objectManager->persist($o);
         }
 

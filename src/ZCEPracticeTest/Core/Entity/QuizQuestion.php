@@ -20,7 +20,7 @@ namespace ZCEPracticeTest\Core\Entity;
  * @license  Darkmira <darkmira@darkmira.fr>
  * @link     www.darkmira.fr
  */
-class QuizQuestion
+class QuizQuestion implements \JsonSerializable
 {
     /**
      * @var integer
@@ -93,5 +93,12 @@ class QuizQuestion
     public function getQuestion()
     {
         return $this->question;
+    }
+    
+    public function jsonSerialize()
+    {
+        return array(
+            'question' => $this->getQuestion()->jsonSerialize(),
+        );
     }
 }

@@ -1,0 +1,9 @@
+{% extends "@views/layout.html.twig" %}
+
+{% block body %}
+<div data-session="{{ session|json_encode|raw|replace('"', '\"') }}"></div>
+
+<div id="quiz-page" ng-app="zcpe-quiz" ng-controller="QuizzCtrl" ng-init="initWithConstant('quizz')">
+    <div ng-include="'{{ app.request.baseUrl }}/templates/Quizz.html'"></div>
+</div>
+{% endblock %}

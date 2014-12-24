@@ -11,7 +11,6 @@
  */
 namespace ZCEPracticeTest\Rest\Controller;
 
-use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\ORM\EntityRepository;
 
@@ -33,7 +32,6 @@ class QuestionController
     
     /**
      * @param EntityRepository $questionRepository
-     * @param Serializer $serializer
      */
     public function __construct(EntityRepository $questionRepository)
     {

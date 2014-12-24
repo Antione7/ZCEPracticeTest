@@ -2,8 +2,8 @@
 
 require_once __DIR__.'/../vendor/autoload.php';
 
-use ZCEPracticeTest\Silex\Console\ZCEAppConsole;
 use ZCEPracticeTest\Silex\ZCEAppDev;
+use ZCEPracticeTest\Silex\ZCEAppConsole;
 
 ini_set('display_errors', '1');
 

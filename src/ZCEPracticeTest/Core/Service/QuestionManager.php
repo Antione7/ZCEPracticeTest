@@ -85,6 +85,11 @@ class QuestionManager
         }
         
         $randomKeys = array_rand($questions, $num);
+        
+        if (1 == $num) {
+            $randomKeys = array($randomKeys);
+        }
+        
         $randomQuestions = array();
         
         foreach ($randomKeys as $key) {

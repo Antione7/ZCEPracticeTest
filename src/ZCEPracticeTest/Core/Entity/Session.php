@@ -20,12 +20,32 @@ namespace ZCEPracticeTest\Core\Entity;
  * @license  Darkmira <darkmira@darkmira.fr>
  * @link     www.darkmira.fr
  */
-class Session
+class Session implements \JsonSerializable
 {
     /**
      * @var integer
      */
     private $id;
+
+    /**
+     * @var boolean
+     */
+    private $success;
+
+    /**
+     * @var \DateTime
+     */
+    private $dateStart;
+
+    /**
+     * @var \DateTime
+     */
+    private $dateFinished;
+
+    /**
+     * @var integer
+     */
+    private $nbTopicsValidated;
 
     /**
      * @var Answer[]
@@ -47,6 +67,7 @@ class Session
      */
     public function __construct()
     {
+        $this->setDateStart(new \DateTime());
         $this->answers = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -61,6 +82,98 @@ class Session
     }
 
     /**
+     * Set success
+     *
+     * @param boolean $success
+     * @return Session
+     */
+    public function setSuccess($success)
+    {
+        $this->success = $success;
+
+        return $this;
+    }
+
+    /**
+     * Get success
+     *
+     * @return boolean 
+     */
+    public function getSuccess()
+    {
+        return $this->success;
+    }
+
+    /**
+     * Set dateStart
+     *
+     * @param \DateTime $dateStart
+     * @return Session
+     */
+    public function setDateStart($dateStart)
+    {
+        $this->dateStart = $dateStart;
+
+        return $this;
+    }
+
+    /**
+     * Get dateStart
+     *
+     * @return \DateTime 
+     */
+    public function getDateStart()
+    {
+        return $this->dateStart;
+    }
+
+    /**
+     * Set dateFinished
+     *
+     * @param \DateTime $dateFinished
+     * @return Session
+     */
+    public function setDateFinished($dateFinished)
+    {
+        $this->dateFinished = $dateFinished;
+
+        return $this;
+    }
+
+    /**
+     * Get dateFinished
+     *
+     * @return \DateTime 
+     */
+    public function getDateFinished()
+    {
+        return $this->dateFinished;
+    }
+
+    /**
+     * Set nbTopicsValidated
+     *
+     * @param integer $nbTopicsValidated
+     * @return Session
+     */
+    public function setNbTopicsValidated($nbTopicsValidated)
+    {
+        $this->nbTopicsValidated = $nbTopicsValidated;
+
+        return $this;
+    }
+
+    /**
+     * Get nbTopicsValidated
+     *
+     * @return integer 
+     */
+    public function getNbTopicsValidated()
+    {
+        return $this->nbTopicsValidated;
+    }
+
+    /**
      * Add answers
      *
      * @param Answer $answers
@@ -71,6 +184,16 @@ class Session
         $this->answers[] = $answers;
 
         return $this;
+    }
+
+    /**
+     * Remove answers
+     *
+     * @param Answer $answers
+     */
+    public function removeAnswer(Answer $answers)
+    {
+        $this->answers->removeElement($answers);
     }
 
     /**
@@ -127,5 +250,28 @@ class Session
     public function getQuiz()
     {
         return $this->quiz;
+    }
+    
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        $answers = array();
+        
+        foreach ($this->getAnswers() as $answer) {
+            $answers []= $answer->jsonSerialize();
+        }
+        
+        return array(
+            'id' => $this->getId(),
+            'success' => $this->getSuccess(),
+            'dateStart' => $this->getDateStart(),
+            'dateFinished' => $this->getDateFinished(),
+            'nbTopicsValidated' => $this->getNbTopicsValidated(),
+            'answers' => $answers,
+            'user' => $this->getUser()->jsonSerialize(),
+            'quiz' => $this->getQuiz()->jsonSerialize(),
+        );
     }
 }

@@ -1,29 +1,38 @@
 ZCEPracticeTest\Core\Entity\Session:
     type: entity
     table: zce_session
+    repositoryClass: ZCEPracticeTest\Core\Repository\SessionRepository
     id:
         id:
             type: integer
             id: true
             generator:
                 strategy: IDENTITY
-    fields: []
+    fields:
+        success:
+            type: boolean
+            nullable: true
+        dateStart:
+            type: datetime
+            nullable: true
+        dateFinished:
+            type: datetime
+            nullable: true
+        nbTopicsValidated:
+            type: integer
+            nullable: true
     manyToOne:
         user:
             targetEntity: ZCEPracticeTest\Core\Entity\User
-            cascade: {  }
+            cascade:
+                - persist
             inversedBy: sessions
-            joinColumns:
-                topic_id:
-                    referencedColumnName: id
             orphanRemoval: false
         quiz:
             targetEntity: ZCEPracticeTest\Core\Entity\Quiz
-            cascade: {  }
+            cascade:
+                - persist
             inversedBy: sessions
-            joinColumns:
-                topic_id:
-                    referencedColumnName: id
             orphanRemoval: false
     oneToMany:
         answers:

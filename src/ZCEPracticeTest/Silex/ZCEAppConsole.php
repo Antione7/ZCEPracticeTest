@@ -1,6 +1,6 @@
 <?php
 
-namespace ZCEPracticeTest\Silex\Console;
+namespace ZCEPracticeTest\Silex;
 
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Helper\HelperSet;
@@ -41,12 +41,14 @@ class ZCEAppConsole extends Application
     
     public function registerCommands()
     {
-        $this->add(new LoadFixturesCommand());
+        $em = $this->silexApp['orm.em'];
+        
+        $this->add(new LoadFixturesCommand($em));
         
         // Register Doctrine ORM commands
         $helperSet = new HelperSet(array(
-            'db' => new ConnectionHelper($this->silexApp['orm.em']->getConnection()),
-            'em' => new EntityManagerHelper($this->silexApp['orm.em'])
+            'db' => new ConnectionHelper($em->getConnection()),
+            'em' => new EntityManagerHelper($em)
         ));
 
         $this->setHelperSet($helperSet);

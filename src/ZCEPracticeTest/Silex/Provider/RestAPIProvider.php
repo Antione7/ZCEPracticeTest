@@ -1,20 +1,30 @@
 <?php
 
-namespace ZCEPracticeTest\Rest\Provider;
+namespace ZCEPracticeTest\Silex\Provider;
 
 use Silex\ServiceProviderInterface;
 use Silex\ControllerProviderInterface;
 use Silex\Application;
 use ZCEPracticeTest\Rest\Controller\QuestionController;
+use ZCEPracticeTest\Rest\Controller\SessionController;
 
 class RestAPIProvider implements ServiceProviderInterface, ControllerProviderInterface
 {
     public function register(Application $app)
     {
-        $app['question.controller'] = $app->share(function () use ($app) {
+        $app['zce.rest.question.controller'] = $app->share(function () use ($app) {
             $questionRepository = $app['orm.em']->getRepository('ZCE:Question');
             
             return new QuestionController($questionRepository);
+        });
+        
+        $app['zce.rest.session.controller'] = $app->share(function () use ($app) {
+            return new SessionController(
+                $app['orm.em']->getRepository('ZCE:Session'),
+                $app['zce.core.zcpe_quiz_factory'],
+                $app['security']->getToken(),
+                $app['orm.em']
+            );
         });
     }
     
@@ -27,7 +37,11 @@ class RestAPIProvider implements ServiceProviderInterface, ControllerProviderInt
         $controllers = $app['controllers_factory'];
         
         $controllers
-            ->get('/questions', 'question.controller:questionAction')
+            ->get('/questions', 'zce.rest.question.controller:questionAction')
+        ;
+        
+        $controllers
+            ->post('/session', 'zce.rest.session.controller:createAction')
         ;
 
         return $controllers;

@@ -287,7 +287,7 @@ class Question implements \JsonSerializable
             'code' => $this->getCode(),
             'freeAnswer' => $this->getFreeAnswer(),
             'nbAnswers' => $this->getNbAnswers(),
-            'topic' => $this->getTopic(),
+            'topic' => $this->getTopic()->jsonSerialize(),
             'questionQCMChoices' => $choices,
         );
     }

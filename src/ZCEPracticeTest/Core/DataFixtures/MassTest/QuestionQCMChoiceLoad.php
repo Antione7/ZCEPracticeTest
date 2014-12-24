@@ -12,7 +12,7 @@
  * @link     www.darkmira.fr
  *
  */
-namespace ZCEPracticeTest\Core\DataFixtures\ORM;
+namespace ZCEPracticeTest\Core\DataFixtures\MassTest;
 
 use Doctrine\Common\DataFixtures\AbstractFixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
@@ -27,7 +27,7 @@ class QuestionQCMChoiceLoad extends AbstractFixture implements OrderedFixtureInt
      */
     public function load(ObjectManager $objectManager)
     {
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 5; $i < 500; $i++) {
             $o = array(
                 new QuestionQCMChoice(),
                 new QuestionQCMChoice(),

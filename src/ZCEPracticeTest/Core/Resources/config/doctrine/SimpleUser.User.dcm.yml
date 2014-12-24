@@ -14,16 +14,15 @@ SimpleUser\User:
             length: 255
             nullable: false
         roles:
-            type: string
-            length: 255
-            nullable: false
+            type: simple_array
+            nullable: true
         name:
             type: string
             length: 255
             nullable: false
         timeCreated:
             column: time_created
-            type: datetime
+            type: integer
             nullable: false
         username:
             type: string

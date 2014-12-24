@@ -19,8 +19,5 @@ ZCEPracticeTest\Core\Entity\QuestionQCMChoice:
             targetEntity: ZCEPracticeTest\Core\Entity\Question
             cascade: {  }
             inversedBy: questionQCMChoices
-            joinColumns:
-                question_id:
-                    referencedColumnName: id
             orphanRemoval: false
     lifecycleCallbacks: {  }

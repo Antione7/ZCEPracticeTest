@@ -20,7 +20,7 @@ namespace ZCEPracticeTest\Core\Entity;
  * @license  Darkmira <darkmira@darkmira.fr>
  * @link     www.darkmira.fr
  */
-class AnswerQCMChoice
+class AnswerQCMChoice implements \JsonSerializable
 {
     /**
      * @var integer
@@ -92,5 +92,16 @@ class AnswerQCMChoice
     public function getQuestionQCMChoice()
     {
         return $this->questionQCMChoice;
+    }
+    
+    /**
+     * @return array
+     */
+    public function jsonSerialize()
+    {
+        return array(
+            'id' => $this->getId(),
+            'questionQCMChoice' => $this->getQuestionQCMChoice(),
+        );
     }
 }
