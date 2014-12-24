@@ -19,9 +19,13 @@ class FrontProvider implements ServiceProviderInterface, ControllerProviderInter
         });
         
         $app['zce.front.session.controller'] = $app->share(function () use ($app) {
-            $sessionRepository = $app['orm.em']->getRepository('ZCE:Session');
-            
-            return new SessionController($app['twig'], $app['security']->getToken(), $sessionRepository);
+            return new SessionController(
+                    $app['twig'],
+                    $app['security']->getToken(),
+                    $app['orm.em']->getRepository('ZCE:Session'),
+                    $app['zce.core.zcpe_quiz_factory'],
+                    $app['orm.em']
+            );
         });
         
         $app['zce.front.template.controller'] = $app->share(function () use ($app) {

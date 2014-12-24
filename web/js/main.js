@@ -1,17 +1,19 @@
-$(function () {
-    initSessionPage();
-    bindStartButton();
-});
+
+var Question =
+{
+    TYPE_QCM: 1,
+    TYPE_FREE: 2
+};
 
 var ZCEApi =
 {
-    baseUrl: $('#js-vars').data('base-url')+'/',
+    baseUrl: $('#js-vars').data('base-url'),
     
     createSession: function (callback)
     {
         $.ajax({
             type: 'POST',
-            url: ZCEApi.baseUrl+'api/session'
+            url: ZCEApi.baseUrl+'/api/session'
         }).done(function (r) {
             callback && callback(r);
         });
@@ -25,7 +27,7 @@ var ZCEApi =
         
         $.ajax({
             type: 'GET',
-            url: ZCEApi.baseUrl+'api/questions',
+            url: ZCEApi.baseUrl+'/api/questions',
             data: data
         }).done(function (r) {
             callback && callback(r);
@@ -33,29 +35,10 @@ var ZCEApi =
     }
 };
 
-function bindStartButton() {
-    if ($('#create-session').size()) {
-        $('#create-session').click(function () {
-            createAndRunSession();
-        });
-    }
-}
-
-function initSessionPage() {
-    if ($('#quiz-page').size()) {
-        console.log('init page');
-        angular.module('quizz', ['controllers-quizz']);
-        angular.module('zcpe-quiz', ['quizz', 'btford.markdown', 'ngAnimate']);
-    }
-}
-
-function createAndRunSession() {
-    ZCEApi.createSession(function (data) {
-        var quiz = createQuiz(data);
-        
-        angular.module('zcpe-quiz').constant('quizz', quiz);
-    });
-}
+angular.module('quizz', ['controllers-quizz']);
+angular.module('zcpe-quiz', ['quizz', 'btford.markdown', 'ngAnimate']);
+var $session = $('[data-session]');
+angular.module('zcpe-quiz').constant('quizz', createQuiz($session.data('session')));
 
 function createQuiz(data) {
     var questions = [];
@@ -64,16 +47,22 @@ function createQuiz(data) {
         var question = questionData.question;
         var answers = [];
         
-        $.each(question.questionQCMChoices, function (j, questionQCMChoice) {
-            answers.push({
-                text: questionQCMChoice.entitled,
-                correct: questionQCMChoice.isValid
+        if (question.type === Question.TYPE_QCM) {
+            $.each(question.questionQCMChoices, function (j, questionQCMChoice) {
+                answers.push({
+                    text: questionQCMChoice.entitled,
+                    correct: questionQCMChoice.isValid
+                });
             });
-        });
+        }
+        
+        if (question.type === Question.TYPE_FREE) {
+            answers.push(question.freeAnswer);
+        }
         
         questions.push({
             text: question.entitled,
-            type: (question.nbAnswers > 1) ? 'checkbox' : 'radio',
+            type: guessQuizQuestionType(question),
             answers: answers
         });
     });
@@ -85,4 +74,29 @@ function createQuiz(data) {
     };
     
     return quiz;
+}
+
+/**
+ * Guess quiz type (radio, checkbox or free) of question
+ * from ZCE:Question object data
+ * 
+ * @param {Object} question
+ * 
+ * @returns {string}
+ */
+function guessQuizQuestionType(question) {
+    if (question.type === Question.TYPE_QCM) {
+        if (question.nbAnswers > 1) {
+            return 'checkbox';
+        } else {
+            return 'radio';
+        }
+    }
+    
+    if (question.type === Question.TYPE_FREE) {
+        return 'free';
+    }
+    
+    console && console.warn('Could not guess question type from data', question);
+    return '';
 }

@@ -11,11 +11,16 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="{{ path('front-index') }}">{{ 'home'|trans }}</a></li>
-                <li class="active"><a href="{{ path('front-about') }}">{{ 'about'|trans }}</a></li>
+                <li><a href="{{ path('front-index') }}">{{ 'home'|trans }}</a></li>
+                {% if app.user is not null %}
+                    <li>
+                        <a href="{{ path('session-index') }}">{{ 'my.sessions'|trans }}</a>
+                        <span class="navbar-unread"></span>
+                    </li>
+                {% endif %}
+                <li><a href="{{ path('front-about') }}">{{ 'about'|trans }}</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Link</a></li>
                 {% if app.user is null %}
                     <li><a href="{{ path('user.login') }}">{{ 'log.in'|trans }}</a></li>
                     <li><a href="{{ path('user.register') }}">{{ 'create.account'|trans }}</a></li>
