@@ -36,7 +36,7 @@ var ZCEApi =
 };
 
 angular.module('quizz', ['controllers-quizz']);
-angular.module('zcpe-quiz', ['quizz', 'btford.markdown', 'ngAnimate']);
+angular.module('zcpe-quiz', ['quizz', 'btford.markdown']);
 var $session = $('[data-session]');
 angular.module('zcpe-quiz').constant('quizz', createQuiz($session.data('session')));
 
