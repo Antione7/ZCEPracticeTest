@@ -10,6 +10,7 @@
  */
 namespace ZCEPracticeTest\Core;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use ZCEPracticeTest\Core\Entity\Question;
 use ZCEPracticeTest\Core\Entity\Quiz;
 use ZCEPracticeTest\Core\Entity\QuizQuestion;
@@ -66,6 +67,32 @@ class QuizBuilder
         foreach ($questions as $question) {
             $this->addQuestion($question);
         }
+    }
+    
+    /**
+     * Shuffle an array preserving keys
+     * 
+     * @param array $array
+     * 
+     * @return QuizBuilder
+     */
+    public function shuffleQuestions()
+    {
+        $array = $this->getQuiz()->getQuizQuestions()->toArray();
+        
+        $keys = array_keys($array);
+
+        shuffle($keys);
+        
+        $new = new ArrayCollection();
+
+        foreach($keys as $key) {
+            $new[$key] = $array[$key];
+        }
+
+        $this->getQuiz()->setQuizQuestions($new);
+
+        return $this;
     }
     
     /**

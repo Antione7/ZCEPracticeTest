@@ -61,7 +61,7 @@ class QuizFactory
         
         $quizBuilder->addQuestions($randomQuestions);
 
-        return $quizBuilder->getQuiz();
+        return $quizBuilder->shuffleQuestions()->getQuiz();
     }
     
     /**
@@ -109,7 +109,7 @@ class QuizFactory
             $quizBuilder->addQuestions($randomQuestions);
         }
         
-        return $quizBuilder->getQuiz();
+        return $quizBuilder->shuffleQuestions()->getQuiz();
     }
     
     /**

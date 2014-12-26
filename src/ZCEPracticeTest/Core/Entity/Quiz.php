@@ -90,6 +90,18 @@ class Quiz implements \JsonSerializable
     }
 
     /**
+     * Set quizQuestions
+     *
+     * @return Quiz
+     */
+    public function setQuizQuestions($quizQuestions)
+    {
+        $this->quizQuestions = $quizQuestions;
+        
+        return $this;
+    }
+
+    /**
      * Add sessions
      *
      * @param Session $sessions
