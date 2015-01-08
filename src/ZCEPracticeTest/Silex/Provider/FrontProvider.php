@@ -8,7 +8,6 @@ use Silex\ControllerProviderInterface;
 use Silex\Application;
 use ZCEPracticeTest\Front\Controller\FrontController;
 use ZCEPracticeTest\Front\Controller\SessionController;
-use ZCEPracticeTest\Front\Controller\TemplateController;
 
 class FrontProvider implements ServiceProviderInterface, ControllerProviderInterface
 {
@@ -26,10 +25,6 @@ class FrontProvider implements ServiceProviderInterface, ControllerProviderInter
                     $app['zce.core.zcpe_quiz_factory'],
                     $app['orm.em']
             );
-        });
-        
-        $app['zce.front.template.controller'] = $app->share(function () use ($app) {
-            return new TemplateController($app['twig']);
         });
         
         // Import Front translation into twig templates
@@ -54,7 +49,6 @@ class FrontProvider implements ServiceProviderInterface, ControllerProviderInter
             $app['twig.loader.filesystem']->addPath($app['project.root'] . '/src/ZCEPracticeTest/Front/Views/', 'views');
             $app['twig.loader.filesystem']->addPath($app['project.root'] . '/src/ZCEPracticeTest/Front/Views/Front/', 'front');
             $app['twig.loader.filesystem']->addPath($app['project.root'] . '/src/ZCEPracticeTest/Front/Views/Session/', 'session');
-            $app['twig.loader.filesystem']->addPath($app['project.root'] . '/src/ZCEPracticeTest/Front/Views/Template/', 'template');
         }
     }
     
@@ -82,11 +76,6 @@ class FrontProvider implements ServiceProviderInterface, ControllerProviderInter
         $controllers
             ->get('/sessions/quiz', 'zce.front.session.controller:quizAction')
             ->bind('session-quiz')
-        ;
-        
-        $controllers
-            ->get('/templates/Quizz.html', 'zce.front.template.controller:quizAction')
-            ->bind('template-quiz')
         ;
 
         return $controllers;

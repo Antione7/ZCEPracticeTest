@@ -14,7 +14,7 @@
                 <li><a href="{{ path('front-index') }}">{{ 'home'|trans }}</a></li>
                 {% if app.user is not null %}
                     <li>
-                        <a href="{{ path('session-index') }}">{{ 'my.sessions'|trans }}</a>
+                        <a href="{{ path('session-index') }}#/">{{ 'my.sessions'|trans }}</a>
                         <span class="navbar-unread"></span>
                     </li>
                 {% endif %}

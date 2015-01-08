@@ -11,6 +11,7 @@
  */
 namespace ZCEPracticeTest\Rest\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -93,5 +94,65 @@ class SessionController
         $this->om->flush();
         
         return new JsonResponse($session);
+    }
+    
+    /**
+     * Set pass/fail state and save score
+     * 
+     * @param integer $sessionId
+     * @param array $data
+     * 
+     * @return JsonResponse
+     */
+    public function finishAction(Request $request, $sessionId)
+    {
+        $scoreData = $request->get('scoreData');
+        \Doctrine\Common\Util\Debug::dump($scoreData);
+        $userSession = $this->token->getUser();
+        
+        if (!($userSession instanceof User)) {
+            throw new UserException('user.not.logged');
+        }
+        
+        $user = $this->om->merge($userSession);
+        $session = $this->sessionRepository->getFullSession($sessionId, $user->getId());
+        
+        if (null === $session) {
+            throw new UserException('user.session.not.found');
+        }
+        
+        $session
+            ->setDateFinished(new \DateTime())
+            ->setNbTopicsValidated($scoreData['nbTopicsValidated'])
+            ->setSuccess($scoreData['success'] === 'true')
+        ;
+        
+        $this->om->flush();
+        
+        return new JsonResponse(array(
+            'ok' => true,
+        ));
+    }
+    
+    /**
+     * @return JsonResponse
+     */
+    public function getAllAction()
+    {
+        $userSession = $this->token->getUser();
+        
+        if (!($userSession instanceof User)) {
+            throw new UserException('user.not.logged');
+        }
+        
+        $user = $this->om->merge($userSession);
+        
+        $sessions = $this->sessionRepository->findBy(array(
+            'user' => $user,
+        ));
+        
+        return new JsonResponse(array(
+            'sessions' => $sessions,
+        ));
     }
 }

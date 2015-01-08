@@ -43,6 +43,14 @@ class RestAPIProvider implements ServiceProviderInterface, ControllerProviderInt
         $controllers
             ->post('/session', 'zce.rest.session.controller:createAction')
         ;
+        
+        $controllers
+            ->get('/sessions', 'zce.rest.session.controller:getAllAction')
+        ;
+        
+        $controllers
+            ->post('/session/finish/{sessionId}', 'zce.rest.session.controller:finishAction')
+        ;
 
         return $controllers;
     }
