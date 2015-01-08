@@ -3,3 +3,7 @@
     height: 256px;
     margin: 0 4px 8px 0;
 }
+.zcpe-pass-fail {
+    cursor: default;
+    font-size: 36px;
+}

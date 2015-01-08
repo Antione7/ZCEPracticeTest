@@ -5,40 +5,23 @@ var Question =
     TYPE_FREE: 2
 };
 
-var ZCEApi =
+var Evaluator =
 {
-    baseUrl: $('#js-vars').data('base-url'),
-    
-    createSession: function (callback)
+    /**
+     * @param {Object} answered quiz
+     * 
+     * @returns {Object}
+     */
+    evaluate: function (quiz)
     {
-        $.ajax({
-            type: 'POST',
-            url: ZCEApi.baseUrl+'/api/session'
-        }).done(function (r) {
-            callback && callback(r);
-        });
-    },
-    
-    getQuiz: function (quizId, callback)
-    {
-        var data = {
-            quizId: quizId
-        };
+        console.log(quiz);
         
-        $.ajax({
-            type: 'GET',
-            url: ZCEApi.baseUrl+'/api/questions',
-            data: data
-        }).done(function (r) {
-            callback && callback(r);
-        });
+        return {
+            nbTopicsValidated: 2,
+            success: false
+        };
     }
 };
-
-angular.module('quizz', ['controllers-quizz']);
-angular.module('zcpe-quiz', ['quizz', 'btford.markdown']);
-var $session = $('[data-session]');
-angular.module('zcpe-quiz').constant('quizz', createQuiz($session.data('session')));
 
 function createQuiz(data) {
     var questions = [];
@@ -63,6 +46,8 @@ function createQuiz(data) {
         questions.push({
             text: question.entitled,
             type: guessQuizQuestionType(question),
+            code: question.code,
+            codeType: 'php',
             answers: answers
         });
     });

@@ -1,9 +1,12 @@
 <div class="row">
     <div class="col-md-2 col-sd-12 row text-center">
-        <h3 class="col-md-12 col-xs-6">{{ '{{' }} questionIndex() + 1 {{ '}}' }} / {{ '{{' }} quizz.questions.length {{ '}}' }}</h3>
+        <h3 class="col-md-12 col-xs-6">{{ questionIndex() + 1 }} / {{ quizz.questions.length }}</h3>
     </div>
     <div class="col-md-10">
         <h4 class="well" btf-markdown="currentQuestion.text"></h4>
+        
+        <div ng-if="currentQuestion.code !== null" hljs source="currentQuestion.code"></div>
+        
         <form role="form" class="well">
             <div class="form-group" ng-show="currentQuestion.type == 'radio'">
                 <label class="radio" ng-repeat="answer in currentQuestion.answers">
@@ -31,18 +34,18 @@
         </form>
 
         <div class="progress progress-striped">
-            <div class="progress-bar progress-bar-info" role="progressbar" style="width: {{ '{{' }} questionIndex() * 100 / quizz.questions.length {{ '}}' }}%;"></div>
+            <div class="progress-bar progress-bar-info" role="progressbar" style="width: {{ questionIndex() * 100 / quizz.questions.length }}%;"></div>
         </div>
 
         <ul class="pager">
             <li class="previous" ng-show="showPrevious()" ng-click="previous()">
-                <a class="quiz-previous-button" href="">&larr; {{ 'previous'|trans }}</a>
+                <a class="quiz-previous-button" href="">&larr; {{ 'previous'|translate }}</a>
             </li>
             <li class="next" ng-show="showNext()" ng-click="next()">
-                <a class="quiz-next-button" href="">{{ 'next'|trans }} &rarr;</a>
+                <a class="quiz-next-button" href="">{{ 'next'|translate }} &rarr;</a>
             </li>
             <li class="next" ng-show="!hasNext()" ng-click="finish()">
-                <a class="quiz-finish-button" href="">{{ 'finish'|trans }} &rarr;</a>
+                <a class="quiz-finish-button" href="">{{ 'finish'|translate }} &rarr;</a>
             </li>
         </ul>
     </div>
