@@ -107,7 +107,6 @@ class SessionController
     public function finishAction(Request $request, $sessionId)
     {
         $scoreData = $request->get('scoreData');
-        \Doctrine\Common\Util\Debug::dump($scoreData);
         $userSession = $this->token->getUser();
         
         if (!($userSession instanceof User)) {
