@@ -61,6 +61,20 @@ CODE;
             $this->addReference('question-free-'.$i, $o);
             $objectManager->persist($o);
         }
+        
+        for ($i = 0; $i < 5; $i++) {
+            $o = new Question();
+            
+            $o
+                ->setType(Question::TYPE_QCM)
+                ->setEntitled(($i+1).') Which variable name is valid ?')
+                ->setTopic($this->getReference('topic-php-basics'))
+                ->setNbAnswers(3)
+            ;
+            
+            $this->addReference('question-qcm-multiple-'.$i, $o);
+            $objectManager->persist($o);
+        }
 
         $objectManager->flush();
     }
