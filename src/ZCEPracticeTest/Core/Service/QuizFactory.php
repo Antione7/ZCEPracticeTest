@@ -114,7 +114,7 @@ class QuizFactory
     
     /**
      * Convert percentages per topics to a number of questions.
-     * Fill with random topics if sum of rounded numbers is not enough.
+     * Fill with one of each topic if sum of rounded numbers is not enough.
      * 
      * @param integer $quizSize
      * @param array $percentages
@@ -142,6 +142,12 @@ class QuizFactory
             $n = $questionsNumber[$questionsNumber->current()];
             $n++;
             $questionsNumber[$questionsNumber->current()] = $n;
+            
+            $questionsNumber->next();
+            
+            if (!$questionsNumber->valid()) {
+                $questionsNumber->rewind();
+            }
 
             $size++;
         }

@@ -1,19 +1,26 @@
-<h1>{{ 'result'|translate }}</h1>
-
 <div class="row">
     <div class="col-md-8 col-md-offset-2 col-lg-6 col-lg-offset-3">
-        <a class="btn btn-block btn-lg zcpe-pass-fail text-center lead" ng-class="{'btn-success': score.success, 'btn-danger': !score.success}">
+        <a class="btn btn-block btn-lg zcpe-pass-fail zcpe-pass-fail-quiz text-center lead" ng-class="{'btn-success': score.success, 'btn-danger': !score.success}">
             <br />
             {{ score.success ? 'PASS' : 'FAIL' }}
             <br />
             <br />
         </a>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-xs-12">
-        <p class="text-center"><b>{{ score.nbTopicsValidated }}</b> / 10 {{ 'topics.validated'|translate }}</p>
+        
+        <p class="text-center"><b>{{ score.nbTopicsValidated }}</b> / {{ score.nbTopics }} {{ 'topics.validated'|translate }}</p>
+        
+        <div ng-repeat="topic in score.topics" class="row">
+            <div class="col-xs-8">
+                <p>{{ topic.topic.entitled }}</p>
+            </div>
+            <div class="col-xs-4">
+                <p>
+                    <a class="btn btn-block zcpe-pass-fail zcpe-pass-fail-topic text-center" ng-class="{'btn-success': topic.validated, 'btn-danger': !topic.validated}">
+                        {{ topic.validated ? 'PASS' : 'FAIL' }}
+                    </a>
+                </p>
+            </div>
+        </div>
     </div>
 </div>
 
