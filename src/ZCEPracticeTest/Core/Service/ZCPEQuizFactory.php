@@ -79,6 +79,6 @@ class ZCPEQuizFactory
         
         $questions = $this->questionRepository->findAll();
         
-        return $this->quizFactory->createCategorizedRandomQuiz($questions, 70, $percentages);
+        return $this->quizFactory->createCategorizedRandomQuiz($questions, 6, $percentages);
     }
 }

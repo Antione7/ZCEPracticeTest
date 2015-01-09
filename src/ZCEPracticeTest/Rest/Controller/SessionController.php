@@ -106,8 +106,12 @@ class SessionController
      */
     public function finishAction(Request $request, $sessionId)
     {
-        $scoreData = $request->get('scoreData');
+        $scoreData = json_decode($request->getContent());
         $userSession = $this->token->getUser();
+        
+        if (null === $scoreData) {
+            throw new UserException('no.score.data');
+        }
         
         if (!($userSession instanceof User)) {
             throw new UserException('user.not.logged');
@@ -122,8 +126,8 @@ class SessionController
         
         $session
             ->setDateFinished(new \DateTime())
-            ->setNbTopicsValidated($scoreData['nbTopicsValidated'])
-            ->setSuccess($scoreData['success'] === 'true')
+            ->setNbTopicsValidated($scoreData->nbTopicsValidated)
+            ->setSuccess($scoreData->success)
         ;
         
         $this->om->flush();
