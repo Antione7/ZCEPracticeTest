@@ -52,6 +52,9 @@ zcpe.controller('QuizCtrl', ['$scope', '$location', '$http', '$localStorage', '$
         $location.path('/result');
     };
     
+    console.log(sessionData);
+    console.log(createQuiz(sessionData));
+    
     $scope.init(createQuiz(sessionData));
     $scope.start();
 }]);
