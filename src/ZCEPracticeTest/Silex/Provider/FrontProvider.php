@@ -22,7 +22,6 @@ class FrontProvider implements ServiceProviderInterface, ControllerProviderInter
                     $app['twig'],
                     $app['security']->getToken(),
                     $app['orm.em']->getRepository('ZCE:Session'),
-                    $app['zce.core.zcpe_quiz_factory'],
                     $app['orm.em']
             );
         });
@@ -71,11 +70,6 @@ class FrontProvider implements ServiceProviderInterface, ControllerProviderInter
         $controllers
             ->get('/sessions', 'zce.front.session.controller:indexAction')
             ->bind('session-index')
-        ;
-        
-        $controllers
-            ->get('/sessions/quiz', 'zce.front.session.controller:quizAction')
-            ->bind('session-quiz')
         ;
 
         return $controllers;

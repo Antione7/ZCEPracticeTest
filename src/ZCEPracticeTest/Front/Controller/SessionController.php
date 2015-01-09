@@ -46,11 +46,6 @@ class SessionController
     private $sessionRepository;
     
     /**
-     * @var ZCPEQuizFactory
-     */
-    private $zcpeQuizFactory;
-    
-    /**
      * @var ObjectManager
      */
     private $om;
@@ -59,13 +54,11 @@ class SessionController
             Twig $twig,
             TokenInterface $tokenInterface,
             EntityRepository $sessionRepository,
-            ZCPEQuizFactory $zcpeQuizFactory,
             ObjectManager $om
     ) {
         $this->twig = $twig;
         $this->tokenInterface = $tokenInterface;
         $this->sessionRepository = $sessionRepository;
-        $this->zcpeQuizFactory = $zcpeQuizFactory;
         $this->om = $om;
     }
     
@@ -78,31 +71,6 @@ class SessionController
         
         return $this->twig->render('@session/index.html.twig', array(
             'sessions' => $sessions,
-        ));
-    }
-    
-    public function quizAction()
-    {
-        $userSession = $this->tokenInterface->getUser();
-        
-        if (!($userSession instanceof User)) {
-            throw new UserException('user.not.logged');
-        }
-        
-        $user = $this->om->merge($userSession);
-        $quiz = $this->zcpeQuizFactory->createStandardZCPEQuiz();
-        $session = new Session();
-        
-        $session
-            ->setUser($user)
-            ->setQuiz($quiz)
-        ;
-        
-        $this->om->persist($session);
-        $this->om->flush();
-        
-        return $this->twig->render('@session/quiz.html.twig', array(
-            'session' => $session,
         ));
     }
 }
