@@ -31,7 +31,6 @@ zcpe.controller('StartPageCtrl', ['$scope', '$location', '$http', '$localStorage
 
 zcpe.controller('QuizCtrl', ['$scope', '$location', '$http', '$localStorage', '$controller', function ($scope, $location, $http, $localStorage, $controller) {
     var sessionData = $localStorage.sessionData;
-    console.log(sessionData);
     
     $controller('QuizzCtrl', {$scope: $scope});
     
@@ -41,7 +40,11 @@ zcpe.controller('QuizCtrl', ['$scope', '$location', '$http', '$localStorage', '$
         
         var score = Evaluator.evaluate($scope.quizz);
         
-        $http.post(config.restServer + '/session/finish/' + sessionData.id, score);
+        $http({
+            url: config.restServer + '/session/finish/' + sessionData.id,
+            method: 'POST',
+            data: score
+        });
         
         $localStorage.score = score;
         $localStorage.sessionData = null;
@@ -51,8 +54,6 @@ zcpe.controller('QuizCtrl', ['$scope', '$location', '$http', '$localStorage', '$
     
     $scope.init(createQuiz(sessionData));
     $scope.start();
-    
-    console.log($scope.quizz);
 }]);
 
 zcpe.controller('ResultCtrl', ['$scope', '$location', '$http', '$localStorage', '$controller', function ($scope, $location, $http, $localStorage, $controller) {

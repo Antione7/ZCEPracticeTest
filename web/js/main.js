@@ -17,8 +17,8 @@ var Evaluator =
         console.log(quiz);
         
         return {
-            nbTopicsValidated: 2,
-            success: false
+            nbTopicsValidated: 8,
+            success: true
         };
     }
 };
