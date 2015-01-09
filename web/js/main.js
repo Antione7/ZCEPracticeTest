@@ -104,6 +104,7 @@ function createQuiz(data) {
             code: question.code,
             codeType: 'php',
             topic: question.topic,
+            nbAnswers: question.nbAnswers,
             answers: answers
         });
     });
