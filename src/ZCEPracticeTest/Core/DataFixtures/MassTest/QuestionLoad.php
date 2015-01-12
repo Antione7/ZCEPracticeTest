@@ -38,7 +38,7 @@ CODE;
             
             $o
                 ->setType(Question::TYPE_QCM)
-                ->setEntitled(($i+1).') What is the output of the following code ?')
+                ->setEntitled('What is the output of the following code ?')
                 ->setCode($code)
                 ->setTopic($this->getReference('topic-'.($i % 10)))
                 ->setNbAnswers(1)
@@ -53,7 +53,7 @@ CODE;
             
             $o
                 ->setType(Question::TYPE_FREE)
-                ->setEntitled(($i+1).') Which function opens a handler on a file ?')
+                ->setEntitled('Which function opens a handler on a file ?')
                 ->setFreeAnswer('fopen')
                 ->setTopic($this->getReference('topic-'.($i % 10)))
             ;
@@ -67,7 +67,7 @@ CODE;
             
             $o
                 ->setType(Question::TYPE_QCM)
-                ->setEntitled(($i+1).') Which variable name is valid ?')
+                ->setEntitled('Which variable name is valid ?')
                 ->setTopic($this->getReference('topic-'.($i % 10)))
                 ->setNbAnswers(3)
             ;
