@@ -3,7 +3,15 @@ var config = {
     restServer: '../index.php/api'
 };
 
-var zcpe = angular.module('zcpe', ['ngRoute', 'pascalprecht.translate', 'ngStorage', 'controllers-quizz', 'btford.markdown', 'hljs']);
+var zcpe = angular.module('zcpe', [
+    'ngRoute',
+    'pascalprecht.translate',
+    'ngStorage',
+    'controllers-quizz',
+    'btford.markdown',
+    'hljs',
+    'timer'
+]);
 
 zcpe.controller('SessionsCtrl', ['$scope', '$location', '$http', function ($scope, $location, $http) {
     $scope.goToStartPage = function () {
@@ -52,6 +60,10 @@ zcpe.controller('QuizCtrl', ['$scope', '$location', '$http', '$localStorage', '$
         $location.path('/result');
     };
     
+    $scope.timerFinished = function () {
+        $scope.finish();
+    };
+    
     $scope.init(createQuiz(sessionData));
     $scope.start();
 }]);
@@ -65,6 +77,19 @@ zcpe.controller('ResultCtrl', ['$scope', '$location', '$http', '$localStorage', 
     $scope.finish();
     $scope.score = $localStorage.score;
 }]);
+
+/**
+ * Override timer directive to add an extra parameter
+ */
+zcpe.config(function($provide) {
+    $provide.decorator('timerDirective', function($delegate) {
+        var directive = $delegate[0];
+        angular.extend(directive.scope, {
+            quizMaxTime:'='
+        });
+        return $delegate;
+    });
+});
 
 /**
  * Routes
