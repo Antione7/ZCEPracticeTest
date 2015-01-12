@@ -112,6 +112,8 @@ function createQuiz(data) {
     var quiz = {
         title: 'Title',
         description: 'Description',
+        dateStart: new Date(data.dateStart.date.replace(/-/g, '/')).getTime() + 3600000,
+        time: 5400, // 90 minutes
         questions: questions
     };
     
