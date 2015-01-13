@@ -19,6 +19,9 @@ use Doctrine\ORM\EntityRepository;
 use ZCEPracticeTest\Core\Exception\UserException;
 use ZCEPracticeTest\Core\Entity\Session;
 use ZCEPracticeTest\Core\Entity\User;
+use ZCEPracticeTest\Core\Entity\Question;
+use ZCEPracticeTest\Core\Entity\AnswerQCMChoice;
+use ZCEPracticeTest\Core\Service\AnswerFactory;
 use ZCEPracticeTest\Core\Service\ZCPEQuizFactory;
 
 /**
@@ -43,6 +46,11 @@ class SessionController
     private $sessionRepository;
     
     /**
+     * @var AnswerFactory
+     */
+    private $answerFactory;
+    
+    /**
      * @var TokenInterface
      */
     private $token;
@@ -61,11 +69,13 @@ class SessionController
     public function __construct(
             EntityRepository $sessionRepository,
             ZCPEQuizFactory $zcpeQuizFactory,
+            AnswerFactory $answerFactory,
             TokenInterface $token,
             ObjectManager $om
     ) {
         $this->sessionRepository = $sessionRepository;
         $this->zcpeQuizFactory = $zcpeQuizFactory;
+        $this->answerFactory = $answerFactory;
         $this->token = $token;
         $this->om = $om;
     }
@@ -99,8 +109,8 @@ class SessionController
     /**
      * Set pass/fail state and save score
      * 
+     * @param Request $request
      * @param integer $sessionId
-     * @param array $data
      * 
      * @return JsonResponse
      */
@@ -129,6 +139,51 @@ class SessionController
             ->setNbTopicsValidated($scoreData->nbTopicsValidated)
             ->setSuccess($scoreData->success)
         ;
+        
+        $this->om->flush();
+        
+        return new JsonResponse(array(
+            'ok' => true,
+        ));
+    }
+    
+    /**
+     * Persist multiple user answers
+     * 
+     * @param Request $request
+     * @param integer $sessionId
+     * 
+     * @return JsonResponse
+     */
+    public function postAnswersAction(Request $request, $sessionId)
+    {
+        $answersData = json_decode($request->getContent());
+        $userSession = $this->token->getUser();
+        
+        if (!($userSession instanceof User)) {
+            throw new UserException('user.not.logged');
+        }
+        
+        $user = $this->om->merge($userSession);
+        $session = $this->sessionRepository->getFullSession($sessionId, $user->getId());
+        
+        if (null === $session) {
+            throw new UserException('user.session.not.found');
+        }
+        
+        foreach ($answersData as $answerData) {
+            $answer = null;
+            
+            if ($answerData->type == Question::TYPE_QCM) {
+                $answer = $this->answerFactory->createQCMAnswer($session, $answerData->questionId, $answerData->selected);
+            }
+            
+            if ($answerData->type == Question::TYPE_FREE) {
+                $answer = $this->answerFactory->createFreeAnswer($session, $answerData->questionId, $answerData->freeAnswer);
+            }
+            
+            $this->om->persist($answer);
+        }
         
         $this->om->flush();
         

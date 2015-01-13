@@ -1,10 +1,4 @@
 zcpe.service('quizCreator', function () {
-    var Question =
-    {
-        TYPE_QCM: 1,
-        TYPE_FREE: 2
-    };
-    
     /**
      * Create quiz object for ninja squad quiz
      * from data returned by rest server
@@ -22,6 +16,7 @@ zcpe.service('quizCreator', function () {
             if (question.type === Question.TYPE_QCM) {
                 $.each(question.questionQCMChoices, function (j, questionQCMChoice) {
                     answers.push({
+                        id: questionQCMChoice.id,
                         text: questionQCMChoice.entitled,
                         correct: questionQCMChoice.isValid
                     });
@@ -33,6 +28,7 @@ zcpe.service('quizCreator', function () {
             }
 
             questions.push({
+                id: question.id,
                 text: question.entitled,
                 type: guessQuizQuestionType(question),
                 code: question.code,

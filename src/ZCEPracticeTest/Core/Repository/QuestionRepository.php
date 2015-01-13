@@ -38,4 +38,21 @@ class QuestionRepository extends EntityRepository
         
         return $q->getQuery()->getResult();
     }
+    
+    public function findFull($questionId)
+    {
+        $q = $this->createQueryBuilder('q');
+        
+        $q
+            ->addSelect('t, qc')
+            ->leftJoin('q.topic', 't')
+            ->leftJoin('q.questionQCMChoices', 'qc')
+            ->where('q.id = :questionId')
+            ->setParameters(array(
+                ':questionId' => $questionId,
+            ))
+        ;
+        
+        return $q->getQuery()->getOneOrNullResult();
+    }
 }

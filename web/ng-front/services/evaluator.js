@@ -76,4 +76,15 @@ zcpe.service('evaluator', function () {
             return false;
         }
     };
+    
+    /**
+     * Return whether question answer is incorrect
+     * 
+     * @param {Object} question
+     * @returns {Boolean}
+     */
+    this.isAnswerIncorrect = function (question)
+    {
+        return !self.isAnswerCorrect(question);
+    };
 });
