@@ -13,14 +13,23 @@
 {% block javascripts %}
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-route.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bower-angular-translate/2.5.2/angular-translate.min.js"></script>
-    <script src="https://rawgithub.com/gsklee/ngStorage/master/ngStorage.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/bower-angular-translate/2.5.2/angular-translate.min.js"></script>
+    <script src="//rawgithub.com/gsklee/ngStorage/master/ngStorage.js"></script>
+    <script src="//pc035860.github.io/angular-highlightjs/angular-highlightjs.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/highlight.min.js"></script>
     <script src="{{ app.request.basepath }}/bower_components/angular-animate/angular-animate.js"></script>
     <script src="{{ app.request.basepath }}/js/angular-timer.min.js"></script>
     <script src="{{ app.request.basepath }}/bower_components/showdown/compressed/showdown.js"></script>
-    <script src="http://pc035860.github.io/angular-highlightjs/angular-highlightjs.min.js"></script>
     <script src="{{ app.request.basepath }}/bower_components/quizz/src/js/directives/markdown.js"></script>
     <script src="{{ app.request.basepath }}/bower_components/quizz/src/js/controllers/QuizzCtrl.js"></script>
     <script src="{{ app.request.basepath }}/angular/app.js"></script>
+    <script src="{{ app.request.basepath }}/angular/config/timerOverride.js"></script>
+    <script src="{{ app.request.basepath }}/angular/config/translations.js"></script>
+    <script src="{{ app.request.basepath }}/angular/config/routes.js"></script>
+    <script src="{{ app.request.basepath }}/angular/services/evaluator.js"></script>
+    <script src="{{ app.request.basepath }}/angular/services/quizCreator.js"></script>
+    <script src="{{ app.request.basepath }}/angular/controllers/SessionsCtrl.js"></script>
+    <script src="{{ app.request.basepath }}/angular/controllers/StartPageCtrl.js"></script>
+    <script src="{{ app.request.basepath }}/angular/controllers/QuizCtrl.js"></script>
+    <script src="{{ app.request.basepath }}/angular/controllers/ResultCtrl.js"></script>
 {% endblock %}
