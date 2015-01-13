@@ -1,5 +1,5 @@
 var config = {
-    basePath: '../angular/',
+    basePath: '../ng-front/',
     restServer: '../index.php/api'
 };
 
