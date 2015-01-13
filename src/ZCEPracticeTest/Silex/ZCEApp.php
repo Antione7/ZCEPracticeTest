@@ -32,7 +32,6 @@ class ZCEApp extends Application
         $this->registerDoctrineORM();
         $this->registerServices();
         $this->registerSimpleUser();
-        $this->registerListeners();
         $this->registerRestAPI();
         $this->registerFront();
     }
@@ -173,11 +172,6 @@ class ZCEApp extends Application
                 $this['orm.em']->getRepository('ZCE:Question')
             );
         });
-    }
-    
-    private function registerListeners()
-    {
-        $dispatcher = $this['dispatcher'];
     }
     
     private function registerRestAPI()

@@ -1,16 +1,13 @@
 <?php
 
 /**
- *
- *
  * PHP version 5.5
  *
  * @category DataFixtures
- * @package  FrontBundle
+ * @package  Core
  * @author   Maxence Perrin <mperrin@darkmira.fr>
  * @license  Darkmira <darkmira@darkmira.fr>
  * @link     www.darkmira.fr
- *
  */
 namespace ZCEPracticeTest\Core\DataFixtures\Base;
 

@@ -102,7 +102,7 @@ class QuizFactory
             
             try {
                 $randomQuestions = $this->questionManager->getRandomQuestions($candidates, $size);
-            } catch (ZCEPracticeTestException $ex) {
+            } catch (QuizFactoryException $ex) {
                 throw new QuizFactoryException($ex->getMessage().' in topic '.$topic->getEntitled());
             }
             

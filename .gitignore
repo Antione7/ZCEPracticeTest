@@ -9,8 +9,6 @@ web/bower_components
 # PHPUnit
 phpunit.xml
 
-# IDE
-nbproject
 .idea/*
 
 # Others

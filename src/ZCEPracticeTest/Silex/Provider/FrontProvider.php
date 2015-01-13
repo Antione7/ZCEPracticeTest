@@ -2,6 +2,7 @@
 
 namespace ZCEPracticeTest\Silex\Provider;
 
+use Symfony\Component\Translation\Translator;
 use Symfony\Component\Translation\Loader\YamlFileLoader;
 use Silex\ServiceProviderInterface;
 use Silex\ControllerProviderInterface;
@@ -27,7 +28,7 @@ class FrontProvider implements ServiceProviderInterface, ControllerProviderInter
         });
         
         // Import Front translation into twig templates
-        $app['translator'] = $app->share($app->extend('translator', function ($translator, $app) {
+        $app['translator'] = $app->share($app->extend('translator', function (Translator $translator, $app) {
             $translator->addLoader('yaml', new YamlFileLoader());
 
             $translator->addResource('yaml', $app['project.root'] . '/src/ZCEPracticeTest/Front/Translation/trans.en.yml', 'en');
