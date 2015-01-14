@@ -9,12 +9,12 @@ zcpe.service('quizCreator', function () {
     this.createQuiz = function (data) {
         var questions = [];
 
-        $.each(data.quiz.quizQuestions, function (i, questionData) {
+        angular.forEach(data.quiz.quizQuestions, function (questionData) {
             var question = questionData.question;
             var answers = [];
 
             if (question.type === Question.TYPE_QCM) {
-                $.each(question.questionQCMChoices, function (j, questionQCMChoice) {
+                angular.forEach(question.questionQCMChoices, function (questionQCMChoice) {
                     answers.push({
                         id: questionQCMChoice.id,
                         text: questionQCMChoice.entitled,
