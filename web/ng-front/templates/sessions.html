@@ -9,7 +9,14 @@
             <span class="success lead">{{ 'new.session'|translate }}</span>
         </button><!--
 
-     --><button ng-repeat="session in sessions" ng-if="session.success !== null" type="button" class="btn btn-{{ session.success ? 'success' : 'danger' }} btn-tile">
+     --><button
+            ng-repeat="session in sessions"
+            ng-if="session.success !== null"
+            ng-click="goToSession(session.id)"
+            ng-class="{'btn-success': session.success, 'btn-danger': !session.success }"
+            type="button"
+            class="btn btn-tile"
+        >
             <span class="success lead">{{ session.success ? 'PASS' : 'FAIL' }}</span>
             <br />
             <span class="date">

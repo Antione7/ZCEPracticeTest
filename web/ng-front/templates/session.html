@@ -1,0 +1,77 @@
+<div class="row">
+    <div class="col-md-12">
+        <h1>{{ 'session'|translate }}</h1>
+        
+        <a class="btn zcpe-pass-fail zcpe-pass-fail-topic text-center" ng-class="{'btn-success': session.success, 'btn-danger': !session.success}">
+            {{ session.success ? 'PASSED' : 'FAILED' }}
+        </a>
+        
+        <p>
+            {{ 'passed.at'|translate }} {{ session.dateStart.date }}<br />
+            {{ 'duration'|translate }} : {{ sessionDuration }} {{ '_.minutes'|translate }}<br />
+            {{ 'topics.validated'|translate }} : {{ session.nbTopicsValidated }} / 10<br />
+        </p>
+        
+        <h2>{{ 'incorrect.answers'|translate }}</h2>
+        
+        <br />
+        
+        <div ng-repeat="answer in session.answers">
+            <h4 btf-markdown="answer.question.entitled"></h4>
+            
+            <div ng-if="answer.question.code !== null" hljs source="answer.question.code"></div>
+            
+            <div ng-show="answer.question.type === Question.TYPE_QCM">
+                <div class="row">
+                    <div class="col-sm-1 col-xs-2">
+                        <small class="text-muted">{{ 'your.answer'|translate }}</small>
+                    </div>
+                    <div class="col-sm-1 col-xs-2">
+                        <small class="text-muted">{{ 'expected.answer'|translate }}</small>
+                    </div>
+                </div>
+                
+                <div class="row" ng-repeat="choice in answer.question.questionQCMChoices">
+                    <div class="col-sm-1 col-xs-2">
+                        <p ng-show=" hasChecked(answer, choice.id) &&  choice.isValid" class="text-success"><span class="glyphicon glyphicon-ok"></span></p>
+                        <p ng-show=" hasChecked(answer, choice.id) && !choice.isValid" class="text-danger"><span class="glyphicon glyphicon-remove"></span></p>
+                        <p ng-show="!hasChecked(answer, choice.id) &&  choice.isValid" class="text-warning"><span class="glyphicon glyphicon-ok"></span></p>
+                    </div>
+                    <div class="col-sm-1 col-xs-2">
+                        <p><span class="glyphicon glyphicon-ok" ng-show="choice.isValid"></span></p>
+                    </div>
+                    <div class="col-xs-10 col-xs-8">
+                        <p>{{ choice.entitled }}</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div ng-show="answer.question.type === Question.TYPE_FREE">
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="form-group" ng-class="{
+                            'has-success': answer.freeAnswer == answer.question.freeAnswer,
+                            'has-error':  answer.freeAnswer != answer.question.freeAnswer
+                        }">
+                            <input class="form-control" readonly value="{{ answer.freeAnswer }}">
+                        </div>
+                    </div>
+                    <div class="col-sm-1">
+                        <p class="text-center">
+                            <span ng-show="answer.freeAnswer != answer.question.freeAnswer" class="fui-arrow-right"></span>
+                        </p>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="form-group has-success">
+                            <input class="form-control" readonly value="{{ answer.question.freeAnswer }}" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <br />
+            <hr />
+            <br />
+        </div>
+    </div>
+</div>

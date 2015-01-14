@@ -22,6 +22,7 @@ class RestAPIProvider implements ServiceProviderInterface, ControllerProviderInt
             return new SessionController(
                 $app['orm.em']->getRepository('ZCE:Session'),
                 $app['zce.core.zcpe_quiz_factory'],
+                $app['zce.core.answer_factory'],
                 $app['security']->getToken(),
                 $app['orm.em']
             );
@@ -49,7 +50,15 @@ class RestAPIProvider implements ServiceProviderInterface, ControllerProviderInt
         ;
         
         $controllers
+            ->get('/session/{sessionId}', 'zce.rest.session.controller:getAction')
+        ;
+        
+        $controllers
             ->post('/session/finish/{sessionId}', 'zce.rest.session.controller:finishAction')
+        ;
+        
+        $controllers
+            ->post('/session/{sessionId}/answers', 'zce.rest.session.controller:postAnswersAction')
         ;
 
         return $controllers;

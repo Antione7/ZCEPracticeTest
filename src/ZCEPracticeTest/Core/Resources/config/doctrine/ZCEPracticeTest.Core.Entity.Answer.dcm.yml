@@ -29,6 +29,8 @@ ZCEPracticeTest\Core\Entity\Answer:
     oneToMany:
         answerQCMChoices:
             targetEntity: ZCEPracticeTest\Core\Entity\AnswerQCMChoice
+            cascade:
+                - all
             mappedBy: answer
             orphanRemoval: false
             orderBy: null

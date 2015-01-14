@@ -9,6 +9,7 @@ use SimpleUser\UserServiceProvider;
 use ZCEPracticeTest\Core\Service\QuestionManager;
 use ZCEPracticeTest\Core\Service\QuizFactory;
 use ZCEPracticeTest\Core\Service\ZCPEQuizFactory;
+use ZCEPracticeTest\Core\Service\AnswerFactory;
 use ZCEPracticeTest\Silex\Provider\RestAPIProvider;
 use ZCEPracticeTest\Silex\Provider\FrontProvider;
 
@@ -169,6 +170,12 @@ class ZCEApp extends Application
             return new ZCPEQuizFactory(
                 $this['zce.core.quiz_factory'],
                 $this['orm.em']->getRepository('ZCE:Topic'),
+                $this['orm.em']->getRepository('ZCE:Question')
+            );
+        });
+        
+        $this['zce.core.answer_factory'] = $this->share(function () {
+            return new AnswerFactory(
                 $this['orm.em']->getRepository('ZCE:Question')
             );
         });
