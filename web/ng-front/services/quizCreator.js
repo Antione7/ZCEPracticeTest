@@ -24,7 +24,7 @@ zcpe.service('quizCreator', function () {
             }
 
             if (question.type === Question.TYPE_FREE) {
-                answers.push(question.freeAnswer);
+                answers = question.freeAnswer.split(',');
             }
 
             questions.push({

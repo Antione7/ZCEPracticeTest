@@ -1,4 +1,10 @@
 zcpe.service('restApi', ['$http', function ($http) {
+    /**
+     * Post multiple answers
+     * 
+     * @param {integer} sessionId
+     * @param {Array} answersData
+     */
     this.postAnswers = function (sessionId, answersData)
     {
         var answers = {};
@@ -38,12 +44,26 @@ zcpe.service('restApi', ['$http', function ($http) {
             answers[answer.questionId] = answer;
         });
         
-        console.log(answers);
-        
         $http({
             url: config.restServer + '/session/' + sessionId + '/answers',
             method: 'POST',
             data: answers
         });
+    };
+    
+    /**
+     * Get session data with answers
+     * 
+     * @param {integer} sessionId
+     * @param {function} callback
+     * 
+     * @returns {Object}
+     */
+    this.getSession = function (sessionId, callback)
+    {
+        $http({
+            url: config.restServer + '/session/' + sessionId,
+            method: 'GET'
+        }).success(callback);
     };
 }]);

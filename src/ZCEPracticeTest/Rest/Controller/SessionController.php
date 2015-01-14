@@ -85,13 +85,7 @@ class SessionController
      */
     public function createAction()
     {
-        $userSession = $this->token->getUser();
-        
-        if (!($userSession instanceof User)) {
-            throw new UserException('user.not.logged');
-        }
-        
-        $user = $this->om->merge($userSession);
+        $user = $this->loadUser();
         $quiz = $this->zcpeQuizFactory->createStandardZCPEQuiz();
         $session = new Session();
         
@@ -117,17 +111,12 @@ class SessionController
     public function finishAction(Request $request, $sessionId)
     {
         $scoreData = json_decode($request->getContent());
-        $userSession = $this->token->getUser();
         
         if (null === $scoreData) {
             throw new UserException('no.score.data');
         }
         
-        if (!($userSession instanceof User)) {
-            throw new UserException('user.not.logged');
-        }
-        
-        $user = $this->om->merge($userSession);
+        $user = $this->loadUser();
         $session = $this->sessionRepository->getFullSession($sessionId, $user->getId());
         
         if (null === $session) {
@@ -158,13 +147,7 @@ class SessionController
     public function postAnswersAction(Request $request, $sessionId)
     {
         $answersData = json_decode($request->getContent());
-        $userSession = $this->token->getUser();
-        
-        if (!($userSession instanceof User)) {
-            throw new UserException('user.not.logged');
-        }
-        
-        $user = $this->om->merge($userSession);
+        $user = $this->loadUser();
         $session = $this->sessionRepository->getFullSession($sessionId, $user->getId());
         
         if (null === $session) {
@@ -197,13 +180,7 @@ class SessionController
      */
     public function getAllAction()
     {
-        $userSession = $this->token->getUser();
-        
-        if (!($userSession instanceof User)) {
-            throw new UserException('user.not.logged');
-        }
-        
-        $user = $this->om->merge($userSession);
+        $user = $this->loadUser();
         
         $sessions = $this->sessionRepository->findBy(array(
             'user' => $user,
@@ -212,5 +189,40 @@ class SessionController
         return new JsonResponse(array(
             'sessions' => $sessions,
         ));
+    }
+    
+    /**
+     * Return a full session
+     * 
+     * @param integer $sessionID
+     * 
+     * @return JsonResponse
+     */
+    public function getAction($sessionId)
+    {
+        $user = $this->loadUser();
+        $session = $this->sessionRepository->getFullSession($sessionId, $user->getId());
+        
+        return new JsonResponse(array(
+            'session' => $session,
+        ));
+    }
+    
+    /**
+     * Load logged user
+     * 
+     * @return User
+     * 
+     * @throws UserException if no user logged
+     */
+    private function loadUser()
+    {
+        $userSession = $this->token->getUser();
+        
+        if (!($userSession instanceof User)) {
+            throw new UserException('user.not.logged');
+        }
+        
+        return $this->om->merge($userSession);
     }
 }

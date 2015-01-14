@@ -28,9 +28,14 @@ class SessionRepository extends EntityRepository
     public function getFullSession($sessionId, $userId)
     {
         $q = $this->createQueryBuilder('s')
-            ->addSelect('u, q')
+            ->addSelect('u, q, a, quest, t, qc, ac')
             ->leftJoin('s.user', 'u')
             ->leftJoin('s.quiz', 'q')
+            ->leftJoin('s.answers', 'a')
+            ->leftJoin('a.question', 'quest')
+            ->leftJoin('quest.topic', 't')
+            ->leftJoin('quest.questionQCMChoices', 'qc')
+            ->leftJoin('a.answerQCMChoices', 'ac')
             ->where('s.id = :sessionId')
             ->andWhere('u.id = :userId')
             ->setParameters(array(
