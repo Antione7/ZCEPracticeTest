@@ -1,4 +1,4 @@
-zcpe.controller('SessionsCtrl', ['$scope', '$location', '$http', function ($scope, $location, $http) {
+zcpe.controller('SessionsCtrl', ['$scope', '$location', 'restApi', function ($scope, $location, restApi) {
     $scope.goToStartPage = function () {
         $location.path('/new');
     };
@@ -6,9 +6,9 @@ zcpe.controller('SessionsCtrl', ['$scope', '$location', '$http', function ($scop
     $scope.goToSession = function (sessionId)
     {
         $location.path('/session/' + sessionId);
-    }
+    };
     
-    $http.get(config.restServer+'/sessions').success(function (data) {
+    restApi.getSessions(function (data) {
         $scope.sessions = data.sessions;
     });
 }]);

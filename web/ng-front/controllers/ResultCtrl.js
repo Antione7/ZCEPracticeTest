@@ -1,4 +1,4 @@
-zcpe.controller('ResultCtrl', ['$scope', '$location', '$http', '$localStorage', '$controller', function ($scope, $location, $http, $localStorage, $controller) {
+zcpe.controller('ResultCtrl', ['$scope', '$localStorage', '$controller', function ($scope, $localStorage, $controller) {
     var quizz = $localStorage.quizz;
     
     $controller('QuizzCtrl', {$scope: $scope});
