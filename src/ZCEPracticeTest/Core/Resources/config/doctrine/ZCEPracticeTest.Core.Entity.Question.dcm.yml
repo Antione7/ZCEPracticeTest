@@ -16,7 +16,7 @@ ZCEPracticeTest\Core\Entity\Question:
             length: 511
         code:
             type: string
-            length: 511
+            length: 2047
             nullable: true
         freeAnswer:
             type: string

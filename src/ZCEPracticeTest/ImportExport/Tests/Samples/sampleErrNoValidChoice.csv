@@ -1,0 +1,5 @@
+What is the output of the following code ?,2,"<?php
+$v = 'World';
+Echo 'Hello'.$v;",Hello,false,Hello World,false,HelloWorld,false,Fatal Error,false,,
+Which function opens a handler on a file ?,8,,fopen,,,,,,,,,
+Which variable name is valid ?,5,,$MYVAR,true,$_myVar,true,$my-var,false,$3x,false,$my3Var_,true

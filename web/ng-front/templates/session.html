@@ -17,7 +17,9 @@
         <br />
         
         <div ng-repeat="answer in session.answers">
-            <h4 btf-markdown="answer.question.entitled"></h4>
+            <h4>{{ answer.question.entitled }}</h4>
+            
+            <p class="small" ng-if="answer.question.nbAnswers > 1">(Choose {{ answer.question.nbAnswers }})</p>
             
             <div ng-if="answer.question.code !== null" hljs source="answer.question.code"></div>
             

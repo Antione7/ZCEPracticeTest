@@ -14,7 +14,6 @@ var zcpe = angular.module('zcpe', [
     'pascalprecht.translate',
     'ngStorage',
     'controllers-quizz',
-    'btford.markdown',
     'hljs',
     'timer'
 ]);

@@ -15,6 +15,7 @@ use ZCEPracticeTest\Core\Entity\Topic;
 use ZCEPracticeTest\Core\Entity\QuestionQCMChoice;
 use ZCEPracticeTest\Core\Entity\Question;
 use ZCEPracticeTest\Core\Repository\TopicRepository;
+use ZCEPracticeTest\ImportExport\Exception\ParseException;
 
 /**
  * Import questions
@@ -48,11 +49,11 @@ class QuestionImport
     /**
      * Get topic by number order.
      * 
-     * @param integer $number from 1 to 10
+     * @param mixed $key number between 1 and 10 or key
      * 
      * @return Topic
      */
-    private function getTopic($number)
+    private function getTopic($key)
     {
         if (!is_array($this->topics)) {
             $this->topics = $this->topicRepository->findBy(array(), array(
@@ -60,22 +61,34 @@ class QuestionImport
             ));
         }
         
-        return $this->topics[$number - 1];
+        return $this->topics[$this->getTopicNumber($key)];
     }
     
     /**
      * Create array of question from csv file handler
      * 
      * @param resource $file
+     * @param boolean $skipFirstLine
      * 
-     * @return array
+     * @return Question[]
+     * 
+     * @throws ParseException
      */
-    public function processFile($file)
+    public function processFile($file, $skipFirstLine = false)
     {
         $questions = array();
         
         while (false !== ($line = fgetcsv($file))) {
-            $questions []= $this->processCsvLine($line);
+            if ($skipFirstLine) {
+                $skipFirstLine = false;
+                continue;
+            }
+            
+            try {
+                $questions []= $this->processCsvLine($line);
+            } catch (ParseException $e) {
+                throw new ParseException($e->getMessage(), count($questions) + 1);
+            }
         }
         
         return $questions;
@@ -87,6 +100,8 @@ class QuestionImport
      * @param string $data
      * 
      * @return Question
+     * 
+     * @throws ParseException
      */
     public function processCsvLine(array $data)
     {
@@ -94,9 +109,12 @@ class QuestionImport
         
         $question
             ->setEntitled($data[0])
-            ->setTopic($this->getTopic(intval($data[1])))
-            ->setCode($data[2])
+            ->setTopic($this->getTopic($data[1]))
         ;
+        
+        if ((null !== $data[2]) && (strlen($data[2]) > 0)) {
+            $question->setCode($data[2]);
+        }
         
         $isFreeQuestion = 0 === strlen($data[4]);
         
@@ -113,8 +131,9 @@ class QuestionImport
      * Hydrate question with QCM question data
      * 
      * @param Question $question
-     * 
      * @param array $data
+     * 
+     * @throws ParseException
      */
     private function processQCMQuestion(Question $question, array $data)
     {
@@ -132,8 +151,19 @@ class QuestionImport
 
             $question->addQuestionQCMChoice($choice);
 
+            if ($choice->getIsValid()) {
+                $nbAnswers++;
+            }
+
             $i += 2;
-            $nbAnswers++;
+        }
+        
+        if (count($question->getQuestionQCMChoices()) < 2) {
+            throw new ParseException('Less than 2 qcm choices');
+        }
+        
+        if (0 === $nbAnswers) {
+            throw new ParseException('No valid qcm choice');
         }
 
         $question
@@ -146,14 +176,75 @@ class QuestionImport
      * Hydrate question with free question data
      * 
      * @param Question $question
-     * 
      * @param array $data
      */
     private function processFreeQuestion(Question $question, array $data)
     {
         $question
             ->setType(Question::TYPE_FREE)
-            ->setFreeAnswer($data[3])
+            ->setFreeAnswer(trim($data[3]))
         ;
+    }
+    
+    /**
+     * Get topic number from number or key
+     * 
+     * @param string $key
+     * 
+     * @return integer
+     */
+    private function getTopicNumber($key)
+    {
+        if (is_numeric($key)) {
+            $n = intval($key);
+            
+            if ($n < 1 || $n > 10) {
+                throw new ParseException('Invalid topic number, expected number between 1 and 10, got "'.$n.'"');
+            }
+            
+            return $n - 1;
+        }
+        
+        switch (strtolower($key)) {
+            default:
+                case 'basic':
+                case 'basics':
+                    return 0;
+                    
+                case 'poo':
+                case 'oop':
+                    return 1;
+                    
+                case 'security':
+                    return 2;
+                    
+                case 'function':
+                case 'functions':
+                    return 3;
+                    
+                case 'format':
+                    return 4;
+                    
+                case 'web':
+                    return 5;
+                    
+                case 'i/o':
+                    return 6;
+                    
+                case 'strings':
+                    return 7;
+                    
+                case 'db':
+                case 'bdd':
+                case 'databases':
+                    return 8;
+                    
+                case 'array':
+                case 'arrays':
+                    return 9;
+                    
+                default:
+                    throw new ParseException('Unknown topic name "'.$key.'"');
+        }
     }
 }

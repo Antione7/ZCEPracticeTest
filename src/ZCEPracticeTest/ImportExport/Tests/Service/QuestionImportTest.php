@@ -165,4 +165,28 @@ class QuestionImportTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($this->lineSample[7], $choices[2]->getEntitled());
         $this->assertEquals($this->lineSample[9], $choices[3]->getEntitled());
     }
+    
+    public function testProcessFileThrowNoChoice()
+    {
+        $file = fopen(dirname(__FILE__).'/../Samples/sampleErrNoChoice.csv', 'r');
+        
+        $this->setExpectedException(
+            '\ZCEPracticeTest\ImportExport\Exception\ParseException',
+            'Less than 2 qcm choices at question 3'
+        );
+        
+        $this->questionImport->processFile($file);
+    }
+    
+    public function testProcessFileThrowNoValidChoice()
+    {
+        $file = fopen(dirname(__FILE__).'/../Samples/sampleErrNoValidChoice.csv', 'r');
+        
+        $this->setExpectedException(
+            '\ZCEPracticeTest\ImportExport\Exception\ParseException',
+            'No valid qcm choice at question 1'
+        );
+        
+        $this->questionImport->processFile($file);
+    }
 }
