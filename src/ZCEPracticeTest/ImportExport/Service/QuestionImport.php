@@ -206,45 +206,44 @@ class QuestionImport
         }
         
         switch (strtolower($key)) {
+            case 'basic':
+            case 'basics':
+                return 0;
+
+            case 'poo':
+            case 'oop':
+                return 1;
+
+            case 'security':
+                return 2;
+
+            case 'function':
+            case 'functions':
+                return 3;
+
+            case 'format':
+                return 4;
+
+            case 'web':
+                return 5;
+
+            case 'i/o':
+                return 6;
+
+            case 'strings':
+                return 7;
+
+            case 'db':
+            case 'bdd':
+            case 'databases':
+                return 8;
+
+            case 'array':
+            case 'arrays':
+                return 9;
+
             default:
-                case 'basic':
-                case 'basics':
-                    return 0;
-                    
-                case 'poo':
-                case 'oop':
-                    return 1;
-                    
-                case 'security':
-                    return 2;
-                    
-                case 'function':
-                case 'functions':
-                    return 3;
-                    
-                case 'format':
-                    return 4;
-                    
-                case 'web':
-                    return 5;
-                    
-                case 'i/o':
-                    return 6;
-                    
-                case 'strings':
-                    return 7;
-                    
-                case 'db':
-                case 'bdd':
-                case 'databases':
-                    return 8;
-                    
-                case 'array':
-                case 'arrays':
-                    return 9;
-                    
-                default:
-                    throw new ParseException('Unknown topic name "'.$key.'"');
+                throw new ParseException('Unknown topic name "'.$key.'"');
         }
     }
 }
