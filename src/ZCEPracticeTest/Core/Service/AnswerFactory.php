@@ -36,7 +36,7 @@ class AnswerFactory
      * @param QuestionRepository $questionRepository
      */
     public function __construct(
-            QuestionRepository $questionRepository
+        QuestionRepository $questionRepository
     ) {
         $this->questionRepository = $questionRepository;
     }

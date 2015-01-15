@@ -48,9 +48,9 @@ class ZCPEQuizFactory
      * @param EntityRepository $questionRepository
      */
     public function __construct(
-            QuizFactory $quizFactory,
-            EntityRepository $topicRepository,
-            EntityRepository $questionRepository
+        QuizFactory $quizFactory,
+        EntityRepository $topicRepository,
+        EntityRepository $questionRepository
     ) {
         $this->quizFactory = $quizFactory;
         $this->topicRepository = $topicRepository;

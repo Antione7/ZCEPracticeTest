@@ -86,7 +86,7 @@ class QuizBuilder
         
         $new = new ArrayCollection();
 
-        foreach($keys as $key) {
+        foreach ($keys as $key) {
             $new[$key] = $array[$key];
         }
 

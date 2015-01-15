@@ -19,3 +19,4 @@ tools:
 
 filter:
     paths: [ 'src/*' ]
+    excluded_paths: [Tests/*]

@@ -168,7 +168,7 @@ class QuizFactoryTest extends \PHPUnit_Framework_TestCase
     {
         $this->setExpectedException('\ZCEPracticeTest\Core\Exception\QuizFactoryException');
         
-        $quiz = $this->quizFactory->createCategorizedRandomQuiz($this->questions, 10, array(
+        $this->quizFactory->createCategorizedRandomQuiz($this->questions, 10, array(
             array($this->topics[0], 4),
             array($this->topics[1], 3),
             array($this->topics[2], 3),

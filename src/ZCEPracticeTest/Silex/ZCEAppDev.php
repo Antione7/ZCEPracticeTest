@@ -32,7 +32,7 @@ class ZCEAppDev extends ZCEApp
         $logger = new DebugStack();
         $this['db.config']->setSQLLogger($logger);
         
-        $this->after(function(Request $request, Response $response) use ($logger) {
+        $this->after(function (Request $request, Response $response) use ($logger) {
             $response->headers->set('debug-doctrine-queries', count($logger->queries));
         });
     }

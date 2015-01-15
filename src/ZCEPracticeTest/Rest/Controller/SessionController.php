@@ -20,7 +20,6 @@ use ZCEPracticeTest\Core\Exception\UserException;
 use ZCEPracticeTest\Core\Entity\Session;
 use ZCEPracticeTest\Core\Entity\User;
 use ZCEPracticeTest\Core\Entity\Question;
-use ZCEPracticeTest\Core\Entity\AnswerQCMChoice;
 use ZCEPracticeTest\Core\Service\AnswerFactory;
 use ZCEPracticeTest\Core\Service\ZCPEQuizFactory;
 
@@ -67,11 +66,11 @@ class SessionController
      * @param ObjectManager $om
      */
     public function __construct(
-            EntityRepository $sessionRepository,
-            ZCPEQuizFactory $zcpeQuizFactory,
-            AnswerFactory $answerFactory,
-            TokenInterface $token,
-            ObjectManager $om
+        EntityRepository $sessionRepository,
+        ZCPEQuizFactory $zcpeQuizFactory,
+        AnswerFactory $answerFactory,
+        TokenInterface $token,
+        ObjectManager $om
     ) {
         $this->sessionRepository = $sessionRepository;
         $this->zcpeQuizFactory = $zcpeQuizFactory;
@@ -194,7 +193,7 @@ class SessionController
     /**
      * Return a full session
      * 
-     * @param integer $sessionID
+     * @param integer $sessionId
      * 
      * @return JsonResponse
      */
