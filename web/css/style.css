@@ -11,3 +11,9 @@
 }
 .zcpe-pass-fail-topic {
 }
+.checkbox .icons, .radio .icons {
+    margin-top: 2px;
+}
+.answer {
+    font-size: 16px;
+}

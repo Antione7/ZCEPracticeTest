@@ -9,6 +9,8 @@ use Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper;
 use Doctrine\ORM\Tools\Console\ConsoleRunner;
 use Silex\Application as SilexApplication;
 use ZCEPracticeTest\Core\Command\LoadFixturesCommand;
+use ZCEPracticeTest\Silex\Provider\ImportExportProvider;
+use ZCEPracticeTest\ImportExport\Command\ImportQuestionCommand;
 
 class ZCEAppConsole extends Application
 {
@@ -28,6 +30,8 @@ class ZCEAppConsole extends Application
         
         $this->silexApp = $app;
         
+        $app->register(new ImportExportProvider());
+        
         $app->get('/', function () {
             return '';
         });
@@ -44,6 +48,7 @@ class ZCEAppConsole extends Application
         $em = $this->silexApp['orm.em'];
         
         $this->add(new LoadFixturesCommand($em));
+        $this->add(new ImportQuestionCommand($em, $this->silexApp['zce.import_export.import_question']));
         
         // Register Doctrine ORM commands
         $helperSet = new HelperSet(array(

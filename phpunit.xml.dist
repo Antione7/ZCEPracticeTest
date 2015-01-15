@@ -8,6 +8,7 @@
     <testsuites>
         <testsuite name="ZCE Practice test core test suite">
             <directory>./src/ZCEPracticeTest/Core/Tests</directory>
+            <directory>./src/ZCEPracticeTest/ImportExport/Tests</directory>
         </testsuite>
     </testsuites>
 
