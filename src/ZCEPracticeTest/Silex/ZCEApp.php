@@ -130,6 +130,15 @@ class ZCEApp extends Application
                         'namespace' => 'SimpleUser',
                         'path' => $this['project.root'].'/src/ZCEPracticeTest/Core/Resources/config/doctrine',
                     ),
+                    
+                    /**
+                     * SimpleUser mapping (register superclass SimpleUser\User)
+                     */
+                    array(
+                        'type' => 'yml',
+                        'namespace' => 'ZCEPracticeTest\Credits\Entity',
+                        'path' => $this['project.root'].'/src/ZCEPracticeTest/Credits/Resources/doctrine',
+                    ),
                 ),
             ),
         ));

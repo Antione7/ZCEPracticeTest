@@ -1,0 +1,24 @@
+ZCEPracticeTest\Credits\Entity\Credits:
+    type: entity
+    table: zce_credits_credit
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        remaining:
+            type: integer
+        paid:
+            type: decimal
+            precision: 4
+            scale: 2
+        used:
+            type: integer
+    oneToOne:
+        user:
+            targetEntity: ZCEPracticeTest\Core\Entity\User
+            cascade: {  }
+            orphanRemoval: false
+    lifecycleCallbacks: {  }
