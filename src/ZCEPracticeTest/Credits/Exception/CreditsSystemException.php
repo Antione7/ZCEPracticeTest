@@ -3,22 +3,25 @@
 /**
  * PHP version 5.5
  *
- * @category Listener
+ * @category Exception
  * @package  Credits
  * @author   Julien Maulny <jmaulny@darkmira.fr>
  * @license  Darkmira <darkmira@darkmira.fr>
  * @link     www.darkmira.fr
  */
+namespace ZCEPracticeTest\Credits\Exception;
 
-namespace ZCEPracticeTest\Credits\Listener;
+use ZCEPracticeTest\Core\Exception\ZCEPracticeTestException;
 
 /**
- * @category Listener
+ * Base exception for ZCE Practice test application.
+ *
+ * @category Exception
  * @package  Credits
  * @author   Julien Maulny <jmaulny@darkmira.fr>
  * @license  Darkmira <darkmira@darkmira.fr>
  * @link     www.darkmira.fr
  */
-class KernelListener
+class CreditsSystemException extends ZCEPracticeTestException
 {
 }

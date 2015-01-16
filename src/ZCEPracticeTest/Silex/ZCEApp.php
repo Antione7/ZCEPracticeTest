@@ -12,6 +12,7 @@ use ZCEPracticeTest\Core\Service\ZCPEQuizFactory;
 use ZCEPracticeTest\Core\Service\AnswerFactory;
 use ZCEPracticeTest\Silex\Provider\RestAPIProvider;
 use ZCEPracticeTest\Silex\Provider\FrontProvider;
+use ZCEPracticeTest\Silex\Provider\CreditsSystemProvider;
 
 class ZCEApp extends Application
 {
@@ -35,6 +36,7 @@ class ZCEApp extends Application
         $this->registerSimpleUser();
         $this->registerRestAPI();
         $this->registerFront();
+        $this->registerCreditsSystem();
     }
     
     /**
@@ -138,6 +140,7 @@ class ZCEApp extends Application
                         'type' => 'yml',
                         'namespace' => 'ZCEPracticeTest\Credits\Entity',
                         'path' => $this['project.root'].'/src/ZCEPracticeTest/Credits/Resources/doctrine',
+                        'alias' => 'ZCECredits',
                     ),
                 ),
             ),
@@ -204,5 +207,10 @@ class ZCEApp extends Application
         
         $this->register($frontProvider);
         $this->mount('/', $frontProvider);
+    }
+    
+    private function registerCreditsSystem()
+    {
+        $this->register(new CreditsSystemProvider());
     }
 }

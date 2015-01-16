@@ -6,7 +6,7 @@ zcpe.controller('StartPageCtrl', ['$scope', '$location', '$localStorage', 'restA
         $scope.startDisabled = true;
         
         restApi.createSession(function (data) {
-            $localStorage.sessionData = data;
+            $localStorage.sessionData = data.session;
             $location.path('/quiz');
         });
     };

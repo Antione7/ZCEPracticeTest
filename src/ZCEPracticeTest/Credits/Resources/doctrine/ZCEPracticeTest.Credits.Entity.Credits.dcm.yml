@@ -1,6 +1,7 @@
 ZCEPracticeTest\Credits\Entity\Credits:
     type: entity
     table: zce_credits_credit
+    repositoryClass: ZCEPracticeTest\Credits\Repository\CreditsRepository
     id:
         id:
             type: integer

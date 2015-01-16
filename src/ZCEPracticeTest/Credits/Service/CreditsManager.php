@@ -11,7 +11,8 @@
  */
 namespace ZCEPracticeTest\Credits\Service;
 
-use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use ZCEPracticeTest\Credits\Exception\CreditsSystemException;
 use ZCEPracticeTest\Core\Entity\User;
 use ZCEPracticeTest\Credits\Entity\Credits;
 use ZCEPracticeTest\Credits\Repository\CreditsRepository;
@@ -34,47 +35,53 @@ class CreditsManager
     private $creditsRepository;
     
     /**
-     * @var array
+     * @var TokenInterface
      */
-    private $creditsData;
+    private $token;
+    
+    /**
+     * @var Credits
+     */
+    private $credits;
     
     /**
      * @param CreditsRepository $creditsRepository
+     * @param TokenInterface $token
      */
-    public function __construct(CreditsRepository $creditsRepository)
+    public function __construct(CreditsRepository $creditsRepository, TokenInterface $token)
     {
         $this->creditsRepository = $creditsRepository;
+        $this->token = $token;
         
-        $this->creditsData = array();
+        $this->credits = null;
     }
     
     /**
-     * Return credits data for an user
-     * 
-     * @param User $user
-     * 
      * @return Credits
      */
-    private function getCredits(User $user)
+    public function getCredits()
     {
-        if (!isset(array_key_exists($user->getId(), $this->creditsData))) {
-            $credits = $this->creditsRepository->loadCreditsData($user->getId());
-            $this->creditsData[$user->getId()] = $credits;
+        if (null === $this->credits) {
+            $userId = $this->getUser()->getId();
+            $this->credits = $this->creditsRepository->loadCreditsData($userId);
+            
+            if (null === $this->credits) {
+                $this->credits = new Credits();
+                $this->credits->setUser($this->getUser());
+            }
         }
         
-        return $this->creditsData[$user->getId()];
+        return $this->credits;
     }
     
     /**
      * Check whether $user has credits
      * 
-     * @param User $user
-     * 
      * @return boolean
      */
-    public function hasCredits(User $user)
+    public function hasCredits()
     {
-        $credits = $this->getCredits($user);
+        $credits = $this->getCredits();
         
         return $credits->getRemaining() > 0;
     }
@@ -82,16 +89,35 @@ class CreditsManager
     /**
      * User use a credit
      * 
-     * @param User $user
-     * 
      * @return Credits
      */
-    public function useCredits(User $user)
+    public function useCredits()
     {
-        $credits = $this->getCredits($user);
+        $credits = $this->getCredits();
+        
+        if (!$this->hasCredits()) {
+            throw new CreditsSystemException('Cannot use credits, 0 left');
+        }
         
         $credits->setRemaining($credits->getRemaining() - 1);
+        $credits->setUsed($credits->getUsed() + 1);
         
         return $credits;
+    }
+    
+    /**
+     * @return User
+     * 
+     * @throws CreditsSystemException if no user
+     */
+    private function getUser()
+    {
+        $user = $this->token->getUser();
+        
+        if (null === $user) {
+            throw new CreditsSystemException('No user');
+        }
+        
+        return $user;
     }
 }
