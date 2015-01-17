@@ -11,7 +11,7 @@
  */
 namespace ZCEPracticeTest\Credits\Service;
 
-use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\SecurityContext;
 use ZCEPracticeTest\Credits\Exception\CreditsSystemException;
 use ZCEPracticeTest\Core\Entity\User;
 use ZCEPracticeTest\Credits\Entity\Credits;
@@ -35,9 +35,9 @@ class CreditsManager
     private $creditsRepository;
     
     /**
-     * @var TokenInterface
+     * @var SecurityContext
      */
-    private $token;
+    private $securityContext;
     
     /**
      * @var Credits
@@ -46,12 +46,12 @@ class CreditsManager
     
     /**
      * @param CreditsRepository $creditsRepository
-     * @param TokenInterface $token
+     * @param SecurityContext $securityContext
      */
-    public function __construct(CreditsRepository $creditsRepository, TokenInterface $token)
+    public function __construct(CreditsRepository $creditsRepository, SecurityContext $securityContext)
     {
         $this->creditsRepository = $creditsRepository;
-        $this->token = $token;
+        $this->securityContext = $securityContext;
         
         $this->credits = null;
     }
@@ -112,7 +112,7 @@ class CreditsManager
      */
     private function getUser()
     {
-        $user = $this->token->getUser();
+        $user = $this->securityContext->getToken()->getUser();
         
         if (null === $user) {
             throw new CreditsSystemException('No user');

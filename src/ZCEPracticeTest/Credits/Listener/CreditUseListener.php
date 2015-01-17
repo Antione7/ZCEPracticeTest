@@ -13,6 +13,8 @@
 namespace ZCEPracticeTest\Credits\Listener;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpKernel\KernelEvents;
+use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -51,8 +53,11 @@ class CreditUseListener implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return array(
-            'kernel.response' => array(
-                array('onKernelResponse', 10),
+            KernelEvents::REQUEST => array(
+                'onKernelRequest',
+            ),
+            KernelEvents::RESPONSE => array(
+                'onKernelResponse',
             ),
         );
     }
@@ -71,7 +76,27 @@ class CreditUseListener implements EventSubscriberInterface
     }
     
     /**
-     * Use a credit on some api call
+     * If this request needs a credit,
+     * check if user has at least one credit.
+     * 
+     * @param GetResponseEvent $event
+     */
+    public function onKernelRequest(GetResponseEvent $event)
+    {
+        $request = $event->getRequest();
+        $routeName = $request->get('_route');
+        
+        if (self::routeNeedsCredit($routeName)) {
+            if (!$this->creditsManager->hasCredits()) {
+                $event->setResponse(self::createDenyResponse());
+            }
+        }
+    }
+    
+    /**
+     * If this request needs a credit,
+     * check if user has at least one credit,
+     * and use a credit if request has no errors.
      * 
      * @param FilterResponseEvent $event
      */
@@ -96,10 +121,7 @@ class CreditUseListener implements EventSubscriberInterface
                 $this->creditsManager->useCredits();
                 $this->updateCredits();
             } else {
-                $response->setData(array(
-                    'ok' => false,
-                    'reason' => 'need.credit',
-                ));
+                $event->setResponse(self::createDenyResponse());
             }
         }
     }
@@ -112,5 +134,18 @@ class CreditUseListener implements EventSubscriberInterface
         $credits = $this->creditsManager->getCredits();
         $this->om->persist($credits);
         $this->om->flush();
+    }
+    
+    /**
+     * Return a deny response from credits system
+     * 
+     * @return JsonResponse
+     */
+    private static function createDenyResponse()
+    {
+        return new JsonResponse(array(
+            'ok' => false,
+            'reason' => 'need.credit',
+        ));
     }
 }
