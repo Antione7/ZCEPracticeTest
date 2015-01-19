@@ -11,17 +11,19 @@
  */
 namespace ZCEPracticeTest\Rest\Controller;
 
+use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Doctrine\Common\Persistence\ObjectManager;
-use Doctrine\ORM\EntityRepository;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 use ZCEPracticeTest\Core\Exception\UserException;
 use ZCEPracticeTest\Core\Entity\Session;
 use ZCEPracticeTest\Core\Entity\User;
 use ZCEPracticeTest\Core\Entity\Question;
 use ZCEPracticeTest\Core\Service\AnswerFactory;
 use ZCEPracticeTest\Core\Service\ZCPEQuizFactory;
+use ZCEPracticeTest\Core\Event\SessionEvent;
 
 /**
  * Get Controller.
@@ -60,23 +62,31 @@ class SessionController
     private $om;
     
     /**
+     * @var EventDispatcher
+     */
+    private $dispatcher;
+    
+    /**
      * @param EntityRepository $sessionRepository
      * @param ZCPEQuizFactory $zcpeQuizFactory
      * @param TokenInterface $token
      * @param ObjectManager $om
+     * @param EventDispatcher $dispatcher
      */
     public function __construct(
         EntityRepository $sessionRepository,
         ZCPEQuizFactory $zcpeQuizFactory,
         AnswerFactory $answerFactory,
         TokenInterface $token,
-        ObjectManager $om
+        ObjectManager $om,
+        EventDispatcher $dispatcher
     ) {
         $this->sessionRepository = $sessionRepository;
         $this->zcpeQuizFactory = $zcpeQuizFactory;
         $this->answerFactory = $answerFactory;
         $this->token = $token;
         $this->om = $om;
+        $this->dispatcher = $dispatcher;
     }
     
     /**
@@ -132,6 +142,8 @@ class SessionController
         ;
         
         $this->om->flush();
+        
+        $this->dispatcher->dispatch(SessionEvent::SESSION_ENDED, new SessionEvent($session));
         
         return new JsonResponse(array(
             'ok' => true,

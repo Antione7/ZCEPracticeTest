@@ -91,7 +91,7 @@ class Credits implements \JsonSerializable
     /**
      * Set paid
      *
-     * @param string $paid
+     * @param double $paid
      * @return Credits
      */
     public function setPaid($paid)
@@ -104,7 +104,7 @@ class Credits implements \JsonSerializable
     /**
      * Get paid
      *
-     * @return string 
+     * @return double
      */
     public function getPaid()
     {
