@@ -2,4 +2,6 @@
 
 <div ng-include="introTemplate"></div>
 
-<button id="create-session" class="btn btn-success btn-lg" ng-click="start()" ng-disabled="startDisabled">{{ 'start.quiz'|translate }}</button>
+<button id="create-session" class="btn btn-success btn-lg" ng-click="start()" ng-disabled="startDisabled">
+    {{ (startDisabled ? 'creating.quiz' : 'start.quiz')|translate }}
+</button>

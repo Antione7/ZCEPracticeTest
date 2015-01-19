@@ -39,26 +39,32 @@ class RestAPIProvider implements ServiceProviderInterface, ControllerProviderInt
         
         $controllers
             ->get('/questions', 'zce.rest.question.controller:questionAction')
+            ->bind('api-get-questions')
         ;
         
         $controllers
             ->post('/session', 'zce.rest.session.controller:createAction')
+            ->bind('api-post-session')
         ;
         
         $controllers
             ->get('/sessions', 'zce.rest.session.controller:getAllAction')
+            ->bind('api-get-sessions')
         ;
         
         $controllers
             ->get('/session/{sessionId}', 'zce.rest.session.controller:getAction')
+            ->bind('api-get-session')
         ;
         
         $controllers
             ->post('/session/finish/{sessionId}', 'zce.rest.session.controller:finishAction')
+            ->bind('api-post-session-score')
         ;
         
         $controllers
             ->post('/session/{sessionId}/answers', 'zce.rest.session.controller:postAnswersAction')
+            ->bind('api-post-session-answers')
         ;
 
         return $controllers;

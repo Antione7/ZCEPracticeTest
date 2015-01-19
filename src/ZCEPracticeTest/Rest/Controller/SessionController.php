@@ -96,7 +96,10 @@ class SessionController
         $this->om->persist($session);
         $this->om->flush();
         
-        return new JsonResponse($session);
+        return new JsonResponse(array(
+            'ok' => true,
+            'session' => $session,
+        ));
     }
     
     /**
@@ -186,6 +189,7 @@ class SessionController
         ));
         
         return new JsonResponse(array(
+            'ok' => true,
             'sessions' => $sessions,
         ));
     }
@@ -203,6 +207,7 @@ class SessionController
         $session = $this->sessionRepository->getFullSession($sessionId, $user->getId());
         
         return new JsonResponse(array(
+            'ok' => true,
             'session' => $session,
         ));
     }
