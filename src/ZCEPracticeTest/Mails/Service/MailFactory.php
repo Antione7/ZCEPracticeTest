@@ -74,6 +74,10 @@ class MailFactory
     {
         $message = $this->createStandardMail($subject);
         
+        $variables += array(
+            'user' => null,
+        );
+        
         $message
             ->setBody($this->templating->render($template, $variables))
             ->setContentType('text/html')

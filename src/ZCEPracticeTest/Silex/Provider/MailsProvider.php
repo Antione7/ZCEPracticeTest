@@ -23,7 +23,9 @@ class MailsProvider implements ServiceProviderInterface
     {
         $app['dispatcher']->addSubscriber(new EventsListener(
             $app['zce.mails.factory'],
-            $app['mailer']
+            $app['mailer'],
+            $app['zce.credits.manager'],
+            $app['locale']
         ));
         
         // Add twig template path.

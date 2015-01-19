@@ -1,0 +1,52 @@
+{% extends "@mails/layout.html.twig" %}
+
+{% block content %}
+<p style="width: 100%; background-color: {{ session.success ? '#2ecc71' : '#e74c3c' }}; text-align: center; padding: 40px 0px; color: white; border-radius: 5px;">
+    {{ session.success ? 'PASS' : 'FAIL' }}
+</p>
+
+{% if session.success %}
+    <p>
+        Bravo {{ user.displayName }} ! :)
+    </p>
+    <p>
+        Ton test ZCPE est réussi.
+        Tu as répondu correctement à au moins 70% des questions.
+        Pour voir sur quel topic tu t’es trompé,
+        nous t’invitons à consulter la synthèse de ton parcours ci-après.
+    </p>
+{% else %}
+    <p>
+        Oops {{ user.displayName }} ! :(
+    </p>
+    <p>
+        Tes efforts n’auront malheureusement pas suffi…
+        Tu n’as pas atteint les 70% de bonnes réponses requises.
+        Pour voir sur quel topics tu t’es trompé,
+        consulte la synthèse de ton parcours ci-après.
+    </p>
+{% endif %}
+
+<p>
+    {% if credits.remaining > 0 %}
+        Tu peux toujours poursuivre ton entraînement sur notre plateforme.
+        D’ailleurs, il te reste {{ credits.remaining }} crédit{{ (credits.remaining > 1) ? 's' : '' }} sur ton compte.
+    {% else %}
+        {% if session.success %}
+            Par ailleurs, si tu veux être sûr de réussir le jour J,
+            nous t’encourageons à poursuivre ton entraînement
+            sur notre plateforme en <a href="#">achetant de nouveaux crédits</a>.
+        {% else %}
+            Nous t’encourageons à continuer tes efforts
+            et à poursuivre ton entraînement sur notre plateforme.
+            Pour cela, il te suffit d'<a href="#">acheter de nouveaux crédits</a>.
+        {% endif %}
+    {% endif %}
+</p>
+
+<p>
+    Ce mail est envoyé suite à votre session du {{ session.dateFinished|date('d/m/Y') }}, à {{ session.dateFinished|date('G\\hi') }}.
+    <br />
+    L’application est développée et maintenue par des experts certifiés ZCPE.
+</p>
+{% endblock %}

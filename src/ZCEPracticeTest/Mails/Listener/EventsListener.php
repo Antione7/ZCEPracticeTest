@@ -15,6 +15,7 @@ namespace ZCEPracticeTest\Mails\Listener;
 use Swift_Mailer;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use ZCEPracticeTest\Core\Event\SessionEvent;
+use ZCEPracticeTest\Credits\Service\CreditsManager;
 use ZCEPracticeTest\Mails\Service\MailFactory;
 
 /**
@@ -39,12 +40,27 @@ class EventsListener implements EventSubscriberInterface
     private $mailer;
     
     /**
-     * @param Swift_Mailer $mailer
+     * @var CreditsManager
      */
-    public function __construct(MailFactory $mailFactory, Swift_Mailer $mailer)
+    private $creditsManager;
+    
+    /**
+     * @var string
+     */
+    private $locale;
+    
+    /**
+     * @param MailFactory $mailFactory
+     * @param Swift_Mailer $mailer
+     * @param CreditsManager $creditsManager
+     * @param string $locale
+     */
+    public function __construct(MailFactory $mailFactory, Swift_Mailer $mailer, CreditsManager $creditsManager, $locale)
     {
         $this->mailFactory = $mailFactory;
         $this->mailer = $mailer;
+        $this->creditsManager = $creditsManager;
+        $this->locale = $locale;
     }
     
     public static function getSubscribedEvents()
@@ -63,11 +79,13 @@ class EventsListener implements EventSubscriberInterface
     {
         $session = $event->getSession();
         $user = $session->getUser();
+        $credits = $this->creditsManager->getCredits();
         
         $message = $this->mailFactory
-            ->createTemplateMail('Session terminée', '@mails/session-ended.html.twig', array(
+            ->createTemplateMail('Session terminée', '@mails/session-ended.'.$this->locale.'.html.twig', array(
                 'user'      => $user,
                 'session'   => $session,
+                'credits'   => $credits,
             ))
             ->setTo(array($user->getEmail() => $user->getDisplayName()))
         ;

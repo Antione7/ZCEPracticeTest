@@ -1,4 +1,59 @@
-Layout
-
-{% block content %}
-{% endblock %}
+<html>
+    <body>
+        <table style="font-family: 'Trebuchet MS'; color: #34495e; font-size: 18px; border-spacing: 0; border-collapse: collapse; width: 100%;"><tbody>
+            <tr>
+                <td align="center" style="background-color: #ecf0f1;">
+                    <table style="width: 600px;"><tbody>
+                        {#
+                            Menu header
+                        #}
+                        <tr style="background-color: #ecf0f1;">
+                            <td>
+                                <a href="{{ url('front-index') }}" style="color: #34495e; text-decoration: none; font-size: 24px">ZCE Practice Test</a>
+                            </td>
+                            <td>
+                            </td>
+                            {% if user is not null %}
+                                <td style="text-align: right">
+                                    <a href="{{ url('front-index') }}" style="color: #34495e; text-decoration: none;">{{ user.displayName }}</a>
+                                </td>
+                            {% endif %}
+                        </tr>
+                    </tbody></table>
+                </td>
+            </tr>
+            <tr>
+                <td align="center">
+                    <table style="width: 600px;"><tbody>
+                        {#
+                            Body
+                        #}
+                        <tr>
+                            <td>
+                                {% block content %}
+                                {% endblock %}
+                            </td>
+                        </tr>
+                    </tbody></table>
+                </td>
+            </tr>
+            <tr>
+                <td align="center" style="background-color: #ecf0f1;">
+                    <table style="width: 600px;"><tbody>
+                        {#
+                            Footer
+                        #}
+                        <tr>
+                            <td>
+                                <p style="text-align: center; font-size: 11px; color: #888888;">
+                                    Le petit texte en bas que peu de gens lisent.
+                                    <a href="#">Se désinscrire</a>.
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody></table>
+                </td>
+            </tr>
+        </tbody></table>
+    </body>
+</html>
