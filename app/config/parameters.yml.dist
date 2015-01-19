@@ -10,3 +10,6 @@ database:
 translation:
     locale: fr
     locale_fallbacks: [en]
+
+credits:
+    free_credits_init: 1
