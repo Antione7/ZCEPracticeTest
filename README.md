@@ -9,7 +9,7 @@ Quiz application built with [Silex](http://silex.sensiolabs.org) and [AngularJS]
 
 The aim of this application is to train you to pass ZCPE certification test in real conditions (70 english questions, 90 minutes).
 
-Developed by [Darkmira](http://www.darkmira.fr/).
+Developed by [Darkmira Brasil] (http://www.darkmira.com.br/) and [Darkmira] (http://www.darkmira.fr).
 
 
 ## Features v0.1
@@ -27,6 +27,5 @@ Developed by [Darkmira](http://www.darkmira.fr/).
 
 ## License
 
-This bundle is under the MIT license. See the complete license:
-
+This app is under the GPLv3 license. See the complete license:
 [LICENSE](LICENSE)
