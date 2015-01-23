@@ -1,7 +1,7 @@
 {% extends "@views/layout.html.twig" %}
 
 {% block body %}
-<div ng-app="zcpe">
+<div">
     <div ng-view></div>
 </div>
 {% endblock %}
@@ -13,12 +13,12 @@
 {% block javascripts %}
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular-route.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/bower-angular-translate/2.5.2/angular-translate.min.js"></script>
     <script src="//rawgithub.com/gsklee/ngStorage/master/ngStorage.js"></script>
     <script src="//pc035860.github.io/angular-highlightjs/angular-highlightjs.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/highlight.min.js"></script>
     <script src="{{ app.request.basepath }}/js/angular-timer.min.js"></script>
     <script src="{{ app.request.basepath }}/bower_components/angular-animate/angular-animate.js"></script>
+    <script src="{{ app.request.basepath }}/bower_components/angular-translate/angular-translate.min.js"></script>
     <script src="{{ app.request.basepath }}/bower_components/showdown/compressed/showdown.js"></script>
     <script src="{{ app.request.basepath }}/bower_components/quizz/src/js/controllers/QuizzCtrl.js"></script>
     <script src="{{ app.request.basepath }}/ng-front/app.js"></script>

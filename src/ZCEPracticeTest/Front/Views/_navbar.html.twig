@@ -20,6 +20,11 @@
                 {% endif %}
                 <li><a href="{{ path('front-about') }}">{{ 'about'|trans }}</a></li>
             </ul>
+            <ul class="nav navbar-nav navbar-right lang-flag" ng-controller="TranslateCtrl">
+                <li><button ng-click="changeLang('fr_FR');"><img src="/images/flag-france.png" alt="Français" title="Français" /></button></li>
+                <li><button ng-click="changeLang('en_EN');"><img src="/images/flag-united-kingdom.png" alt="English" title="English" /></button></li>
+                <li><button ng-click="changeLang('pt_BR');"><img src="/images/flag-brazil.png" alt="Português do Brasil" title="Português do Brasil" /></button></li>
+            </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if app.user is null %}
                     <li><a href="{{ path('user.login') }}">{{ 'log.in'|trans }}</a></li>

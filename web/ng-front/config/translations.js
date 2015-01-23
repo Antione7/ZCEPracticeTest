@@ -2,7 +2,7 @@
  * Translations
  */
 zcpe.config(['$translateProvider', function ($translateProvider) {
-    $translateProvider.translations('fr', {
+    $translateProvider.translations('fr_FR', {
         '_.minutes': 'minutes',
         'about': 'À propos',
         'all.es': 'Toutes',
@@ -33,8 +33,24 @@ zcpe.config(['$translateProvider', function ($translateProvider) {
         'your.score': 'Votre score',
         'your.answer': 'Votre réponse'
     });
-    $translateProvider.translations('en', {
+
+    $translateProvider.translations('en_EN', {
         home: 'Home'
     });
-    $translateProvider.preferredLanguage('fr');
+
+    $translateProvider.translations('pt_BR', {
+        home: 'Início'
+    });
+
+    $translateProvider.preferredLanguage('en_EN');
+}]);
+
+zcpe.controller('TranslateCtrl', ['$translate', '$scope', function($translate, $scope) {
+	  $scope.changeLang = function (langKey) {
+	    if (langKey === 'fr_FR' || langKey === 'pt_BR') {
+        	$translate.use(langKey);
+        } else {
+        	$translate.use('en_EN');
+        }
+	  };
 }]);
