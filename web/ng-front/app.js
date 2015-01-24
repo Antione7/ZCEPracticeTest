@@ -12,6 +12,7 @@ var Question =
 var zcpe = angular.module('zcpe', [
     'ngRoute',
     'pascalprecht.translate',
+    'ngCookies',
     'ngStorage',
     'controllers-quizz',
     'hljs',

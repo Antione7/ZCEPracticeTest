@@ -26,7 +26,7 @@ class ZCEApp extends Application
         parent::__construct($values);
         
         $this['controllers']->value('locale', $this['locale']);
-        
+
         $this->loadParameters();
         $this->loadConfig();
         $this->registerProviders();

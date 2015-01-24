@@ -1,5 +1,5 @@
 zcpe.controller('StartPageCtrl', ['$scope', '$location', '$localStorage', 'restApi', 'popup', function ($scope, $location, $localStorage, restApi, popup) {
-    $scope.introTemplate = config.basePath + 'partials/intro.fr.html';
+    $scope.introTemplate = config.basePath + 'partials/intro.html';
     $scope.startDisabled = false;
     
     $scope.start = function () {

@@ -4,11 +4,11 @@
 zcpe.config(['$routeProvider', function ($routeProvider) {
     $routeProvider
         .when('/', {
-            templateUrl: config.basePath + 'templates/sessions.html',
-            controller: 'SessionsCtrl'
+            templateUrl: config.basePath + 'templates/panel.html',
+            controller: 'PanelCtrl'
         })
         .when('/session/:sessionId', {
-            templateUrl: config.basePath + 'templates/session.html',
+            templateUrl: config.basePath + 'templates/session-detail.html',
             controller: 'SessionCtrl',
             resolve: {
                 sessionId: function ($q, $route) {
@@ -25,17 +25,20 @@ zcpe.config(['$routeProvider', function ($routeProvider) {
                 }
             }
         })
-        .when('/new', {
-            templateUrl: config.basePath + 'templates/new.html',
+        .when('/session-new', {
+            templateUrl: config.basePath + 'templates/session-new.html',
             controller: 'StartPageCtrl'
         })
         .when('/quiz', {
-            templateUrl: config.basePath + 'templates/quiz.html',
+            templateUrl: config.basePath + 'templates/session-quiz.html',
             controller: 'QuizCtrl'
         })
-        .when('/result', {
-            templateUrl: config.basePath + 'templates/result.html',
+        .when('/session-result', {
+            templateUrl: config.basePath + 'templates/session-result.html',
             controller: 'ResultCtrl'
         })
+        .otherwise({
+            redirectTo: '/'
+        });
     ;
 }]);

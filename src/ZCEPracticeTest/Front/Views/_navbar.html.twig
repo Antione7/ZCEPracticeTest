@@ -11,14 +11,14 @@
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="{{ path('front-index') }}">{{ 'home'|trans }}</a></li>
+                <li><a href="{{ path('front-index') }}">{{ formatBasedOnTranslationMethod('home') }}</a></li>
                 {% if app.user is not null %}
                     <li>
-                        <a href="{{ path('session-index') }}#/">{{ 'my.sessions'|trans }}</a>
+                        <a href="{{ path('panel-index') }}">{{ formatBasedOnTranslationMethod('my.panel') }}</a>
                         <span class="navbar-unread"></span>
                     </li>
                 {% endif %}
-                <li><a href="{{ path('front-about') }}">{{ 'about'|trans }}</a></li>
+                <li><a href="{{ path('front-about') }}">{{ formatBasedOnTranslationMethod('about') }}</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right lang-flag" ng-controller="TranslateCtrl">
                 <li><button ng-click="changeLang('fr_FR');"><img src="/images/flag-france.png" alt="Français" title="Français" /></button></li>
@@ -27,8 +27,8 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if app.user is null %}
-                    <li><a href="{{ path('user.login') }}">{{ 'log.in'|trans }}</a></li>
-                    <li><a href="{{ path('user.register') }}">{{ 'create.account'|trans }}</a></li>
+                    <li><a href="{{ path('user.login') }}">{{ formatBasedOnTranslationMethod('log.in') }}</a></li>
+                    <li><a href="{{ path('user.register') }}">{{ formatBasedOnTranslationMethod('create.account') }}</a></li>
                 {% else %}
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -37,10 +37,10 @@
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="{{ path('user.view', {'id': app.user.id}) }}">{{ 'my.account'|trans }}</a></li>
-                            <li><a href="{{ path('session-index') }}">{{ 'my.sessions'|trans }}</a></li>
+                            <li><a href="{{ path('user.view', {'id': app.user.id}) }}">my.account</a></li>
+                            <li><a href="{{ path('panel-index') }}">{{ formatBasedOnTranslationMethod('my.panel') }}</a></li>
                             <li class="divider"></li>
-                            <li><a href="{{ path('user.logout') }}">{{ 'log.out'|trans }}</a></li>
+                            <li><a href="{{ path('user.logout') }}">{{ formatBasedOnTranslationMethod('log.out') }}</a></li>
                         </ul>
                     </li>
                 {% endif %}

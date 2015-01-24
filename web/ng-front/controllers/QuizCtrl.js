@@ -15,7 +15,7 @@ zcpe.controller('QuizCtrl', ['$scope', '$location', '$localStorage', '$controlle
         $localStorage.score = score;
         $localStorage.sessionData = null;
         
-        $location.path('/result');
+        $location.path('/session-result');
     };
     
     $scope.timerFinished = function () {

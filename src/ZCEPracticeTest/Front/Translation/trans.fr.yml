@@ -17,3 +17,4 @@ start.quiz: Démarrer le Questionnaire
 topics.validated.%count%: %count% / 10 Topic validé | %count% / 10 Topics validés
 your.score: Votre score
 your.answer: Votre Réponse
+my.panel: Mon tableau de bord

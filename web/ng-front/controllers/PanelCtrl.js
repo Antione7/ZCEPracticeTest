@@ -1,6 +1,6 @@
-zcpe.controller('SessionsCtrl', ['$scope', '$location', 'restApi', function ($scope, $location, restApi) {
+zcpe.controller('PanelCtrl', ['$scope', '$location', 'restApi', function ($scope, $location, restApi) {
     $scope.goToStartPage = function () {
-        $location.path('/new');
+        $location.path('/session-new');
     };
     
     $scope.goToSession = function (sessionId)

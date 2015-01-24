@@ -6,6 +6,7 @@
  * @category Controller
  * @package  Front
  * @author   Julien Maulny <jmaulny@darkmira.fr>
+ * @author   Cyrille Grandval <cgrandval@darkmira.fr>
  * @license  Darkmira <darkmira@darkmira.fr>
  * @link     www.darkmira.fr
  */
@@ -25,7 +26,7 @@ use Twig_Environment as Twig;
  * @license  Darkmira <darkmira@darkmira.fr>
  * @link     www.darkmira.fr
  */
-class SessionController
+class PanelController
 {
     /**
      * @var Twig
@@ -59,7 +60,7 @@ class SessionController
             'user' => $user,
         ));
         
-        return $this->twig->render('@session/index.html.twig', array(
+        return $this->twig->render('@panel/index.html.twig', array(
             'sessions' => $sessions,
         ));
     }
