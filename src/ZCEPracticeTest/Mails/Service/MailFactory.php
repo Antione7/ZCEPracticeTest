@@ -35,7 +35,7 @@ class MailFactory
     
     /**
      * @param Twig_Environment $templating
-     * @param array $sender
+     * @param array $mailParameters
      */
     public function __construct(Twig_Environment $templating, array $mailParameters)
     {
@@ -44,9 +44,7 @@ class MailFactory
     }
     
     /**
-     * @param array $to
      * @param string $subject
-     * @param string $body
      * 
      * @return Swift_Message
      */

@@ -24,6 +24,6 @@ class UserException extends ZCEPracticeTestException
 {
     public function __construct($message, $httpCode = 404)
     {
-        parent::__construct($message, $httpCode, null);
+        parent::__construct($message, $httpCode);
     }
 }

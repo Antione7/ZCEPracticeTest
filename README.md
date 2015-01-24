@@ -1,7 +1,7 @@
 ZCPE Practice Test
 ==================
 
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/cgrandval/ZCEPracticeTest/badges/quality-score.png?b=dev)](https://github.com/cgrandval/ZCEPracticeTest/?branch=dev)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/cgrandval/ZCEPracticeTest/badges/quality-score.png?b=dev)](https://scrutinizer-ci.com/g/cgrandval/ZCEPracticeTest)
 [![Build Status](https://travis-ci.org/cgrandval/ZCEPracticeTest.svg?branch=dev)](https://travis-ci.org/cgrandval/ZCEPracticeTest)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/9167277b-7707-4e10-bbad-3198d8a8d3f6/mini.png)](https://insight.sensiolabs.com/projects/9167277b-7707-4e10-bbad-3198d8a8d3f6)
 

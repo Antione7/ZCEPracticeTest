@@ -5,7 +5,6 @@ namespace ZCEPracticeTest\Silex\Provider;
 use Silex\ServiceProviderInterface;
 use Silex\Application;
 use ZCEPracticeTest\ImportExport\Service\QuestionImport;
-use ZCEPracticeTest\ImportExport\Command\ImportQuestionCommand;
 
 class ImportExportProvider implements ServiceProviderInterface
 {

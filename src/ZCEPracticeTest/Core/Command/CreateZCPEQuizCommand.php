@@ -71,7 +71,7 @@ class CreateZCPEQuizCommand extends Command
         if (null === $zcpeQuiz->getName()) {
             $output->writeln('.');
         } else {
-            $output->writeln(' with name "'.$name.'".');
+            $output->writeln(' with name "'.$zcpeQuiz->getName().'".');
         }
     }
 }

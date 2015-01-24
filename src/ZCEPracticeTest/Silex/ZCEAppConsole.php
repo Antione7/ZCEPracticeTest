@@ -23,7 +23,7 @@ class ZCEAppConsole extends Application
     /**
      * Constructor
      * 
-     * @param array $values The parameters or objects.
+     * @param SilexApplication $app
      */
     public function __construct(SilexApplication $app)
     {

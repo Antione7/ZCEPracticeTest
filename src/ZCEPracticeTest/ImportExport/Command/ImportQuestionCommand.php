@@ -6,14 +6,14 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Command\Command;
-use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use ZCEPracticeTest\Core\Entity\Question;
 use ZCEPracticeTest\ImportExport\Service\QuestionImport;
 
 class ImportQuestionCommand extends Command
 {
     /**
-     * @var EntityManager
+     * @var EntityManagerInterface
      */
     private $em;
     
@@ -23,9 +23,9 @@ class ImportQuestionCommand extends Command
     private $questionImport;
     
     /**
-     * @param EntityManager $em
+     * @param EntityManagerInterface $em
      */
-    public function __construct(EntityManager $em, QuestionImport $questionImport)
+    public function __construct(EntityManagerInterface $em, QuestionImport $questionImport)
     {
         parent::__construct();
         

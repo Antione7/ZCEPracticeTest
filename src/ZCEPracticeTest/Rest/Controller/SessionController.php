@@ -183,13 +183,9 @@ class SessionController
         }
         
         foreach ($answersData as $answerData) {
-            $answer = null;
-            
             if ($answerData->type == Question::TYPE_QCM) {
                 $answer = $this->answerFactory->createQCMAnswer($session, $answerData->questionId, $answerData->selected);
-            }
-            
-            if ($answerData->type == Question::TYPE_FREE) {
+            } else {
                 $answer = $this->answerFactory->createFreeAnswer($session, $answerData->questionId, $answerData->freeAnswer);
             }
             
