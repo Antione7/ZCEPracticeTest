@@ -26,6 +26,11 @@ class Quiz implements \JsonSerializable
      * @var integer
      */
     private $id;
+    
+    /**
+     * @var string
+     */
+    private $name;
 
     /**
      * @var QuizQuestion[]
@@ -55,7 +60,27 @@ class Quiz implements \JsonSerializable
     {
         return $this->id;
     }
+    
+    /**
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
 
+    /**
+     * @param string $name
+     * 
+     * @return Quiz
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+        
+        return $this;
+    }
+    
     /**
      * Add quizQuestions
      *
