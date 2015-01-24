@@ -57,8 +57,8 @@ class SessionController
         $user = $this->tokenInterface->getUser();
         $sessions = $this->sessionRepository->findBy(array(
             'user' => $user,
-        ));
-        
+        ), array('dateFinished' => 'DESC'));
+
         return $this->twig->render('@session/index.html.twig', array(
             'sessions' => $sessions,
         ));

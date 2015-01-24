@@ -6,6 +6,7 @@
  * @category Controller
  * @package  Rest
  * @author   Maxence Perrin <mperrin@darkmira.fr>
+ * @author   Cyrille Grandval <cgrandval@darkmira.fr>
  * @license  Darkmira <darkmira@darkmira.fr>
  * @link     www.darkmira.fr
  */
@@ -178,6 +179,8 @@ class SessionController
     }
     
     /**
+     * Return all the sessions passed for a user
+     * 
      * @return JsonResponse
      */
     public function getAllAction()
@@ -186,8 +189,8 @@ class SessionController
         
         $sessions = $this->sessionRepository->findBy(array(
             'user' => $user,
-        ));
-        
+        ), array('dateFinished' => 'DESC'));
+
         return new JsonResponse(array(
             'ok' => true,
             'sessions' => $sessions,
