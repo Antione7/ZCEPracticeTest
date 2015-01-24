@@ -1,7 +1,7 @@
 {% extends "@mails/layout.html.twig" %}
 
 {% block content %}
-<p style="width: 100%; background-color: {{ session.success ? '#2ecc71' : '#e74c3c' }}; text-align: center; padding: 40px 0px; color: white; border-radius: 5px;">
+<p style="width: 100%; background-color: {{ session.success ? '#2ecc71' : '#e74c3c' }}; text-align: center; padding: 40px 0px; color: white; border-radius: 5px; font-size: 28px;">
     {{ session.success ? 'PASS' : 'FAIL' }}
 </p>
 
@@ -43,6 +43,15 @@
         {% endif %}
     {% endif %}
 </p>
+
+<p>
+    {{ session.nbTopicsValidated }}
+    topic{{ session.nbTopicsValidated > 1 ? 's' : '' }}
+    validé{{ session.nbTopicsValidated > 1 ? 's' : '' }}
+    sur {{ session.topicScores|length }} :
+</p>
+
+{% include '@mails/_pass-fail-by-topics.html.twig' %}
 
 <p>
     Ce mail est envoyé suite à votre session du {{ session.dateFinished|date('d/m/Y') }}, à {{ session.dateFinished|date('G\\hi') }}.
