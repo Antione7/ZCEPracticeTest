@@ -1,7 +1,7 @@
 ZCEPracticeTest\Core\Entity\Quiz:
     type: entity
     table: zce_quiz
-    repositoryClass: ZCEPracticeTest\Core\Repository\Quiz
+    repositoryClass: ZCEPracticeTest\Core\Repository\QuizRepository
     id:
         id:
             type: integer
