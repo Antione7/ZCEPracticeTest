@@ -7,6 +7,20 @@ database:
         password:   root
         charset:    utf8
 
+swiftmailer:
+    server:
+        host:       localhost
+        port:       25
+        username:   ~
+        password:   ~
+        encryption: ~
+        auth_mode:  ~
+    mailParameters:
+        sender:
+            email: noreply@darkmira.fr
+            name: ZCE practice test
+        subjectTag: ZCEPracticeTest
+
 translation:
     locale: fr
     locale_fallbacks: [en]

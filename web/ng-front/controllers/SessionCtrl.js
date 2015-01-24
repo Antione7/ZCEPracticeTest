@@ -26,8 +26,8 @@ zcpe.controller('SessionCtrl', ['$scope', '$routeParams', 'restApi', function ($
     /**
      * Return minutes between date0 and date1
      * 
-     * @param {string} dateStart
-     * @param {string} dateFinished
+     * @param {string} date0
+     * @param {string} date1
      * 
      * @returns {integer}
      */

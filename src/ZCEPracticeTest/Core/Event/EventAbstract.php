@@ -25,4 +25,14 @@ use Symfony\Component\EventDispatcher\Event;
 abstract class EventAbstract extends Event
 {
     const QUESTION_INIT = 'event.zce.questions.init';
+    
+    /**
+     * Event dispatched when a session has been ended
+     * and score data is received.
+     * 
+     * Listener receive a SessionEvent instance.
+     * 
+     * @var string
+     */
+    const SESSION_ENDED = 'event.zce.session.ended';
 }

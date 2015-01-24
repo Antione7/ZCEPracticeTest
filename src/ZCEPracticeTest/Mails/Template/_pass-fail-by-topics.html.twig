@@ -1,0 +1,15 @@
+<table><tbody>
+{% for topicScore in session.topicScores %}
+    <tr>
+        <td>
+            <p>{{ topicScore.topic.entitled }}</p>
+        </td>
+        <td style="width: 50px"></td>
+        <td>
+            <p style="width: 100%; background-color: {{ topicScore.success ? '#2ecc71' : '#e74c3c' }}; text-align: center; padding: 6px 20px; color: white; border-radius: 5px;">
+                {{ topicScore.success ? 'PASS' : 'FAIL' }}
+            </p>
+        </td>
+    </tr>
+{% endfor %}
+</tbody></table>

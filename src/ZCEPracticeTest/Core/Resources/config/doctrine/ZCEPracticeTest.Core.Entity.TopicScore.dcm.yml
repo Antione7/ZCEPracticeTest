@@ -1,0 +1,23 @@
+ZCEPracticeTest\Core\Entity\TopicScore:
+    type: entity
+    table: zce_topic_score
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        success:
+            type: boolean
+    manyToOne:
+        session:
+            targetEntity: ZCEPracticeTest\Core\Entity\Session
+            cascade: {}
+            inversedBy: topicScores
+            orphanRemoval: false
+        topic:
+            targetEntity: ZCEPracticeTest\Core\Entity\Topic
+            cascade: {}
+            orphanRemoval: false
+    lifecycleCallbacks: {  }
