@@ -35,4 +35,14 @@ abstract class EventAbstract extends Event
      * @var string
      */
     const SESSION_ENDED = 'event.zce.session.ended';
+    
+    /**
+     * Event dispatched before a session creation.
+     * If a quiz is set to the session, it will be used.
+     * 
+     * Listener receive a SessionEvent instance.
+     * 
+     * @var string
+     */
+    const BEFORE_CREATE_SESSION = 'event.zce.create.session.before';
 }

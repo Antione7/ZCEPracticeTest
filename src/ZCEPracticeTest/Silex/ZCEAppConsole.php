@@ -9,6 +9,7 @@ use Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper;
 use Doctrine\ORM\Tools\Console\ConsoleRunner;
 use Silex\Application as SilexApplication;
 use ZCEPracticeTest\Core\Command\LoadFixturesCommand;
+use ZCEPracticeTest\Core\Command\CreateZCPEQuizCommand;
 use ZCEPracticeTest\Silex\Provider\ImportExportProvider;
 use ZCEPracticeTest\ImportExport\Command\ImportQuestionCommand;
 
@@ -48,6 +49,7 @@ class ZCEAppConsole extends Application
         $em = $this->silexApp['orm.em'];
         
         $this->add(new LoadFixturesCommand($em));
+        $this->add(new CreateZCPEQuizCommand($em, $this->silexApp['zce.core.zcpe_quiz_factory']));
         $this->add(new ImportQuestionCommand($em, $this->silexApp['zce.import_export.import_question']));
         
         // Register Doctrine ORM commands

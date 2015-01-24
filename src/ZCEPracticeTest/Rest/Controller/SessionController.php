@@ -96,14 +96,14 @@ class SessionController
      */
     public function createAction()
     {
-        $user = $this->loadUser();
-        $quiz = $this->zcpeQuizFactory->createStandardZCPEQuiz();
         $session = new Session();
+        $session->setUser($this->loadUser());
         
-        $session
-            ->setUser($user)
-            ->setQuiz($quiz)
-        ;
+        $this->dispatcher->dispatch(SessionEvent::BEFORE_CREATE_SESSION, new SessionEvent($session));
+        
+        if (null === $session->getQuiz()) {
+            $session->setQuiz($this->zcpeQuizFactory->createStandardZCPEQuiz());
+        }
         
         $this->em->persist($session);
         $this->em->flush();

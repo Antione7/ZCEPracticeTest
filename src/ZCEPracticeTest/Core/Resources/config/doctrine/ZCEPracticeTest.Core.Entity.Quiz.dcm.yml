@@ -1,7 +1,7 @@
 ZCEPracticeTest\Core\Entity\Quiz:
     type: entity
     table: zce_quiz
-    repositoryClass: ZCEPracticeTest\Core\Repository\Quiz
+    repositoryClass: ZCEPracticeTest\Core\Repository\QuizRepository
     id:
         id:
             type: integer
@@ -9,6 +9,10 @@ ZCEPracticeTest\Core\Entity\Quiz:
             generator:
                 strategy: IDENTITY
     fields:
+        name:
+            type: string
+            length: 63
+            nullable: true
     oneToMany:
         quizQuestions:
             targetEntity: ZCEPracticeTest\Core\Entity\QuizQuestion
