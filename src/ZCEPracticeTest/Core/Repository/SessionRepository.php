@@ -25,10 +25,20 @@ use Doctrine\ORM\EntityRepository;
  */
 class SessionRepository extends EntityRepository
 {
+    /**
+     * Get a fully loaded session (with relations)
+     * 
+     * @param integer $sessionId
+     * @param integer $userId
+     * 
+     * @return \ZCEPracticeTest\Core\Entity\Session
+     */
     public function getFullSession($sessionId, $userId)
     {
         $q = $this->createQueryBuilder('s')
             ->addSelect('u, q, a, quest, t, qc, ac')
+            ->leftJoin('s.topicScores', 'ts')
+            ->leftJoin('ts.topic', 'tst')
             ->leftJoin('s.user', 'u')
             ->leftJoin('s.quiz', 'q')
             ->leftJoin('s.answers', 'a')

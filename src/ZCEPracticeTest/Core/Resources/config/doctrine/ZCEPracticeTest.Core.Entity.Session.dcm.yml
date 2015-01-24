@@ -43,4 +43,10 @@ ZCEPracticeTest\Core\Entity\Session:
                 - persist
             orphanRemoval: false
             orderBy: null
+        topicScores:
+            targetEntity: ZCEPracticeTest\Core\Entity\TopicScore
+            mappedBy: session
+            cascade:
+                - persist
+            orphanRemoval: false
     lifecycleCallbacks: {  }

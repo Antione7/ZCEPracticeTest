@@ -53,6 +53,11 @@ class Session implements \JsonSerializable
     private $answers;
 
     /**
+     * @var TopicScore[]
+     */
+    private $topicScores;
+
+    /**
      * @var User
      */
     private $user;
@@ -69,6 +74,7 @@ class Session implements \JsonSerializable
     {
         $this->setDateStart(new \DateTime());
         $this->answers = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->topicScores = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -204,6 +210,39 @@ class Session implements \JsonSerializable
     public function getAnswers()
     {
         return $this->answers;
+    }
+
+    /**
+     * Add topicScores
+     *
+     * @param TopicScore $topicScores
+     * @return Session
+     */
+    public function addTopicScore(TopicScore $topicScores)
+    {
+        $this->topicScores[] = $topicScores;
+
+        return $this;
+    }
+
+    /**
+     * Remove topicScores
+     *
+     * @param TopicScore $topicScores
+     */
+    public function removeTopicScore(TopicScore $topicScores)
+    {
+        $this->topicScores->removeElement($topicScores);
+    }
+
+    /**
+     * Get topicScores
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getTopicScores()
+    {
+        return $this->topicScores;
     }
 
     /**
