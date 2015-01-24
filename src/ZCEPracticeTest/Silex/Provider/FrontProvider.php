@@ -22,7 +22,8 @@ class FrontProvider implements ServiceProviderInterface, ControllerProviderInter
             return new SessionController(
                 $app['twig'],
                 $app['security']->getToken(),
-                $app['orm.em']->getRepository('ZCE:Session')
+                $app['orm.em']->getRepository('ZCE:Session'),
+                $app['url_generator']->generate('front-index')
             );
         });
         
