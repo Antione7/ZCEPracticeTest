@@ -65,7 +65,7 @@ class FormatBasedOnTranslationMethodExtension extends \Twig_Extension
      */
     public function getControllerName ()
     {
-        $pattern = '/\.([^.]*).controller/';
+        $pattern = '/\.?([^.]*).controller/';
         $matches = array();
         preg_match($pattern, $this->request->get('_controller'), $matches);
         
