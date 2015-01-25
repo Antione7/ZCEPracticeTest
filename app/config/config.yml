@@ -18,5 +18,3 @@ simple.user:
     userCustomFieldsTableName: zce_user_custom_fields
     templates:
         layout: @views/User/layout.html.twig
-
-swiftmailer: ~

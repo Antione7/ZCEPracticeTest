@@ -13,6 +13,7 @@ use ZCEPracticeTest\Core\Service\AnswerFactory;
 use ZCEPracticeTest\Silex\Provider\RestAPIProvider;
 use ZCEPracticeTest\Silex\Provider\FrontProvider;
 use ZCEPracticeTest\Silex\Provider\CreditsSystemProvider;
+use ZCEPracticeTest\Silex\Provider\MailsProvider;
 
 class ZCEApp extends Application
 {
@@ -37,6 +38,7 @@ class ZCEApp extends Application
         $this->registerRestAPI();
         $this->registerFront();
         $this->registerCreditsSystem();
+        $this->registerMails();
     }
     
     /**
@@ -77,7 +79,6 @@ class ZCEApp extends Application
         $this['config'] = $config;
         
         $this['security.firewalls'] = $config['security']['firewalls'];
-        $this['swiftmailer.options'] = $config['swiftmailer'];
     }
     
     /**
@@ -91,7 +92,9 @@ class ZCEApp extends Application
         $this->register(new \Silex\Provider\ServiceControllerServiceProvider());
         $this->register(new \Silex\Provider\UrlGeneratorServiceProvider());
         $this->register(new \Silex\Provider\TwigServiceProvider());
-        $this->register(new \Silex\Provider\SwiftmailerServiceProvider());
+        $this->register(new \Silex\Provider\SwiftmailerServiceProvider(), array(
+            'swiftmailer.options' => $this['parameters']['swiftmailer']['server'],
+        ));
         $this->register(new \Silex\Provider\TranslationServiceProvider(), $this['parameters']['translation']);
     }
     
@@ -212,5 +215,10 @@ class ZCEApp extends Application
     private function registerCreditsSystem()
     {
         $this->register(new CreditsSystemProvider());
+    }
+    
+    private function registerMails()
+    {
+        $this->register(new MailsProvider());
     }
 }

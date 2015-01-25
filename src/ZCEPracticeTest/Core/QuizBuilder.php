@@ -72,8 +72,6 @@ class QuizBuilder
     /**
      * Shuffle an array preserving keys
      * 
-     * @param array $array
-     * 
      * @return QuizBuilder
      */
     public function shuffleQuestions()

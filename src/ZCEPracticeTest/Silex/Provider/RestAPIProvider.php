@@ -24,7 +24,8 @@ class RestAPIProvider implements ServiceProviderInterface, ControllerProviderInt
                 $app['zce.core.zcpe_quiz_factory'],
                 $app['zce.core.answer_factory'],
                 $app['security']->getToken(),
-                $app['orm.em']
+                $app['orm.em'],
+                $app['dispatcher']
             );
         });
     }
