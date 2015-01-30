@@ -62,13 +62,13 @@
         </div>
 
         <ul class="pager">
-            <li class="previous" ng-if="showPrevious()" ng-click="previous()">
+            <li class="previous" ng-if="showPrevious()" ng-click="previous();questionChange()">
                 <a class="quiz-previous-button" href="">&larr; {{ 'previous'|translate }}</a>
             </li>
-            <li class="next" ng-if="showNext()" ng-click="next()">
+            <li class="next" ng-if="showNext()" ng-click="next();questionChange()">
                 <a class="quiz-next-button" href="">{{ 'next'|translate }} &rarr;</a>
             </li>
-            <li class="next" ng-if="!hasNext()" ng-click="finish()">
+            <li class="next" ng-if="!hasNext()" ng-click="finish();questionChange()">
                 <a class="quiz-finish-button" href="">{{ 'finish'|translate }} &rarr;</a>
             </li>
         </ul>
