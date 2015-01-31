@@ -10,6 +10,7 @@ zcpe.config(['$translateProvider', function ($translateProvider) {
         'back.to.sessions': 'Retourner à l\'écran des sessions',
         'create.account': 'Créer un compte',
         'creating.quiz': 'Génération du questionnaire...',
+        'continue.current.session': 'Continuer la session en cours',
         'correct.answer': 'Solution',
         'current.session': 'Session en cours',
         'duration': 'Durée',

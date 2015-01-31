@@ -2,6 +2,13 @@ zcpe.controller('StartPageCtrl', ['$scope', '$location', '$localStorage', 'restA
     $scope.introTemplate = config.basePath + 'partials/intro.html';
     $scope.startDisabled = false;
     
+    $scope.hasCurrentSession = sessionPersister.hasSession();
+    
+    $scope.goToCurrentSession = function ()
+    {
+        $location.path('/quiz');
+    };
+    
     $scope.start = function () {
         sessionPersister.delete();
         $scope.startDisabled = true;
