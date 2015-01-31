@@ -35,5 +35,7 @@ zcpe.controller('QuizCtrl', ['$scope', '$location', '$localStorage', '$controlle
         
         $scope.quizz = currentSession.quizz;
         $scope.currentQuestion = $scope.quizz.questions[currentSession.position];
+    } else {
+        sessionPersister.save($scope.quizz, $scope.questionIndex());
     }
 }]);

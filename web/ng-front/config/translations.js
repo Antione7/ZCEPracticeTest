@@ -4,12 +4,14 @@
 zcpe.config(['$translateProvider', function ($translateProvider) {
     $translateProvider.translations('fr_FR', {
         '_.minutes': 'minutes',
+        '_.remaining.minutes': 'minutes restantes',
         'about': 'À propos',
         'all.es': 'Toutes',
         'back.to.sessions': 'Retourner à l\'écran des sessions',
         'create.account': 'Créer un compte',
         'creating.quiz': 'Génération du questionnaire...',
         'correct.answer': 'Solution',
+        'current.session': 'Session en cours',
         'duration': 'Durée',
         'errors.only': 'Erreurs seulement',
         'expected.answer': 'Réponse attendue',

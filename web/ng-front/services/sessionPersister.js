@@ -1,4 +1,6 @@
 zcpe.service('sessionPersister', ['$sessionStorage', function ($localStorage) {
+    var _self = this;
+    
     /**
      * Persist user answers in local storage
      * 
@@ -29,6 +31,12 @@ zcpe.service('sessionPersister', ['$sessionStorage', function ($localStorage) {
      */
     this.load = function ()
     {
+        console.log(_self.hasSession());
+        
+        if (!_self.hasSession()) {
+            return null;
+        }
+        
         var quizz = $localStorage.quizz;
         
         refreshRadioAnswers(quizz);
@@ -68,5 +76,19 @@ zcpe.service('sessionPersister', ['$sessionStorage', function ($localStorage) {
                 }
             }
         });
+    };
+    
+    /**
+     * Delete current session if over
+     */
+    deleteIfTimeOver();
+    
+    function deleteIfTimeOver() {
+        if (_self.hasSession()) {
+            var data = _self.load();
+            if (getUTCTimestamp() >= (data.quizz.dateStart + data.quizz.time * 1000)) {
+                _self.delete();
+            }
+        }
     }
 }]);

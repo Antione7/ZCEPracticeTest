@@ -1,8 +1,9 @@
-zcpe.controller('StartPageCtrl', ['$scope', '$location', '$localStorage', 'restApi', 'popup', function ($scope, $location, $localStorage, restApi, popup) {
+zcpe.controller('StartPageCtrl', ['$scope', '$location', '$localStorage', 'restApi', 'popup', 'sessionPersister', function ($scope, $location, $localStorage, restApi, popup, sessionPersister) {
     $scope.introTemplate = config.basePath + 'partials/intro.html';
     $scope.startDisabled = false;
     
     $scope.start = function () {
+        sessionPersister.delete();
         $scope.startDisabled = true;
         
         restApi.createSession(function (data) {
