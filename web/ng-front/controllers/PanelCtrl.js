@@ -22,6 +22,12 @@ zcpe.controller('PanelCtrl', ['$scope', '$location', 'restApi', 'sessionPersiste
         $location.path('/quiz');
     };
     
+    $scope.timerFinished = function ()
+    {
+        $scope.hasCurrentSession = false;
+        sessionPersister.delete();
+    };
+    
     restApi.getSessions(function (data) {
         $scope.sessions = data.sessions;
     });
