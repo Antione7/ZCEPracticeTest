@@ -42,7 +42,7 @@ zcpe.service('quizCreator', function () {
         var quiz = {
             title: 'Title',
             description: 'Description',
-            dateStart: new Date(data.dateStart.date.replace(/-/g, '/')).getTime() + 3600000,
+            dateStart: new Date(data.dateStart.date.replace(/-/g, '/')).getTime(),
             time: 5400, // 90 minutes
             questions: questions
         };
