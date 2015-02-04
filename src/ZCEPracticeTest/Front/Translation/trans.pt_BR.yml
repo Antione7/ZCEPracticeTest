@@ -1,2 +1,43 @@
-on.%date%.at.%time%: '%date% at %time%'
-topics.validated.%count%: %count% / 10 Topic passed | %count% / 10 Topics passed
+_.minutes: minutos
+_.remaining.minutes: minutos restantes
+about: Sobre
+all.es: Todas
+back.to.sessions: Voltar na tela das sessões
+create.account: Criar uma conta
+creating.quiz: Geração do questionário...
+continue.current.session: Continuer la session en cours
+current.session: Sessão corrente
+duration: Duração
+errors.only: Erros somente
+expected.answer: Resposta esperada
+finish: Concluír
+home: Início
+incorrect.answers: Respostas erradas
+log.in: Login
+log.out: Logout
+my.account: Minha conta
+my.panel: Meu painel
+my.sessions: Minhas sessões
+need.credit: Você não tem mais créditos
+new.session: Nova sessão
+next: Seguinte
+on.date.at.time: at {{date}} as {{time}}
+passed.at: Passada dia
+previous: Anterior
+result: Resultado
+session: Sessão
+start.quiz: Iniciar o questionário
+topics.validated: Tópicos validados
+your.score: Sua nota
+your.answer: Sua resposta
+topics.validated.%count%: %count% / 10 tópico validado | %count% / 10 tópicos validados
+about.presentation: >
+  <p>
+    <strong>CertiPHP</strong> é uma aplicação online destinada aos desenvolvedores que desejam se apresentar ao exame da certificação Zend PHP 5.5 com objetivo de conseguir o título de Zend Certified PHP Engineer (ZCPE). Atualmente em versão bêta, a aplicação permite exercer-se sobre 10 tópicos com mais de 300 perguntas inspiradas na prova oficial. Essas perguntas foram escritas por desenvolvedores e treinadores certificados e validadas por Cyrille Grandval (certificado ZCE 5.3 & ZCPE, treinador & professor, autor de um livro sobre a certificação ZCPE).
+  </p>
+  <p>
+    Nas mesmas condições da prova oficial, vocês respondem às 70 perguntas, em inglês, em um tempo limitado de 90 minutos.
+  </p>
+  <p>
+    Assim que o teste for concluído, um relatório sintético é gerado e permite-lhe de conhecer seus sucessos por tópico e de volter sobre suas respostas erradas. Graças a isso, você identifica seus pontos fortes e fracos para trabalhar nesses pontos específicos. Assim, você pode consolidar seus conhecimentos e aprofundar suas lacunas com vista de conseguir o exame. Seu painel permite-lhe de voltar sobre as sessões anteriores para reforçar o seu progresso.
+  </p>
