@@ -37,10 +37,10 @@ class QuestionQCMChoiceLoad extends AbstractFixture implements OrderedFixtureInt
             $o[2]->setEntitled('HelloWorld');
             $o[3]->setEntitled('A fatal error');
             
-            $o[0]->setIsValid(false);
-            $o[1]->setIsValid(false);
-            $o[2]->setIsValid(true);
-            $o[3]->setIsValid(false);
+            $o[0]->setValid(false);
+            $o[1]->setValid(false);
+            $o[2]->setValid(true);
+            $o[3]->setValid(false);
             
             for ($j = 0; $j < 4; $j++) {
                 $o[$j]
@@ -66,11 +66,11 @@ class QuestionQCMChoiceLoad extends AbstractFixture implements OrderedFixtureInt
             $o[3]->setEntitled('$3x');
             $o[4]->setEntitled('$my3Var_');
             
-            $o[0]->setIsValid(true);
-            $o[1]->setIsValid(true);
-            $o[2]->setIsValid(false);
-            $o[3]->setIsValid(false);
-            $o[4]->setIsValid(true);
+            $o[0]->setValid(true);
+            $o[1]->setValid(true);
+            $o[2]->setValid(false);
+            $o[3]->setValid(false);
+            $o[4]->setValid(true);
             
             for ($j = 0; $j < 5; $j++) {
                 $o[$j]
