@@ -70,7 +70,7 @@ class ZCPEQuizFactory
         $percentages = array();
         
         foreach ($topics as $topic) {
-            if ($topic->getIsPrimary()) {
+            if ($topic->getPrimary()) {
                 $percentages []= array($topic, 0.4 / 3);
             } else {
                 $percentages []= array($topic, 0.6 / 7);

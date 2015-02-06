@@ -90,7 +90,7 @@ class Topic implements \JsonSerializable
      * @param boolean $primary
      * @return Topic
      */
-    public function setIsPrimary($primary)
+    public function setPrimary($primary)
     {
         $this->primary = $primary;
 
@@ -102,7 +102,7 @@ class Topic implements \JsonSerializable
      *
      * @return boolean 
      */
-    public function getIsPrimary()
+    public function getPrimary()
     {
         return $this->primary;
     }
@@ -148,7 +148,7 @@ class Topic implements \JsonSerializable
     {
         return array(
             'id' => $this->getId(),
-            'primary' => $this->getIsPrimary(),
+            'primary' => $this->getPrimary(),
             'entitled' => $this->getEntitled(),
         );
     }
