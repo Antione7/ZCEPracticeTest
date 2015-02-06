@@ -91,7 +91,7 @@ class QuestionImportTest extends \PHPUnit_Framework_TestCase
         for ($i = 0; $i < 10; $i++) {
             $topic = new Topic();
             
-            $topic->setIsPrimary($i < 3);
+            $topic->setPrimary($i < 3);
             $topic->setEntitled($names[$i]);
             
             $this->topics []= $topic;
