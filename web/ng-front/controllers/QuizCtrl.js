@@ -30,6 +30,18 @@ zcpe.controller('QuizCtrl', ['$scope', '$location', '$localStorage', '$controlle
     $scope.init(quizCreator.createQuiz(sessionData));
     $scope.start();
     
+    function isChecked(answer) {
+        return answer.checked;
+    };
+    
+    $scope.nbChecked = function (question) {
+        return question.answers.filter(isChecked).length;
+    };
+    
+    $scope.hasCheckedMaxChoices = function (question) {
+        return $scope.nbChecked(question) >= question.nbAnswers;
+    };
+    
     if (sessionPersister.hasSession()) {
         var currentSession = sessionPersister.load();
         
