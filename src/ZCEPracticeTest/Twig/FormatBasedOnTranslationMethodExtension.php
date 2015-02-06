@@ -2,6 +2,7 @@
 
 namespace ZCEPracticeTest\Twig;
 
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Translation\Translator;
 
 /**
@@ -12,8 +13,16 @@ use Symfony\Component\Translation\Translator;
  */
 class FormatBasedOnTranslationMethodExtension extends \Twig_Extension
 {
+    /**
+     * @var Translator
+     */
     protected $translator;
-
+    
+    /**
+     * @var Request
+     */
+    protected $request;
+    
     public function __construct (\Silex\Application $app)
     {
         $this->translator = $app['translator'];
