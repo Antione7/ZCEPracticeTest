@@ -18,7 +18,7 @@ zcpe.service('quizCreator', function () {
                     answers.push({
                         id: questionQCMChoice.id,
                         text: questionQCMChoice.entitled,
-                        correct: questionQCMChoice.isValid
+                        correct: questionQCMChoice.valid
                     });
                 });
             }

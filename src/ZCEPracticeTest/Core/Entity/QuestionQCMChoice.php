@@ -42,7 +42,7 @@ class QuestionQCMChoice implements \JsonSerializable
     /**
      * @var boolean
      */
-    private $isValid;
+    private $valid;
 
     /**
      * @var Question
@@ -84,26 +84,26 @@ class QuestionQCMChoice implements \JsonSerializable
     }
 
     /**
-     * Set isValid
+     * Set valid
      *
-     * @param boolean $isValid
+     * @param boolean $valid
      * @return QuestionQCMChoice
      */
-    public function setIsValid($isValid)
+    public function setValid($valid)
     {
-        $this->isValid = $isValid;
+        $this->valid = $valid;
 
         return $this;
     }
 
     /**
-     * Get isValid
+     * Get valid
      *
      * @return boolean 
      */
-    public function getIsValid()
+    public function getValid()
     {
-        return $this->isValid;
+        return $this->valid;
     }
 
     /**
@@ -139,7 +139,7 @@ class QuestionQCMChoice implements \JsonSerializable
         return array(
             'id' => $this->getId(),
             'entitled' => $this->getEntitled(),
-            'isValid' => $this->getIsValid(),
+            'valid' => $this->getValid(),
         );
     }
 }

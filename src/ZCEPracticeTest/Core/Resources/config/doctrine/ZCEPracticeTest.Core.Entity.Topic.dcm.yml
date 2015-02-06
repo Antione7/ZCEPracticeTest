@@ -12,7 +12,7 @@ ZCEPracticeTest\Core\Entity\Topic:
         entitled:
             type: string
             length: 255
-        isPrimary:
+        primary:
             type: boolean
     oneToMany:
         questions:
