@@ -2,8 +2,6 @@
 
 namespace ZCEPracticeTest\Twig;
 
-use Symfony\Component\Translation\Translator;
-
 /**
  * Twig extension to format a string based
  * on the translation method (with Twig or AngularJS)
@@ -12,8 +10,23 @@ use Symfony\Component\Translation\Translator;
  */
 class FormatBasedOnTranslationMethodExtension extends \Twig_Extension
 {
+    /**
+     * Translator object
+     * @var \Symfony\Component\Translation\Translator $translator
+     */
     protected $translator;
 
+    /**
+     * Request object
+     * @var \Symfony\Component\HttpFoundation\Request $request
+     */
+    protected $request;
+
+    /**
+     * 
+     * @param \Silex\Application $app
+     * @param \Symfony\Component\Translation\Translator $translator
+     */
     public function __construct (\Silex\Application $app)
     {
         $this->translator = $app['translator'];
@@ -47,7 +60,6 @@ class FormatBasedOnTranslationMethodExtension extends \Twig_Extension
      * with Twig or AngularJS
      * 
      * @param string $sStringToTranslate
-     * @param bool $bUseAngularJS
      * @return string
      */
     public function formatBasedOnTranslationMethod ($sStringToTranslate)

@@ -11,7 +11,7 @@ use ZCEPracticeTest\Front\Controller\FrontController;
 use ZCEPracticeTest\Front\Controller\PanelController;
 use ZCEPracticeTest\Twig\FormatBasedOnTranslationMethodExtension;
 
-class FrontProvider implements ServiceProviderInterface, ControllerProviderInterface
+class FrontProvider implements ServiceProviderInterface
 {
     public function register(Application $app)
     {
@@ -64,29 +64,5 @@ class FrontProvider implements ServiceProviderInterface, ControllerProviderInter
             $app['twig.loader.filesystem']->addPath($app['project.root'] . '/src/ZCEPracticeTest/Front/Views/Front/', 'front');
             $app['twig.loader.filesystem']->addPath($app['project.root'] . '/src/ZCEPracticeTest/Front/Views/Panel/', 'panel');
         }
-    }
-    
-    public function connect(Application $app)
-    {
-        $controllers = $app['controllers_factory'];
-        
-        $controllers->value('locale', $app['locale']);
-        
-        $controllers
-            ->get('/', 'zce.front.front.controller:indexAction')
-            ->bind('front-index')
-        ;
-        
-        $controllers
-            ->get('/about', 'zce.front.front.controller:aboutAction')
-            ->bind('front-about')
-        ;
-        
-        $controllers
-            ->get('/panel', 'zce.front.panel.controller:indexAction')
-            ->bind('panel-index')
-        ;
-
-        return $controllers;
     }
 }

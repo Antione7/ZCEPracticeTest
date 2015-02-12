@@ -15,6 +15,10 @@ use ZCEPracticeTest\Silex\Provider\FrontProvider;
 use ZCEPracticeTest\Silex\Provider\CreditsSystemProvider;
 use ZCEPracticeTest\Silex\Provider\MailsProvider;
 
+use Symfony\Component\Config\FileLocator;
+use Symfony\Component\Routing\Loader\YamlFileLoader;
+use Symfony\Component\Routing\RouteCollection;
+
 class ZCEApp extends Application
 {
     /**
@@ -39,6 +43,7 @@ class ZCEApp extends Application
         $this->registerFront();
         $this->registerCreditsSystem();
         $this->registerMails();
+        $this->registerRoutes();
     }
     
     /**
@@ -80,7 +85,7 @@ class ZCEApp extends Application
         
         $this['security.firewalls'] = $config['security']['firewalls'];
     }
-    
+
     /**
      * Register all needed providers
      */
@@ -199,17 +204,14 @@ class ZCEApp extends Application
     private function registerRestAPI()
     {
         $restAPIProvider = new RestAPIProvider();
-        
+
         $this->register($restAPIProvider);
         $this->mount('/api', $restAPIProvider);
     }
     
     private function registerFront()
     {
-        $frontProvider = new FrontProvider();
-        
-        $this->register($frontProvider);
-        $this->mount('/', $frontProvider);
+        $frontProvider = $this->register(new FrontProvider());
     }
     
     private function registerCreditsSystem()
@@ -220,5 +222,16 @@ class ZCEApp extends Application
     private function registerMails()
     {
         $this->register(new MailsProvider());
+    }
+    
+    private function registerRoutes()
+    {
+        $this['routes'] = $this->extend('routes', function (RouteCollection $routes, Application $app) {
+            $loader     = new YamlFileLoader(new FileLocator($app['project.root'] . '/app/config'));
+            $collection = $loader->load('routes.yml');
+            $routes->addCollection($collection);
+        
+            return $routes;
+        });
     }
 }
