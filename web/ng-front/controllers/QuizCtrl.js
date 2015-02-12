@@ -1,11 +1,15 @@
-zcpe.controller('QuizCtrl', ['$scope', '$location', '$localStorage', '$controller', 'evaluator', 'quizCreator', 'restApi', function ($scope, $location, $localStorage, $controller, evaluator, quizCreator, restApi) {
+zcpe.controller('QuizCtrl', ['$scope', '$location', '$localStorage', '$controller', 'evaluator', 'quizCreator', 'restApi', 'sessionPersister', function ($scope, $location, $localStorage, $controller, evaluator, quizCreator, restApi, sessionPersister) {
     var sessionData = $localStorage.sessionData;
     
     $controller('QuizzCtrl', {$scope: $scope});
     
+    $scope.questionChange = function () {
+        sessionPersister.save($scope.quizz, $scope.questionIndex());
+    };
+    
+    var parentFinish = $scope.finish;
     $scope.finish = function () {
-        $scope.currentQuestion = null;
-        $scope.finished = true;
+        parentFinish();
         
         var score = evaluator.evaluate($scope.quizz);
         
@@ -14,6 +18,7 @@ zcpe.controller('QuizCtrl', ['$scope', '$location', '$localStorage', '$controlle
         
         $localStorage.score = score;
         $localStorage.sessionData = null;
+        sessionPersister.delete();
         
         $location.path('/session-result');
     };
@@ -24,4 +29,25 @@ zcpe.controller('QuizCtrl', ['$scope', '$location', '$localStorage', '$controlle
     
     $scope.init(quizCreator.createQuiz(sessionData));
     $scope.start();
+    
+    function isChecked(answer) {
+        return answer.checked;
+    };
+    
+    $scope.nbChecked = function (question) {
+        return question.answers.filter(isChecked).length;
+    };
+    
+    $scope.hasCheckedMaxChoices = function (question) {
+        return $scope.nbChecked(question) >= question.nbAnswers;
+    };
+    
+    if (sessionPersister.hasSession()) {
+        var currentSession = sessionPersister.load();
+        
+        $scope.quizz = currentSession.quizz;
+        $scope.currentQuestion = $scope.quizz.questions[currentSession.position];
+    } else {
+        sessionPersister.save($scope.quizz, $scope.questionIndex());
+    }
 }]);

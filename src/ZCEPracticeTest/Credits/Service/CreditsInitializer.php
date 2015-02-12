@@ -11,7 +11,6 @@
  */
 namespace ZCEPracticeTest\Credits\Service;
 
-use Doctrine\Common\Persistence\ObjectManager;
 use ZCEPracticeTest\Core\Entity\User;
 use ZCEPracticeTest\Credits\Entity\Credits;
 

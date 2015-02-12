@@ -19,10 +19,11 @@ Developed by [Darkmira Brasil] (http://www.darkmira.com.br/) and [Darkmira] (htt
 - Passing a quiz
 - Timer
 - Questions:
-    - Multiple answer (Choose 1 or N answers)
+    - Multiple answers (Choose 1 or N answers)
     - Free answer (Type a word)
 - See if you passed the test
 - See which topics you failed
+- Review your answers you failed
 
 
 ## License

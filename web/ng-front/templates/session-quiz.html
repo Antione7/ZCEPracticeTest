@@ -44,7 +44,7 @@
             </div>
             <div class="form-group" ng-show="currentQuestion.type == 'checkbox'">
                 <label class="checkbox" ng-repeat="answer in currentQuestion.answers">
-                    <input type="checkbox" class="custom-checkbox" ng-model="answer.checked"/>
+                    <input type="checkbox" class="custom-checkbox" ng-model="answer.checked" ng-disabled="!answer.checked && hasCheckedMaxChoices(currentQuestion)" />
                     <span class="icons">
                         <span class="icon-unchecked"></span>
                         <span class="icon-checked"></span>
@@ -62,13 +62,13 @@
         </div>
 
         <ul class="pager">
-            <li class="previous" ng-if="showPrevious()" ng-click="previous()">
+            <li class="previous" ng-if="showPrevious()" ng-click="previous();questionChange()">
                 <a class="quiz-previous-button" href="">&larr; {{ 'previous'|translate }}</a>
             </li>
-            <li class="next" ng-if="showNext()" ng-click="next()">
+            <li class="next" ng-if="showNext()" ng-click="next();questionChange()">
                 <a class="quiz-next-button" href="">{{ 'next'|translate }} &rarr;</a>
             </li>
-            <li class="next" ng-if="!hasNext()" ng-click="finish()">
+            <li class="next" ng-if="!hasNext()" ng-click="finish();questionChange()">
                 <a class="quiz-finish-button" href="">{{ 'finish'|translate }} &rarr;</a>
             </li>
         </ul>

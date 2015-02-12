@@ -91,7 +91,7 @@ class QuestionImportTest extends \PHPUnit_Framework_TestCase
         for ($i = 0; $i < 10; $i++) {
             $topic = new Topic();
             
-            $topic->setIsPrimary($i < 3);
+            $topic->setPrimary($i < 3);
             $topic->setEntitled($names[$i]);
             
             $this->topics []= $topic;
@@ -155,10 +155,10 @@ class QuestionImportTest extends \PHPUnit_Framework_TestCase
         
         $choices = $question->getQuestionQCMChoices();
         
-        $this->assertEquals(false, $choices[0]->getIsValid());
-        $this->assertEquals(false, $choices[1]->getIsValid());
-        $this->assertEquals(true, $choices[2]->getIsValid());
-        $this->assertEquals(false, $choices[3]->getIsValid());
+        $this->assertEquals(false, $choices[0]->getValid());
+        $this->assertEquals(false, $choices[1]->getValid());
+        $this->assertEquals(true, $choices[2]->getValid());
+        $this->assertEquals(false, $choices[3]->getValid());
         
         $this->assertEquals($this->lineSample[3], $choices[0]->getEntitled());
         $this->assertEquals($this->lineSample[5], $choices[1]->getEntitled());

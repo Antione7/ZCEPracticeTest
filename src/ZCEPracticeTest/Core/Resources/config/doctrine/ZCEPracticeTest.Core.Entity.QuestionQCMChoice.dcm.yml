@@ -12,7 +12,7 @@ ZCEPracticeTest\Core\Entity\QuestionQCMChoice:
         entitled:
             type: string
             length: 255
-        isValid:
+        valid:
             type: boolean
     manyToOne:
         question:

@@ -12,12 +12,7 @@
 
 namespace ZCEPracticeTest\Credits\Listener;
 
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpKernel\KernelEvents;
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
-use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Doctrine\Common\Persistence\ObjectManager;
 use ZCEPracticeTest\Core\Event\SessionEvent;
 use ZCEPracticeTest\Core\Repository\QuizRepository;
 use ZCEPracticeTest\Credits\Exception\CreditsSystemException;

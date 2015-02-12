@@ -7,6 +7,12 @@
         
         <title>{% block title %}ZCE Practice Test{% endblock %}</title>
 
+        <head profile="http://www.w3.org/2005/10/profile">
+        <link rel="shortcut icon" href="{{ app.request.basepath }}/favicon.ico" type="image/x-icon" />
+        <link rel="icon" 
+              type="image/x-icon"
+              href="{{ app.request.basepath }}/favicon.ico" />
+
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
         <link rel="stylesheet" href="{{ app.request.basepath }}/css/flat-ui.min.css">
         <link rel="stylesheet" href="{{ app.request.basepath }}/css/style.css">
@@ -24,7 +30,7 @@
             {% include "@views/_navbar.html.twig" %}
         {% endblock %}
 
-        <div class="container-fluid">
+        <div class="container">
             {% block body %}
             {% endblock %}
         </div>

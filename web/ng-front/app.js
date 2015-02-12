@@ -9,6 +9,20 @@ var Question =
     TYPE_FREE: 2
 };
 
+function getUTCTimestamp() {
+    var now = new Date();
+    var utc_now = new Date(
+        now.getUTCFullYear(),
+        now.getUTCMonth(),
+        now.getUTCDate(),
+        now.getUTCHours(),
+        now.getUTCMinutes(),
+        now.getUTCSeconds(),
+        now.getUTCMilliseconds()
+    );
+    return utc_now.getTime();
+}
+
 var zcpe = angular.module('zcpe', [
     'ngRoute',
     'pascalprecht.translate',

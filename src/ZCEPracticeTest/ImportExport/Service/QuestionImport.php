@@ -146,12 +146,12 @@ class QuestionImport
             $choice
                 ->setQuestion($question)
                 ->setEntitled($data[$i - 1])
-                ->setIsValid(filter_var($data[$i], FILTER_VALIDATE_BOOLEAN))
+                ->setValid(filter_var($data[$i], FILTER_VALIDATE_BOOLEAN))
             ;
 
             $question->addQuestionQCMChoice($choice);
 
-            if ($choice->getIsValid()) {
+            if ($choice->getValid()) {
                 $nbAnswers++;
             }
 

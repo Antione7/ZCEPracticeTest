@@ -1,20 +1,49 @@
+_.minutes: minutes
+_.remaining.minutes: minutes restantes
 about: À propos
 all.es: Toutes
+back.to.sessions: Retourner à l'écran des sessions
 create.account: Créer un compte
-correct.answer: Solution
+creating.quiz: Génération du questionnaire...
+continue.current.session: Continuer la session en cours
+current.session: Session en cours
+duration: Durée
 errors.only: Erreurs seulement
+expected.answer: Réponse attendue
 finish: Terminer
 home: Accueil
+incorrect.answers: Réponses incorrectes
 log.in: Se connecter
 log.out: Se déconnecter
 my.account: Mon compte
+my.panel: Mon tableau de bord
 my.sessions: Mes sessions
+need.credit: Vous n'avez plus de crédits
 new.session: Nouvelle session
 next: Suivant
-on.%date%.at.%time%: Le %date% à %time%
+on.date.at.time: Le {{date}} à {{time}}
+passed.at: Passée le
 previous: Précédent
-start.quiz: Démarrer le Questionnaire
-topics.validated.%count%: %count% / 10 Topic validé | %count% / 10 Topics validés
+result: Résultat
+session: Session
+start.quiz: Démarrer le questionnaire
+topics.validated: Topics validés
 your.score: Votre score
-your.answer: Votre Réponse
-my.panel: Mon tableau de bord
+your.answer: Votre réponse
+topics.validated.%count%: %count% / 10 Topic validé | %count% / 10 Topics validés
+about.presentation: >
+  <p>
+    <strong>CertiPHP</strong> est une application en ligne destinée aux développeurs désireux de se présenter à l’examen de la certification Zend PHP 5.5
+    dans le but d’obtenir le titre de Zend Certified PHP Engineer (ZCPE). Actuellement en version bêta, l’application permet de s’exercer
+    sur 10 topics avec plus de 300 questions inspirées de l’épreuve officielle. Ces questions ont été rédigées par des développeurs et formateurs
+    certifiés et validées par Cyrille Grandval (certifié ZCE 5.3 & ZCPE, formateur & professeur, auteur d’un ouvrage sur la certification ZCPE).
+  </p>
+  <p>
+    Dans les mêmes conditions que l’épreuve officielle, vous répondez à 70 questions, en anglais, dans un temps limité de 90 minutes. 
+  </p>
+  <p>
+    Une fois le test achevé, un rapport synthétique est généré et vous permet de connaître votre réussite par topic et de revenir sur vos réponses erronées.
+    Grâce à cela, vous identifiez vos points forts et les points faibles pour travailler ces points spécifiques. Ainsi, vous pouvez consolider vos
+    connaissances et approfondir vos lacunes en vue de réussir l’examen. Votre tableau de bord vous permet de revenir sur vos sessions antérieures
+    pour conforter vos progrès.
+  </p>

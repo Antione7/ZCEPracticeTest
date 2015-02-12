@@ -2,6 +2,11 @@
 
 <div ng-include="introTemplate"></div>
 
+<button ng-if="hasCurrentSession" class="btn btn-info btn-lg" ng-click="goToCurrentSession()">
+    <span class="fui-time"></span>
+    {{ 'continue.current.session'|translate }}
+</button>
+
 <button id="create-session" class="btn btn-success btn-lg" ng-click="start()" ng-disabled="startDisabled">
     {{ (startDisabled ? 'creating.quiz' : 'start.quiz')|translate }}
 </button>

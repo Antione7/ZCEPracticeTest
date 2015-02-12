@@ -8,6 +8,37 @@
             <br />
             <span class="success lead">{{ 'new.session'|translate }}</span>
         </button><!--
+                 
+     --><button ng-if="hasCurrentSession" ng-click="goToCurrentSession()" type="button" class="btn btn-info btn-tile">
+            <span class="fui-time lead"></span>
+            <br />
+            <span class="success lead">{{ 'current.session'|translate }}</span>
+            <br />
+            <timer
+                interval="1000"
+                end-time="quizz.dateStart + quizz.time * 1000"
+                max-time-unit="'minute'"
+                quiz-max-time="quizz.time"
+                finish-callback="timerFinished()"
+            >
+                <span>{{ minutes }} {{ '_.remaining.minutes'|translate }}</span>
+                <div class="row">
+                    <div class="col-xs-8 col-xs-offset-2">
+                        <div class="progress">
+                            <div
+                                class="progress-bar progress-bar-warning progress-bar-striped"
+                                role="progressbar"
+                                aria-valuenow="{{ 100 - (millis / (quizMaxTime * 10))|number:0 }}"
+                                aria-valuemin="0"
+                                aria-valuemax="100"
+                                style="width: {{ 100 - (millis / (quizMaxTime * 10)) }}%"
+                            >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </timer>
+        </button><!--
 
      --><button
             ng-repeat="session in sessions"

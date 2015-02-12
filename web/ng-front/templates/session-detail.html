@@ -37,7 +37,6 @@
                     <div class="col-sm-1 col-xs-2">
                         <p ng-show=" hasChecked(answer, choice.id) &&  choice.isValid" class="text-success"><span class="glyphicon glyphicon-ok"></span></p>
                         <p ng-show=" hasChecked(answer, choice.id) && !choice.isValid" class="text-danger"><span class="glyphicon glyphicon-remove"></span></p>
-                        <p ng-show="!hasChecked(answer, choice.id) &&  choice.isValid" class="text-warning"><span class="glyphicon glyphicon-ok"></span></p>
                     </div>
                     <div class="col-sm-1 col-xs-2">
                         <p><span class="glyphicon glyphicon-ok" ng-show="choice.isValid"></span></p>

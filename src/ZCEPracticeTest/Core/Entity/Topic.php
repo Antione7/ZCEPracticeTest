@@ -35,7 +35,7 @@ class Topic implements \JsonSerializable
     /**
      * @var boolean
      */
-    private $isPrimary;
+    private $primary;
 
     /**
      * @var Question[]
@@ -85,26 +85,26 @@ class Topic implements \JsonSerializable
     }
 
     /**
-     * Set isPrimary
+     * Set primary
      *
-     * @param boolean $isPrimary
+     * @param boolean $primary
      * @return Topic
      */
-    public function setIsPrimary($isPrimary)
+    public function setPrimary($primary)
     {
-        $this->isPrimary = $isPrimary;
+        $this->primary = $primary;
 
         return $this;
     }
 
     /**
-     * Get isPrimary
+     * Get primary
      *
      * @return boolean 
      */
-    public function getIsPrimary()
+    public function getPrimary()
     {
-        return $this->isPrimary;
+        return $this->primary;
     }
 
     /**
@@ -148,7 +148,7 @@ class Topic implements \JsonSerializable
     {
         return array(
             'id' => $this->getId(),
-            'isPrimary' => $this->getIsPrimary(),
+            'primary' => $this->getPrimary(),
             'entitled' => $this->getEntitled(),
         );
     }
