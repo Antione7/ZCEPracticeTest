@@ -5,11 +5,10 @@ namespace ZCEPracticeTest\Silex\Provider;
 use Symfony\Component\Translation\Translator;
 use Symfony\Component\Translation\Loader\YamlFileLoader;
 use Silex\ServiceProviderInterface;
-use Silex\ControllerProviderInterface;
 use Silex\Application;
 use ZCEPracticeTest\Front\Controller\FrontController;
 use ZCEPracticeTest\Front\Controller\PanelController;
-use ZCEPracticeTest\Twig\FormatBasedOnTranslationMethodExtension;
+use ZCEPracticeTest\Twig\BasedOnTranslationMethodExtension;
 
 class FrontProvider implements ServiceProviderInterface
 {
@@ -24,17 +23,17 @@ class FrontProvider implements ServiceProviderInterface
                 $app['twig'],
                 $app['security']->getToken(),
                 $app['orm.em']->getRepository('ZCE:Session'),
-                $app['url_generator']->generate('front-index')
+                $app['url_generator']->generate('home')
             );
         });
 
         // Import Front translation into twig templates
         $app['translator'] = $app->share($app->extend('translator', function (Translator $translator, $app) {
-            $translator->addLoader('yaml', new YamlFileLoader());
 
+            $translator->addLoader('yaml', new YamlFileLoader());
             $translator->addResource('yaml', $app['project.root'] . '/src/ZCEPracticeTest/Front/Translation/trans.en.yml', 'en');
             $translator->addResource('yaml', $app['project.root'] . '/src/ZCEPracticeTest/Front/Translation/trans.fr.yml', 'fr');
-            $translator->addResource('yaml', $app['project.root'] . '/src/ZCEPracticeTest/Front/Translation/trans.pt_BR.yml', 'pt_BR');
+            $translator->addResource('yaml', $app['project.root'] . '/src/ZCEPracticeTest/Front/Translation/trans.pt.yml', 'pt');
 
             return $translator;
         }));
@@ -46,8 +45,8 @@ class FrontProvider implements ServiceProviderInterface
          */
         $app->boot();
         $app['twig'] = $app->extend('twig', function (\Twig_Environment $twig, \Silex\Application $app) {
-            $twig->addExtension(new FormatBasedOnTranslationMethodExtension($app));
-        
+            $twig->addExtension(new BasedOnTranslationMethodExtension($app));
+
             return $twig;
         });
     }

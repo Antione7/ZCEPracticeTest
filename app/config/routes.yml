@@ -1,35 +1,17 @@
 home:
-    path:     /en/home
+    path:     /{_locale}/
     defaults: { _controller: zce.front.front.controller:indexAction }
-
-accueil:
-    path:     /fr/accueil
-    defaults: { _controller: zce.front.front.controller:indexAction }
-
-inicio:
-    path:     /pt/inicio
-    defaults: { _controller: zce.front.front.controller:indexAction }
+    requirements:
+        _locale:  en|fr|pt
 
 about:
-    path:     /en/about
+    path:     /{_locale}/about/
     defaults: { _controller: zce.front.front.controller:aboutAction }
-
-a-propos:
-    path:     /fr/a-propos
-    defaults: { _controller: zce.front.front.controller:aboutAction }
-
-sobre:
-    path:     /pt/sobre
-    defaults: { _controller: zce.front.front.controller:aboutAction }
+    requirements:
+        _locale:  en|fr|pt
         
 panel:
-    path:     /en/panel
+    path:     /{_locale}/panel/
     defaults: { _controller: zce.front.panel.controller:indexAction }
-
-tableau-bord:
-    path:     /fr/panel
-    defaults: { _controller: zce.front.panel.controller:indexAction }
-
-painel:
-    path:     /pt/panel
-    defaults: { _controller: zce.front.panel.controller:indexAction }
+    requirements:
+        _locale:  en|fr|pt

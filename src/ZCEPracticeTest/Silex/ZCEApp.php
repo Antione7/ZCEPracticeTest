@@ -19,6 +19,10 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Routing\Loader\YamlFileLoader;
 use Symfony\Component\Routing\RouteCollection;
 
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+
 class ZCEApp extends Application
 {
     /**
@@ -232,6 +236,20 @@ class ZCEApp extends Application
             $routes->addCollection($collection);
         
             return $routes;
+        });
+        
+        $this->error(function (\Exception $e) {
+            if ($e instanceof NotFoundHttpException) {
+                
+                if ('/' === $this['request']->getRequestUri()) {
+                    return $this->redirect($this['parameters']['translation']['locale_fallbacks']);
+                }
+                
+                return new Response('The requested page could not be found. ' . $this['request']->getRequestUri(), 404);
+            }
+
+            $code = ($e instanceof HttpException) ? $e->getStatusCode() : 500;
+            return new Response('We are sorry, but something went terribly wrong.' . $e->getMessage(), $code);
         });
     }
 }
