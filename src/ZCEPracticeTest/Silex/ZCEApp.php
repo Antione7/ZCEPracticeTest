@@ -215,7 +215,7 @@ class ZCEApp extends Application
     
     private function registerFront()
     {
-        $frontProvider = $this->register(new FrontProvider());
+        $this->register(new FrontProvider());
     }
     
     private function registerCreditsSystem()
