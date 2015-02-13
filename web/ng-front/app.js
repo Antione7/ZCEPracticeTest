@@ -1,6 +1,6 @@
 var config = {
-    basePath: '../ng-front/',
-    restServer: '../index.php/api'
+    basePath: '/ng-front/',
+    restServer: '/api'
 };
 
 var Question =
@@ -23,6 +23,15 @@ function getUTCTimestamp() {
     return utc_now.getTime();
 }
 
+/**
+ * Filter to create a Javascript date
+ */
+angular.module('zcpeFilters', []).filter('jsDate', function () {
+    return function (sDate) {
+        return new Date(sDate);
+    }
+});
+
 var zcpe = angular.module('zcpe', [
     'ngRoute',
     'pascalprecht.translate',
@@ -30,5 +39,6 @@ var zcpe = angular.module('zcpe', [
     'ngStorage',
     'controllers-quizz',
     'hljs',
-    'timer'
-]);
+    'timer',
+    'zcpeFilters'
+])

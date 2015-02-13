@@ -7,7 +7,7 @@
         </a>
         
         <p>
-            {{ 'passed.at'|translate }} {{ session.dateStart.date }}<br />
+            {{ 'passed.at'|translate }} {{ session.dateStart.date | jsDate | date: 'medium' }}<br />
             {{ 'duration'|translate }} : {{ sessionDuration }} {{ '_.minutes'|translate }}<br />
             {{ 'topics.validated'|translate }} : {{ session.nbTopicsValidated }} / 10<br />
         </p>
