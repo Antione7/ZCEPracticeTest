@@ -33,17 +33,19 @@ your.answer: Votre réponse
 topics.validated.%count%: %count% / 10 Topic validé | %count% / 10 Topics validés
 about.presentation: >
   <p>
-    <strong>CertiPHP</strong> est une application en ligne destinée aux développeurs désireux de se présenter à l’examen de la certification Zend PHP 5.5
-    dans le but d’obtenir le titre de Zend Certified PHP Engineer (ZCPE). Actuellement en version bêta, l’application permet de s’exercer
-    sur 10 topics avec plus de 300 questions inspirées de l’épreuve officielle. Ces questions ont été rédigées par des développeurs et formateurs
-    certifiés et validées par Cyrille Grandval (certifié ZCE 5.3 & ZCPE, formateur & professeur, auteur d’un ouvrage sur la certification ZCPE).
+    <strong>CertiPHP</strong> est une application en ligne destinée aux développeurs désireux de se présenter à l'examen de la certification Zend PHP 5.5
+    dans le but d'obtenir le titre de Zend Certified PHP Engineer (ZCPE). Actuellement en version bêta, l'application permet de s'exercer
+    sur 10 topics avec des questions inspirées de l'épreuve officielle. Ces questions ont été rédigées par des développeurs et formateurs
+    certifiés et validées par Cyrille Grandval (certifié ZCE 5.3 & ZCPE, formateur & professeur, auteur d'un <a href="http://bit.ly/cyrille-grandval-eni-zcpe" 
+    title="Cyrille Grandval - Préparation à la certification - Editions ENI" target="_blank">ouvrage sur la certification ZCPE</a> &
+    <a href="http://bit.ly/zend-z-team" target="_blank" title="Cyrille Grandval - Z-Team Zend">membre de la Z-Team Zend</a>).
   </p>
   <p>
-    Dans les mêmes conditions que l’épreuve officielle, vous répondez à 70 questions, en anglais, dans un temps limité de 90 minutes. 
+    Dans les mêmes conditions que l'épreuve officielle, vous répondez à 70 questions, en anglais, dans un temps limité de 90 minutes. 
   </p>
   <p>
     Une fois le test achevé, un rapport synthétique est généré et vous permet de connaître votre réussite par topic et de revenir sur vos réponses erronées.
     Grâce à cela, vous identifiez vos points forts et les points faibles pour travailler ces points spécifiques. Ainsi, vous pouvez consolider vos
-    connaissances et approfondir vos lacunes en vue de réussir l’examen. Votre tableau de bord vous permet de revenir sur vos sessions antérieures
+    connaissances et approfondir vos lacunes en vue de réussir l'examen. Votre tableau de bord vous permet de revenir sur vos sessions antérieures
     pour conforter vos progrès.
   </p>

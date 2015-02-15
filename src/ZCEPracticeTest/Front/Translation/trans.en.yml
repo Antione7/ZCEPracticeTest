@@ -33,7 +33,12 @@ your.answer: Your answer
 topics.validated.%count%: %count% / 10 topic validated | %count% / 10 topics validated
 about.presentation: >
   <p>
-    <strong>CertiPHP</strong> is an online application for developers who want to pass the examination of the Zend PHP 5.5 Certification with the aim to earn the Zend Certified PHP Engineer (ZCPE) title. Currently in beta, the application bear on 10 topics with over 300 questions based on the official test. Questions have been written by certified developers and trainers and validated by Cyrille Grandval (certified ZCE 5.3 & ZCPE, trainer & Professor, author of a book on ZCPE certification).
+    <strong>CertiPHP</strong> is an online application for developers who want to pass the examination of the Zend PHP 5.5 Certification
+    with the aim to earn the Zend Certified PHP Engineer (ZCPE) title. Currently in beta, the application bear on 10 topics with 
+    questions inspired by the official test. Questions have been written by certified developers and trainers and validated by Cyrille Grandval
+    (certified ZCE 5.3 & ZCPE, trainer & Professor, <a href="http://bit.ly/cyrille-grandval-eni-zcpe" 
+    title="Cyrille Grandval - Préparation à la certification - Editions ENI" target="_blank">author of a book on ZCPE certification</a> &
+    <a href="http://bit.ly/zend-z-team" target="_blank" title="Cyrille Grandval - Z-Team Zend">member of the Z-Team Zend</a>).
   </p>
   <p>
     In the same conditions as the official test, you answer 70 questions in English, within a limited time of 90 minutes.
