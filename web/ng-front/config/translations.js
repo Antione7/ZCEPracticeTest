@@ -73,7 +73,7 @@ zcpe.config(['$translateProvider', function ($translateProvider) {
         'topics.validated': 'Validated topics',
         'your.score': 'Your score',
         'your.answer': 'Your answer',
-        'session.new.intro': 'Vous allez de commencer une session de test de la certification ZCPE. In the same conditions as the official test,'
+        'session.new.intro': 'You will start a test session of the ZCPE certification. In the same conditions as the official test,'
         	+ ' this test includes 70 questions in English and a limited time of 90 minutes. A summary report is generated when test is completed,'
             + ' and lets you know your achievement by topic and get back on your incorrect answers.'
     });
