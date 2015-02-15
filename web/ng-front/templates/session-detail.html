@@ -35,11 +35,11 @@
                 
                 <div class="row" ng-repeat="choice in answer.question.questionQCMChoices">
                     <div class="col-sm-1 col-xs-2">
-                        <p ng-show=" hasChecked(answer, choice.id) &&  choice.isValid" class="text-success"><span class="glyphicon glyphicon-ok"></span></p>
-                        <p ng-show=" hasChecked(answer, choice.id) && !choice.isValid" class="text-danger"><span class="glyphicon glyphicon-remove"></span></p>
+                        <p ng-show=" hasChecked(answer, choice.id) &&  choice.valid" class="text-success"><span class="glyphicon glyphicon-ok"></span></p>
+                        <p ng-show=" hasChecked(answer, choice.id) && !choice.valid" class="text-danger"><span class="glyphicon glyphicon-remove"></span></p>
                     </div>
                     <div class="col-sm-1 col-xs-2">
-                        <p><span class="glyphicon glyphicon-ok" ng-show="choice.isValid"></span></p>
+                        <p><span class="glyphicon glyphicon-ok" ng-show="choice.valid"></span></p>
                     </div>
                     <div class="col-xs-10 col-xs-8">
                         <p>{{ choice.entitled }}</p>
