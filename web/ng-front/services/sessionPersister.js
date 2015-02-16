@@ -1,4 +1,4 @@
-zcpe.service('sessionPersister', ['$sessionStorage', function ($localStorage) {
+zcpe.service('sessionPersister', ['$localStorage', function ($localStorage) {
     var _self = this;
     
     /**
@@ -31,8 +31,6 @@ zcpe.service('sessionPersister', ['$sessionStorage', function ($localStorage) {
      */
     this.load = function ()
     {
-        console.log(_self.hasSession());
-        
         if (!_self.hasSession()) {
             return null;
         }
