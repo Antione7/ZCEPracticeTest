@@ -1,4 +1,4 @@
-zcpe.service('sessionPersister', ['$localStorage', function ($localStorage) {
+zcpe.service('sessionPersister', ['locker', function (locker) {
     var _self = this;
     
     /**
@@ -9,9 +9,11 @@ zcpe.service('sessionPersister', ['$localStorage', function ($localStorage) {
      */
     this.save = function (quizz, position)
     {
-        $localStorage.hasStoredQuiz = true;
-        $localStorage.quizz = quizz;
-        $localStorage.quizPosition = position;
+        locker.put({
+            hasStoredQuiz: true,
+            quizz: quizz,
+            quizPosition: position
+        });
     };
     
     /**
@@ -21,7 +23,7 @@ zcpe.service('sessionPersister', ['$localStorage', function ($localStorage) {
      */
     this.hasSession = function ()
     {
-        return $localStorage.hasStoredQuiz;
+        return locker.get('hasStoredQuiz');
     };
     
     /**
@@ -35,13 +37,13 @@ zcpe.service('sessionPersister', ['$localStorage', function ($localStorage) {
             return null;
         }
         
-        var quizz = $localStorage.quizz;
+        var quizz = locker.get('quizz');
         
         refreshRadioAnswers(quizz);
         
         return {
             quizz: quizz,
-            position: $localStorage.quizPosition
+            position: locker.get('quizPosition')
         };
     };
     
@@ -50,9 +52,12 @@ zcpe.service('sessionPersister', ['$localStorage', function ($localStorage) {
      */
     this.delete = function ()
     {
-        $localStorage.hasStoredQuiz = false;
-        $localStorage.quizz = null;
-        $localStorage.quizPosition = null;
+        locker.put('hasStoredQuiz', false);
+        
+        locker.forget([
+            'quizz',
+            'quizPosition'
+        ]);
     };
     
     /**
