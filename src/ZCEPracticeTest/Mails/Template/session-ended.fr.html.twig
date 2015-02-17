@@ -10,37 +10,26 @@
         Bravo {{ user.displayName }} ! :)
     </p>
     <p>
-        Ton test ZCPE est réussi.
-        Tu as répondu correctement à au moins 70% des questions.
-        Pour voir sur quel topic tu t’es trompé,
-        nous t’invitons à consulter la synthèse de ton parcours ci-après.
+        Tu as passé le test avec succès en répondant correctement à au moins 70% des questions.
+        Pour t'améliorer, nous t’invitons à consulter la synthèse de ton parcours ci-après.
+        Par ailleurs, si tu veux être sûr de réussir le jour J, nous t'encourageons à poursuivre ton entraînement sur notre plateforme.
     </p>
 {% else %}
     <p>
         Oops {{ user.displayName }} ! :(
     </p>
     <p>
-        Tes efforts n’auront malheureusement pas suffi…
-        Tu n’as pas atteint les 70% de bonnes réponses requises.
-        Pour voir sur quel topics tu t’es trompé,
-        consulte la synthèse de ton parcours ci-après.
+        Tes efforts n'auront malheureusement pas suffi… Tu n'as pas atteint les 70% de bonnes réponses requises.
+        Pour voir sur quels topics tu t’es trompé, consulte la synthèse de ton parcours ci-après.
+        Nous t'encourageons à continuer tes efforts et à poursuivre ton entraînement sur notre plateforme.
     </p>
 {% endif %}
 
 <p>
     {% if credits.remaining > 0 %}
-        Tu peux toujours poursuivre ton entraînement sur notre plateforme.
-        D’ailleurs, il te reste {{ credits.remaining }} crédit{{ (credits.remaining > 1) ? 's' : '' }} sur ton compte.
+        D'ailleurs, il te reste {{ credits.remaining }} crédit{{ (credits.remaining > 1) ? 's' : '' }} sur ton compte.
     {% else %}
-        {% if session.success %}
-            Par ailleurs, si tu veux être sûr de réussir le jour J,
-            nous t’encourageons à poursuivre ton entraînement
-            sur notre plateforme en <a href="#">achetant de nouveaux crédits</a>.
-        {% else %}
-            Nous t’encourageons à continuer tes efforts
-            et à poursuivre ton entraînement sur notre plateforme.
-            Pour cela, il te suffit d'<a href="#">acheter de nouveaux crédits</a>.
-        {% endif %}
+        Pour cela, il te suffit d’acheter de nouveaux crédits.
     {% endif %}
 </p>
 
@@ -48,14 +37,19 @@
     {{ session.nbTopicsValidated }}
     topic{{ session.nbTopicsValidated > 1 ? 's' : '' }}
     validé{{ session.nbTopicsValidated > 1 ? 's' : '' }}
-    sur {{ session.topicScores|length }} :
+    / {{ session.topicScores|length }} :
 </p>
 
 {% include '@mails/_pass-fail-by-topics.html.twig' %}
 
 <p>
     Ce mail est envoyé suite à votre session du {{ session.dateFinished|date('d/m/Y') }}, à {{ session.dateFinished|date('G\\hi') }}.
-    <br />
-    L’application est développée et maintenue par des experts certifiés ZCPE.
 </p>
 {% endblock %}
+
+{% block footer %}
+<a href="http://www.certiphp.com" title="CertiPHP">CertiPHP</a> est une application en ligne destinée aux développeurs désireux de se présenter à l'examen
+de la certification Zend PHP 5.5 dans le but d’obtenir le titre de Zend Certified PHP Engineer (ZCPE).
+Actuellement en version bêta, l'application permet de s'exercer sur 10 topics avec plus de 300 questions inspirées de l'épreuve officielle.
+{% endblock %}
+

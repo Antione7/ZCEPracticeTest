@@ -14,6 +14,14 @@
     "angular-animate": "git://github.com/angular/bower-angular-animate.git#1.2.10",
     "angular-mocks": "git://github.com/angular/bower-angular-mocks.git#1.2.10",
     "showdown": "git://github.com/coreyti/showdown.git#~0.3.1",
-    "quizz": "git://github.com/Ninja-Squad/quizz.git#*"
+    "quizz": "git://github.com/Ninja-Squad/quizz.git#*",
+    "angular-translate-storage-local": "~2.6.0",
+    "angular-translate-storage-cookie": "~2.6.0"
+  },
+  "resolutions": {
+    "angular-translate-storage-local": "~2.5.2",
+    "angular-translate": "~2.5.2",
+    "angular-translate-storage-cookie": "~2.5.2",
+    "angular": "1.2.10"
   }
 }

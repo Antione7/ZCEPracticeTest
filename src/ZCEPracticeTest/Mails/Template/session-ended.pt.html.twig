@@ -1,0 +1,54 @@
+{% extends "@mails/layout.html.twig" %}
+
+{% block content %}
+<p style="width: 100%; background-color: {{ session.success ? '#2ecc71' : '#e74c3c' }}; text-align: center; padding: 40px 0px; color: white; border-radius: 5px; font-size: 28px;">
+    {{ session.success ? 'PASS' : 'FAIL' }}
+</p>
+
+{% if session.success %}
+    <p>
+        Parabéns {{ user.displayName }} ! :)
+    </p>
+    <p>
+        Você passou com sucesso no teste respondendo corretamente a mais de 70% das perguntas.
+        Para sua melhora, convidamos você a consultar a sintese abaixo.
+        Contudo, se você quer ter a certeza que vai conseguir o dia D, incentivamos você a continuar treinando em nossa plataforma. 
+    </p>
+{% else %}
+    <p>
+        Oops {{ user.displayName }} ! :(
+    </p>
+    <p>
+        Infelizmente, seus esforços não foram suficientes… Você não atingiu os 70% das respostas exigidas.
+        Para sua melhora, convidamos você a consultar a sintese abaixo.
+        Incentivamos você a continuar seus esforços e prosseguir seu treinamento em nossa plataforma.
+    </p>
+{% endif %}
+
+<p>
+    {% if credits.remaining > 0 %}
+        Pensando nisso, você ainda tem {{ credits.remaining }} credito{{ (credits.remaining > 1) ? 's' : '' }} na sua conta.
+    {% else %}
+        Para isso, é só comprar novos créditos.
+    {% endif %}
+</p>
+
+<p>
+    {{ session.nbTopicsValidated }}
+    tópico{{ session.nbTopicsValidated > 1 ? 's' : '' }}
+    validado{{ session.nbTopicsValidated > 1 ? 's' : '' }}
+    / {{ session.topicScores|length }} :
+</p>
+
+{% include '@mails/_pass-fail-by-topics.html.twig' %}
+
+<p>
+    Esse e-mail foi enviado depois sua sessão do {{ session.dateFinished|date('d/m/Y') }} à(s) {{ session.dateFinished|date('G\\hi') }}.
+</p>
+{% endblock %}
+
+{% block footer %}
+CertiPHP é uma aplicação online destinada aos desenvolvedores que desejam se apresentar ao exame da certificação Zend PHP 5.5
+com objetivo de conseguir o título de Zend Certified PHP Engineer (ZCPE). Atualmente em versão bêta, a aplicação permite
+exercer-se sobre 10 tópicos com perguntas inspiradas na prova oficial.
+{% endblock %}

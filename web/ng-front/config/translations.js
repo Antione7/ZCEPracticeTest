@@ -35,7 +35,9 @@ zcpe.config(['$translateProvider', function ($translateProvider) {
         'topics.validated': 'Topics validés',
         'your.score': 'Votre score',
         'your.answer': 'Votre réponse',
-        'session.new.intro': 'Oui alors écoute moi, si vraiment tu veux te rappeler des souvenirs de ton perroquet, c\'est juste une question d\'awareness puisque the final conclusion of the spirit is perfection. Tu vas te dire : J\'aurais jamais cru que le karaté guy pouvait parler comme ça !'
+        'session.new.intro': 'Vous allez démarrer une session de test de la certification ZCPE. Dans les mêmes conditions que l\'épreuve'
+        	+ ' officielle, ce test comprend 70 questions, en anglais, et un temps limité de 90 minutes. Une fois le test achevé, un rapport synthétique'
+            + ' est généré et vous permet de connaître directement votre réussite par topic et de revenir sur vos réponses erronées.'
     });
 
     $translateProvider.translations('en_EN', {
@@ -71,7 +73,9 @@ zcpe.config(['$translateProvider', function ($translateProvider) {
         'topics.validated': 'Validated topics',
         'your.score': 'Your score',
         'your.answer': 'Your answer',
-        'session.new.intro': ''
+        'session.new.intro': 'You will start a test session of the ZCPE certification. In the same conditions as the official test,'
+        	+ ' this test includes 70 questions in English and a limited time of 90 minutes. A summary report is generated when test is completed,'
+            + ' and lets you know your achievement by topic and get back on your incorrect answers.'
     });
 
     $translateProvider.translations('pt_BR', {
@@ -107,7 +111,9 @@ zcpe.config(['$translateProvider', function ($translateProvider) {
         'topics.validated': 'Tópicos validados',
         'your.score': 'Sua nota',
         'your.answer': 'Sua resposta',
-        'session.new.intro': ''
+        'session.new.intro': 'Você vai começar uma sessão de teste da certificação ZCPE. Nas mesmas condições da prova oficial, esse teste tem'
+        	+ ' 70 perguntas, em inglês, e um tempo limitado de 90 minutos. Um relatório sintético é gerado assim que o teste for concluído'
+            + ' e permite-lhe de conhecer seu sucesso por tópico e voltar sobre suas respostas erradas.'
     });
 
     $translateProvider.preferredLanguage('en_EN');

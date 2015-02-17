@@ -1,5 +1,54 @@
 {% extends "@mails/layout.html.twig" %}
 
 {% block content %}
-<p>English email for session ended.</p>
+<p style="width: 100%; background-color: {{ session.success ? '#2ecc71' : '#e74c3c' }}; text-align: center; padding: 40px 0px; color: white; border-radius: 5px; font-size: 28px;">
+    {{ session.success ? 'PASS' : 'FAIL' }}
+</p>
+
+{% if session.success %}
+    <p>
+        Congratulations {{ user.displayName }} ! :)
+    </p>
+    <p>
+        You have successfuly passed the test by answering correctly at least 70% of questions.
+        To improve you score, we encourage you to read the summary of your test below.
+        
+    </p>
+{% else %}
+    <p>
+        Oops {{ user.displayName }} ! :(
+    </p>
+    <p>
+        Something wrong in the world… you did not reach 70% of correct answers.
+        To improve you score, we encourage you to read the summary of your test below.
+    </p>
+{% endif %}
+
+<p>
+    {% if credits.remaining > 0 %}
+        To assure your certification the D-day, continue your training on our application. So nice ! {{ credits.remaining }} credit{{ (credits.remaining > 1) ? 's' : '' }} remains in your account.
+    {% else %}
+        To assure your certification the D-day, buy new credits and enjoy your training on our application.
+    {% endif %}
+</p>
+
+<p>
+    {{ session.nbTopicsValidated }}
+    topic{{ session.nbTopicsValidated > 1 ? 's' : '' }}
+    validated
+    / {{ session.topicScores|length }} :
+</p>
+
+{% include '@mails/_pass-fail-by-topics.html.twig' %}
+
+<p>
+    This e-mail is sent after your {{ session.dateFinished|date('d/m/Y') }} session at {{ session.dateFinished|date('G\\hi') }}.
+</p>
 {% endblock %}
+
+{% block footer %}
+<a href="http://www.certiphp.com" title="CertiPHP">CertiPHP</a> is an online application for developers who want to pass the examination of the
+Zend PHP 5.5 Certification with the aim to earn the Zend Certified PHP Engineer (ZCPE) title. Currently in beta, the application bear on 10
+topics with questions inspired by the official test.
+{% endblock %}
+

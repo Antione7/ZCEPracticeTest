@@ -51,7 +51,7 @@
             <span class="success lead">{{ session.success ? 'PASS' : 'FAIL' }}</span>
             <br />
             <span class="date">
-                {{ session.dateFinished.date|date }}
+                {{ session.dateFinished.date| jsDate | date: 'medium' }}
             </span>
             <br />
             <span class="topics">{{ session.nbTopicsValidated || 0 }} / 10 {{ 'topics.validated'|translate }}</span>

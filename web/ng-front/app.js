@@ -1,6 +1,21 @@
+var jsVars = {
+    appBaseUrl:  null,
+    appBasePath: null,
+    
+    init: function ()
+    {
+        var jsVarsAttributes = angular.element('#js-vars')[0].attributes;
+        
+        jsVars.appBaseUrl   = jsVarsAttributes['data-base-url'].value;
+        jsVars.appBasePath  = jsVarsAttributes['data-basepath'].value;
+    }
+};
+
+jsVars.init();
+
 var config = {
-    basePath: '../ng-front/',
-    restServer: '../index.php/api'
+    basePath: jsVars.appBasePath+'/ng-front/',
+    restServer: jsVars.appBaseUrl+'/api'
 };
 
 var Question =
@@ -23,6 +38,15 @@ function getUTCTimestamp() {
     return utc_now.getTime();
 }
 
+/**
+ * Filter to create a Javascript date
+ */
+angular.module('zcpeFilters', []).filter('jsDate', function () {
+    return function (sDate) {
+        return new Date(sDate);
+    }
+});
+
 var zcpe = angular.module('zcpe', [
     'ngRoute',
     'pascalprecht.translate',
@@ -30,5 +54,6 @@ var zcpe = angular.module('zcpe', [
     'ngStorage',
     'controllers-quizz',
     'hljs',
-    'timer'
-]);
+    'timer',
+    'zcpeFilters'
+])

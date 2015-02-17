@@ -33,11 +33,16 @@ your.answer: Sua resposta
 topics.validated.%count%: %count% / 10 tópico validado | %count% / 10 tópicos validados
 about.presentation: >
   <p>
-    <strong>CertiPHP</strong> é uma aplicação online destinada aos desenvolvedores que desejam se apresentar ao exame da certificação Zend PHP 5.5 com objetivo de conseguir o título de Zend Certified PHP Engineer (ZCPE). Atualmente em versão bêta, a aplicação permite exercer-se sobre 10 tópicos com mais de 300 perguntas inspiradas na prova oficial. Essas perguntas foram escritas por desenvolvedores e treinadores certificados e validadas por Cyrille Grandval (certificado ZCE 5.3 & ZCPE, treinador & professor, autor de um livro sobre a certificação ZCPE).
+    <strong>CertiPHP</strong> é uma aplicação online destinada aos desenvolvedores que desejam se apresentar ao exame da certificação Zend PHP 5.5
+    com objetivo de conseguir o título de Zend Certified PHP Engineer (ZCPE). Atualmente em versão bêta, a aplicação permite exercer-se sobre
+    10 tópicos com perguntas inspiradas na prova oficial. Essas perguntas foram escritas por desenvolvedores e treinadores certificados
+    e validadas por Cyrille Grandval (certificado ZCE 5.3 & ZCPE, treinador & professor, autor de um <a href="http://bit.ly/cyrille-grandval-eni-zcpe" 
+    title="Cyrille Grandval - Préparation à la certification - Editions ENI" target="_blank">livro sobre a certificação ZCPE</a> &
+    <a href="http://bit.ly/zend-z-team" target="_blank" title="Cyrille Grandval - Z-Team Zend">membro da Z-Team Zend</a>).
   </p>
   <p>
     Nas mesmas condições da prova oficial, vocês respondem às 70 perguntas, em inglês, em um tempo limitado de 90 minutos.
   </p>
   <p>
-    Assim que o teste for concluído, um relatório sintético é gerado e permite-lhe de conhecer seus sucessos por tópico e de volter sobre suas respostas erradas. Graças a isso, você identifica seus pontos fortes e fracos para trabalhar nesses pontos específicos. Assim, você pode consolidar seus conhecimentos e aprofundar suas lacunas com vista de conseguir o exame. Seu painel permite-lhe de voltar sobre as sessões anteriores para reforçar o seu progresso.
+    Um relatório sintético é gerado assim que o teste for concluído e permite-lhe de conhecer seu sucesso por tópico e voltar sobre suas respostas erradas. Graças a isso, você identifica seus pontos fortes e fracos para trabalhar nesses pontos específicos. Assim, você pode consolidar seus conhecimentos e aprofundar suas lacunas com vista de conseguir o exame. Seu painel permite-lhe de voltar sobre as sessões anteriores para reforçar o seu progresso.
   </p>
