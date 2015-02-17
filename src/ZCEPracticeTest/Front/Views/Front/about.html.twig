@@ -2,7 +2,7 @@
 
 {% block body %}
 
-<h1>{{ formatBasedOnTranslationMethod('about') }}</h1>
-{{ formatBasedOnTranslationMethod('about.presentation') | raw }}
+<h1>{{ 'about' | trans }}</h1>
+{{ 'about.presentation' | trans | raw }}
 
 {% endblock %}

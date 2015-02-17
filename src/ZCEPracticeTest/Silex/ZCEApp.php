@@ -34,8 +34,6 @@ class ZCEApp extends Application
     {
         parent::__construct($values);
         
-        $this['controllers']->value('locale', $this['locale']);
-
         $this->loadParameters();
         $this->loadConfig();
         $this->registerProviders();
@@ -102,9 +100,9 @@ class ZCEApp extends Application
         $this->register(new \Silex\Provider\UrlGeneratorServiceProvider());
         $this->register(new \Silex\Provider\TwigServiceProvider());
         $this->register(new \Silex\Provider\SwiftmailerServiceProvider(), array(
-            'swiftmailer.options' => $this['parameters']['swiftmailer']['server'],
+            'swiftmailer.options' => $this['parameters']['swiftmailer'],
         ));
-        $this->register(new \Silex\Provider\TranslationServiceProvider(), $this['parameters']['translation']);
+        $this->register(new \Silex\Provider\TranslationServiceProvider());
     }
     
     /**
@@ -228,6 +226,13 @@ class ZCEApp extends Application
         $this->register(new MailsProvider());
     }
     
+    /**
+     * Register routes from a configuration file
+     * If a error exists (404 or 500) an appropriate response is send,
+     * and if the called page is /, the user is redirected to the home of default language
+     * 
+     * @return RouteCollection|\Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     private function registerRoutes()
     {
         $this['routes'] = $this->extend('routes', function (RouteCollection $routes, Application $app) {
@@ -242,7 +247,7 @@ class ZCEApp extends Application
             if ($e instanceof NotFoundHttpException) {
                 
                 if ('/' === $this['request']->getRequestUri()) {
-                    return $this->redirect($this['parameters']['translation']['locale_fallbacks']);
+                    return $this->redirect('/' . $this['locale'] . '/');
                 }
                 
                 return new Response('The requested page could not be found. ' . $this['request']->getRequestUri(), 404);

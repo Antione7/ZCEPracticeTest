@@ -8,7 +8,6 @@ use Silex\ServiceProviderInterface;
 use Silex\Application;
 use ZCEPracticeTest\Front\Controller\FrontController;
 use ZCEPracticeTest\Front\Controller\PanelController;
-use ZCEPracticeTest\Twig\BasedOnTranslationMethodExtension;
 
 class FrontProvider implements ServiceProviderInterface
 {
@@ -31,24 +30,15 @@ class FrontProvider implements ServiceProviderInterface
         $app['translator'] = $app->share($app->extend('translator', function (Translator $translator, $app) {
 
             $translator->addLoader('yaml', new YamlFileLoader());
-            $translator->addResource('yaml', $app['project.root'] . '/src/ZCEPracticeTest/Front/Translation/trans.en.yml', 'en');
-            $translator->addResource('yaml', $app['project.root'] . '/src/ZCEPracticeTest/Front/Translation/trans.fr.yml', 'fr');
-            $translator->addResource('yaml', $app['project.root'] . '/src/ZCEPracticeTest/Front/Translation/trans.pt.yml', 'pt');
-
+            
+            $translator->locales = array();
+            foreach (glob($app['project.root'] . '/src/ZCEPracticeTest/Front/Translation/trans.*.yml') as $locale) {
+                $lang = pathinfo($locale, PATHINFO_FILENAME);
+                $translator->addResource('yaml', $locale, substr($lang, strpos($lang, '.') + 1));
+                array_push($translator->locales, $lang);
+            }
             return $translator;
         }));
-
-        /**
-         * Register the Twig Extension of this application
-         *
-         * @return Twig_Environment
-         */
-        $app->boot();
-        $app['twig'] = $app->extend('twig', function (\Twig_Environment $twig, \Silex\Application $app) {
-            $twig->addExtension(new BasedOnTranslationMethodExtension($app));
-
-            return $twig;
-        });
     }
 
     public function boot(Application $app)

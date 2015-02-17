@@ -2,28 +2,24 @@ database:
     db.options:
         driver:     pdo_mysql
         host:       localhost
-        dbname:     zce
+        dbname:     certiphp
         user:       root
         password:   root
         charset:    utf8
 
 swiftmailer:
     server:
-        host:       localhost
-        port:       25
+        host:       ~
+        port:       ~ 
         username:   ~
         password:   ~
         encryption: ~
         auth_mode:  ~
     mailParameters:
         sender:
-            email: noreply@darkmira.fr
-            name: ZCE practice test
-        subjectTag: ZCEPracticeTest
-
-translation:
-    locale: fr
-    locale_fallbacks: [en]
+            email: ~
+            name: CertiPHP
+        subjectTag: CertiPHP
 
 credits:
     free_credits_init: 1

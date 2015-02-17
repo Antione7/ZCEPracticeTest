@@ -1,16 +1,16 @@
 security:
     firewalls:
         login:
-            pattern: ^/user/login$
+            pattern: ^/login$
         secured_area:
             pattern: ^.*$
             anonymous: true
             remember_me: []
             form:
-                login_path: /user/login
-                check_path: /user/login_check
+                login_path: /login
+                check_path: /login_check
             logout:
-                logout_path: /user/logout
+                logout_path: /logout
 
 simple.user:
     userClass: ZCEPracticeTest\Core\Entity\User
