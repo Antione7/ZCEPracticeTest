@@ -68,7 +68,7 @@
             <li class="next" ng-if="showNext()" ng-click="next();questionChange()">
                 <a class="quiz-next-button" href="">{{ 'next'|translate }} &rarr;</a>
             </li>
-            <li class="next" ng-if="!hasNext()" ng-click="finish();questionChange()">
+            <li class="next" ng-if="!hasNext()" ng-click="questionChange();finish()">
                 <a class="quiz-finish-button" href="">{{ 'finish'|translate }} &rarr;</a>
             </li>
         </ul>

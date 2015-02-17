@@ -52,6 +52,7 @@ var zcpe = angular.module('zcpe', [
     'pascalprecht.translate',
     'ngCookies',
     'ngStorage',
+    'angular-locker',
     'controllers-quizz',
     'hljs',
     'timer',
