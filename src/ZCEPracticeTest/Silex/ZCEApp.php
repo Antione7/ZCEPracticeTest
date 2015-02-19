@@ -75,17 +75,13 @@ class ZCEApp extends Application
      */
     private function loadConfig()
     {
-        $configFile = $this['project.root'].'/app/config/config.yml';
+        $configFile = $this['project.root'] . '/app/config/config.yml';
         
         if (file_exists($configFile)) {
-            $config = Yaml::parse($configFile);
+            $this['config'] = Yaml::parse($configFile);
         } else {
             throw new \Exception('No '.$configFile.' file found');
         }
-        
-        $this['config'] = $config;
-        
-        $this['security.firewalls'] = $config['security']['firewalls'];
     }
 
     /**
@@ -93,16 +89,19 @@ class ZCEApp extends Application
      */
     private function registerProviders()
     {
-        $this->register(new \Silex\Provider\SecurityServiceProvider());
+        $this->register(new \Silex\Provider\SecurityServiceProvider(), array (
+            'security.firewalls'        => $this['config']['security']['firewalls'],
+            'security.access_rules'     => $this['config']['security']['access_control']
+        ));
         $this->register(new \Silex\Provider\RememberMeServiceProvider());
         $this->register(new \Silex\Provider\SessionServiceProvider());
         $this->register(new \Silex\Provider\ServiceControllerServiceProvider());
         $this->register(new \Silex\Provider\UrlGeneratorServiceProvider());
         $this->register(new \Silex\Provider\TwigServiceProvider());
         $this->register(new \Silex\Provider\SwiftmailerServiceProvider(), array(
-            'swiftmailer.options' => $this['parameters']['swiftmailer']['server'],
+            'swiftmailer.options' => $this['parameters']['swiftmailer'],
         ));
-        $this->register(new \Silex\Provider\TranslationServiceProvider(), $this['parameters']['translation']);
+        $this->register(new \Silex\Provider\TranslationServiceProvider());
     }
     
     /**
@@ -164,7 +163,6 @@ class ZCEApp extends Application
     private function registerSimpleUser()
     {
         $simpleUserProvider = new UserServiceProvider();
-        
         $this->register($simpleUserProvider);
         
         $this['user.options'] = $this['config']['simple.user'];
@@ -174,7 +172,7 @@ class ZCEApp extends Application
             return $app['user.manager'];
         });
         $this['security.firewalls'] = $security;
-        
+
         $this->mount('/user', $simpleUserProvider);
     }
     
@@ -226,6 +224,13 @@ class ZCEApp extends Application
         $this->register(new MailsProvider());
     }
     
+    /**
+     * Register routes from a configuration file
+     * If a error exists (404 or 500) an appropriate response is send,
+     * and if the called page is /, the user is redirected to the home of default language
+     * 
+     * @return RouteCollection|\Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     */
     private function registerRoutes()
     {
         $this['routes'] = $this->extend('routes', function (RouteCollection $routes, Application $app) {
@@ -235,12 +240,12 @@ class ZCEApp extends Application
         
             return $routes;
         });
-        
+            
         $this->error(function (\Exception $e) {
             if ($e instanceof NotFoundHttpException) {
                 
                 if ('/' === $this['request']->getRequestUri()) {
-                    return $this->redirect($this['parameters']['translation']['locale_fallbacks']);
+                    return $this->redirect('/' . $this['locale'] . '/');
                 }
                 
                 return new Response('The requested page could not be found. ' . $this['request']->getRequestUri(), 404);

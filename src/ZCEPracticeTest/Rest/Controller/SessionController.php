@@ -104,7 +104,7 @@ class SessionController
         if (null === $session->getQuiz()) {
             $session->setQuiz($this->zcpeQuizFactory->createStandardZCPEQuiz());
         }
-        
+
         $this->em->persist($session);
         $this->em->flush();
         

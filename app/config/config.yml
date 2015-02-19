@@ -1,16 +1,22 @@
 security:
-    firewalls:
-        login:
-            pattern: ^/user/login$
+    firewalls: 
         secured_area:
             pattern: ^.*$
             anonymous: true
             remember_me: []
             form:
-                login_path: /user/login
+                login_path: user.login
                 check_path: /user/login_check
             logout:
                 logout_path: /user/logout
+                target: home
+    access_control:
+        - [ '^/(en|fr|pt)/user/edit/\d+/$', 'IS_AUTHENTICATED_REMEMBERED' ]
+        - [ '^/(en|fr|pt)/user/view/\d+/$', 'IS_AUTHENTICATED_REMEMBERED' ]
+        - [ '^/(en|fr|pt)/user/panel/$', 'IS_AUTHENTICATED_REMEMBERED' ]
+        - [ '^/(en|fr|pt)/login/$', 'IS_AUTHENTICATED_ANONYMOUSLY' ]
+        - [ '^/(en|fr|pt)/$', 'IS_AUTHENTICATED_ANONYMOUSLY' ]
+        - [ '^/(en|fr|pt)/about/$', 'IS_AUTHENTICATED_ANONYMOUSLY' ]    
 
 simple.user:
     userClass: ZCEPracticeTest\Core\Entity\User
