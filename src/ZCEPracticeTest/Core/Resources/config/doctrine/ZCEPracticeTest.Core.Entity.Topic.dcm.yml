@@ -14,6 +14,7 @@ ZCEPracticeTest\Core\Entity\Topic:
             length: 255
         primary:
             type: boolean
+            column: _primary
     oneToMany:
         questions:
             targetEntity: ZCEPracticeTest\Core\Entity\Question
