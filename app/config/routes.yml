@@ -1,23 +1,76 @@
 home:
-    path:     /{_locale}/
-    defaults: { _controller: zce.front.front.controller:indexAction }
-    requirements:
-        _locale:  en|fr|pt
+  path:     /{_locale}/
+  defaults: { _controller: zce.front.front.controller:indexAction }
+  requirements:
+    _locale:  en|fr|pt
 
 about:
-    path:     /{_locale}/about/
-    defaults: { _controller: zce.front.front.controller:aboutAction }
-    requirements:
-        _locale:  en|fr|pt
+  path:     /{_locale}/about/
+  defaults: { _controller: zce.front.front.controller:aboutAction }
+  requirements:
+      _locale:  en|fr|pt
         
 panel:
-    path:     /{_locale}/panel/
-    defaults: { _controller: zce.front.panel.controller:indexAction }
-    requirements:
-        _locale:  en|fr|pt
+  path:     /{_locale}/user/panel/
+  defaults: { _controller: zce.front.panel.controller:indexAction }
+  requirements:
+      _locale:  en|fr|pt
 
-login:
-    path:     /{_locale}/login/
-    defaults: { _controller: zce.front.panel.controller:indexAction }
-    requirements:
-        _locale:  en|fr|pt
+# User
+user.login: 
+  path:     /{_locale}/login/
+  defaults: { _controller: user.controller:loginAction }
+  requirements:
+    _locale:  en|fr|pt
+    method: GET
+  
+user.forgot-password: 
+  path:     /{_locale}/forgot-password/
+  defaults: { _controller: user.controller:forgotPasswordAction }
+  requirements:
+    _locale:  en|fr|pt
+    method: GET|POST
+  
+user.resend-confirmation: 
+  path:     /{_locale}/resend-confirmation/
+  defaults: { _controller: user.controller:resendConfirmationAction }
+  requirements:
+    _locale:  en|fr|pt
+    method: POST
+
+user.register: 
+  path:     /{_locale}/register/
+  defaults: { _controller: user.controller:registerAction }
+  requirements:
+    _locale:  en|fr|pt
+    method: GET|POST
+
+user.confirm-email: 
+  path:     /{_locale}/confirm-email/{token}/
+  defaults: { _controller: user.controller:confirmEmailAction }
+  requirements:
+    _locale:  en|fr|pt
+    method: GET
+
+user.reset-password: 
+  path:     /{_locale}/reset-password/{token}/
+  defaults: { _controller: user.controller:resetPasswordAction }
+  requirements:
+    _locale:  en|fr|pt
+    method: GET
+
+user.view: 
+  path:     /{_locale}/user/view/{id}/
+  defaults: { _controller: user.controller:viewAction }
+  requirements:
+    _locale:  en|fr|pt
+    id: \d+
+    method: GET
+
+user.edit: 
+  path:     /{_locale}/user/edit/{id}/
+  defaults: { _controller: user.controller:editAction }
+  requirements:
+    _locale:  en|fr|pt
+    id: \d+
+    method: GET|POST

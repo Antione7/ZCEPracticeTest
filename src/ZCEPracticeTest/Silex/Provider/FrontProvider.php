@@ -32,10 +32,11 @@ class FrontProvider implements ServiceProviderInterface
             $translator->addLoader('yaml', new YamlFileLoader());
             
             $translator->locales = array();
-            foreach (glob($app['project.root'] . '/src/ZCEPracticeTest/Front/Translation/trans.*.yml') as $locale) {
-                $lang = pathinfo($locale, PATHINFO_FILENAME);
-                $translator->addResource('yaml', $locale, substr($lang, strpos($lang, '.') + 1));
-                array_push($translator->locales, $lang);
+            foreach (glob($app['project.root'] . '/src/ZCEPracticeTest/Front/Translation/trans.*.yml') as $localeFile) {
+                $lang = pathinfo($localeFile, PATHINFO_FILENAME);
+                $locale = substr($lang, strrpos($lang, '.') + 1);
+                $translator->addResource('yaml', $localeFile, $locale);
+                array_push($translator->locales, $locale);
             }
             return $translator;
         }));

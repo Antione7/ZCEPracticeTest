@@ -75,17 +75,13 @@ class ZCEApp extends Application
      */
     private function loadConfig()
     {
-        $configFile = $this['project.root'].'/app/config/config.yml';
+        $configFile = $this['project.root'] . '/app/config/config.yml';
         
         if (file_exists($configFile)) {
-            $config = Yaml::parse($configFile);
+            $this['config'] = Yaml::parse($configFile);
         } else {
             throw new \Exception('No '.$configFile.' file found');
         }
-        
-        $this['config'] = $config;
-        
-        $this['security.firewalls'] = $config['security']['firewalls'];
     }
 
     /**
@@ -93,7 +89,10 @@ class ZCEApp extends Application
      */
     private function registerProviders()
     {
-        $this->register(new \Silex\Provider\SecurityServiceProvider());
+        $this->register(new \Silex\Provider\SecurityServiceProvider(), array (
+            'security.firewalls'        => $this['config']['security']['firewalls'],
+            'security.access_rules'     => $this['config']['security']['access_control']
+        ));
         $this->register(new \Silex\Provider\RememberMeServiceProvider());
         $this->register(new \Silex\Provider\SessionServiceProvider());
         $this->register(new \Silex\Provider\ServiceControllerServiceProvider());
@@ -164,7 +163,6 @@ class ZCEApp extends Application
     private function registerSimpleUser()
     {
         $simpleUserProvider = new UserServiceProvider();
-        
         $this->register($simpleUserProvider);
         
         $this['user.options'] = $this['config']['simple.user'];
@@ -174,7 +172,7 @@ class ZCEApp extends Application
             return $app['user.manager'];
         });
         $this['security.firewalls'] = $security;
-        
+
         $this->mount('/user', $simpleUserProvider);
     }
     
@@ -242,7 +240,7 @@ class ZCEApp extends Application
         
             return $routes;
         });
-        
+            
         $this->error(function (\Exception $e) {
             if ($e instanceof NotFoundHttpException) {
                 

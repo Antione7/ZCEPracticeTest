@@ -2,7 +2,7 @@
  * Translations
  */
 zcpe.config(['$translateProvider', function ($translateProvider) {
-    $translateProvider.translations('fr_FR', {
+    $translateProvider.translations('fr', {
         '_.minutes': 'minutes',
         '_.remaining.minutes': 'minutes restantes',
         'about': 'À propos',
@@ -40,7 +40,7 @@ zcpe.config(['$translateProvider', function ($translateProvider) {
             + ' est généré et vous permet de connaître directement votre réussite par topic et de revenir sur vos réponses erronées.'
     });
 
-    $translateProvider.translations('en_EN', {
+    $translateProvider.translations('en', {
     	'_.minutes': 'minutes',
         '_.remaining.minutes': 'remaining minutes',
         'about': 'About',
@@ -78,7 +78,7 @@ zcpe.config(['$translateProvider', function ($translateProvider) {
             + ' and lets you know your achievement by topic and get back on your incorrect answers.'
     });
 
-    $translateProvider.translations('pt_BR', {
+    $translateProvider.translations('pt', {
     	'_.minutes': 'minutos',
         '_.remaining.minutes': 'minutos restantes',
         'about': 'Sobre',
@@ -116,16 +116,5 @@ zcpe.config(['$translateProvider', function ($translateProvider) {
             + ' e permite-lhe de conhecer seu sucesso por tópico e voltar sobre suas respostas erradas.'
     });
 
-    $translateProvider.preferredLanguage('en_EN');
-    $translateProvider.useLocalStorage();
-}]);
-
-zcpe.controller('TranslateCtrl', ['$translate', '$scope', function($translate, $scope) {
-    $scope.changeLang = function (langKey) {
-	    if (langKey === 'fr_FR' || langKey === 'pt_BR') {
-            $translate.use(langKey);
-        } else {
-            $translate.use('en_EN');
-        }
-    };
+    $translateProvider.preferredLanguage(document.documentElement.getAttribute('lang'));
 }]);
