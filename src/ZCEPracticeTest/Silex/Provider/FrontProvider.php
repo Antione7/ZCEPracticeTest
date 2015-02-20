@@ -8,6 +8,7 @@ use Silex\ServiceProviderInterface;
 use Silex\Application;
 use ZCEPracticeTest\Front\Controller\FrontController;
 use ZCEPracticeTest\Front\Controller\PanelController;
+use ZCEPracticeTest\Front\Controller\AssetController;
 
 class FrontProvider implements ServiceProviderInterface
 {
@@ -23,6 +24,14 @@ class FrontProvider implements ServiceProviderInterface
                 $app['security']->getToken(),
                 $app['orm.em']->getRepository('ZCE:Session'),
                 $app['url_generator']->generate('home')
+            );
+        });
+        
+        $app['zce.front.asset.controller'] = $app->share(function () use ($app) {
+            return new AssetController(
+                $app['project.root'],
+                $app['project.root'] . '/var/cache',
+                $app['debug']
             );
         });
 
