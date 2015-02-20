@@ -9,6 +9,10 @@ zcpe.controller('QuizCtrl', ['$scope', '$location', '$localStorage', '$controlle
     
     var parentFinish = $scope.finish;
     $scope.finish = function () {
+        if (!confirm('Terminate session and go to result screen ?')) {
+            return;
+        }
+        
         parentFinish();
         
         var score = evaluator.evaluate($scope.quizz);

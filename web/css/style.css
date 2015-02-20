@@ -1,6 +1,12 @@
 body {
 	padding-top: 70px;	
 }
+.pager-right {
+    float: right;
+}
+.pager-right li:first-child a {
+    border-radius: 6px;
+}
 
 .btn-tile {
     width: 256px;
