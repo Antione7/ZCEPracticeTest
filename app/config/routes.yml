@@ -3,13 +3,7 @@ home:
   defaults: { _controller: zce.front.front.controller:indexAction }
   requirements:
     _locale:  en|fr|pt
-
-about:
-  path:     /{_locale}/about/
-  defaults: { _controller: zce.front.front.controller:aboutAction }
-  requirements:
-      _locale:  en|fr|pt
-        
+       
 panel:
   path:     /{_locale}/user/panel/
   defaults: { _controller: zce.front.panel.controller:indexAction }

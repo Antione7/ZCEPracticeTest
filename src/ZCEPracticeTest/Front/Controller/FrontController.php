@@ -11,7 +11,7 @@
  */
 namespace ZCEPracticeTest\Front\Controller;
 
-use Twig_Environment;
+use Silex\Application;
 
 /**
  * Get Controller.
@@ -24,23 +24,10 @@ use Twig_Environment;
  */
 class FrontController
 {
-    /**
-     * @var Twig_Environment
-     */
-    private $twig;
-    
-    public function __construct(Twig_Environment $twig)
+   
+    public function indexAction(Application $app)
     {
-        $this->twig = $twig;
+        return $app->redirect($app['url_generator']->generate('panel'));
     }
-    
-    public function indexAction()
-    {
-        return $this->twig->render('@front/index.html.twig');
-    }
-    
-    public function aboutAction()
-    {
-        return $this->twig->render('@front/about.html.twig');
-    }
+
 }
