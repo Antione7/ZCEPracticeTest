@@ -72,7 +72,6 @@ class Session implements \JsonSerializable
      */
     public function __construct()
     {
-        //$oDate = new \DateTime();
         $oDate = new \DateTime('now', new \DateTimeZone('UTC'));
 
         $this->setDateStart($oDate);
