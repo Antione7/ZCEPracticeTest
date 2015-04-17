@@ -72,7 +72,9 @@ class Session implements \JsonSerializable
      */
     public function __construct()
     {
-        $this->setDateStart(new \DateTime());
+        $oDate = new \DateTime('now', new \DateTimeZone('UTC'));
+
+        $this->setDateStart($oDate);
         $this->answers = new \Doctrine\Common\Collections\ArrayCollection();
         $this->topicScores = new \Doctrine\Common\Collections\ArrayCollection();
     }

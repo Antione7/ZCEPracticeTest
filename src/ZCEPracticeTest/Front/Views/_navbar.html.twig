@@ -7,18 +7,16 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ path('home') }}"><img src="{{ app.request.basepath }}/images/Logo-final-150x30.png" alt="Logo CertiPHP" title="Logo CertiPHP" /></a>
+            <a class="navbar-brand" href="{{ path('panel') }}"><img src="{{ app.request.basepath }}/images/Logo-final-150x30.png" alt="Logo CertiPHP" title="Logo CertiPHP" /></a>
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li><a href="{{ path('home') }}">{{ 'home' | trans }}</a></li>
                 {% if app.user is not null %}
                     <li>
                         <a href="{{ path('panel') }}">{{ 'my.panel' | trans }}</a>
                         <span class="navbar-unread"></span>
                     </li>
                 {% endif %}
-                <li><a href="{{ path('about') }}">{{ 'about' | trans }}</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right lang-flag">
                 <li><a href="/fr/{{ app.request.pathinfo[4:] }}"><img src="{{ app.request.basepath }}/images/flag-france.png" alt="Français" title="Français" /></a></li>

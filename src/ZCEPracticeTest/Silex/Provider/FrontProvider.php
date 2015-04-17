@@ -14,7 +14,7 @@ class FrontProvider implements ServiceProviderInterface
     public function register(Application $app)
     {
         $app['zce.front.front.controller'] = $app->share(function () use ($app) {
-            return new FrontController($app['twig']);
+            return new FrontController();
         });
         
         $app['zce.front.panel.controller'] = $app->share(function () use ($app) {
@@ -22,7 +22,7 @@ class FrontProvider implements ServiceProviderInterface
                 $app['twig'],
                 $app['security']->getToken(),
                 $app['orm.em']->getRepository('ZCE:Session'),
-                $app['url_generator']->generate('home')
+                $app['url_generator']->generate('panel')
             );
         });
 
@@ -51,7 +51,6 @@ class FrontProvider implements ServiceProviderInterface
         // Add twig template path.
         if (isset($app['twig.loader.filesystem'])) {
             $app['twig.loader.filesystem']->addPath($app['project.root'] . '/src/ZCEPracticeTest/Front/Views/', 'views');
-            $app['twig.loader.filesystem']->addPath($app['project.root'] . '/src/ZCEPracticeTest/Front/Views/Front/', 'front');
             $app['twig.loader.filesystem']->addPath($app['project.root'] . '/src/ZCEPracticeTest/Front/Views/Panel/', 'panel');
         }
     }
