@@ -138,7 +138,7 @@ class SessionController
         }
         
         $session
-            ->setDateFinished(new \DateTime())
+            ->setDateFinished(new \DateTime('now', new \DateTimeZone('UTC')))
             ->setNbTopicsValidated($scoreData->nbTopicsValidated)
             ->setSuccess($scoreData->success)
         ;

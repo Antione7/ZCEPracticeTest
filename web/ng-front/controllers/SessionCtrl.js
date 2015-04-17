@@ -4,6 +4,7 @@ zcpe.controller('SessionCtrl', ['$scope', '$routeParams', 'restApi', function ($
     $scope.Question = Question;
     
     restApi.getSession(sessionId, function (data) {
+        data.session.dateStart.date = data.session.dateStart.date.replace(/-/g, '/');
         $scope.session = data.session;
         $scope.sessionDuration = calculDuration($scope.session.dateStart.date, $scope.session.dateFinished.date);
     });
