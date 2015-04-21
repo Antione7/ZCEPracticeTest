@@ -77,12 +77,18 @@ class EventsListener implements EventSubscriberInterface
      */
     public function onSessionEnded(SessionEvent $event)
     {
+        $subject = [
+            'en' => 'Session ended',
+            'fr' => 'Session terminée',
+            'pt' => 'Sessão terminada'
+        ];
+        $this->locale = $event->getLocale();
         $session = $event->getSession();
         $user = $session->getUser();
         $credits = $this->creditsManager->getCredits();
         
         $message = $this->mailFactory
-            ->createTemplateMail('Session terminée', '@mails/session-ended.'.$this->locale.'.html.twig', array(
+            ->createTemplateMail($subject[$this->locale], '@mails/session-ended.'.$this->locale.'.html.twig', array(
                 'user'      => $user,
                 'session'   => $session,
                 'credits'   => $credits,

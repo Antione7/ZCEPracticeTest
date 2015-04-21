@@ -30,11 +30,17 @@ class SessionEvent extends EventAbstract
     private $session;
     
     /**
+     * @var Locale
+     */
+    private $locale;
+    
+    /**
      * @param Session $session
      */
-    public function __construct(Session $session)
+    public function __construct(Session $session, $locale = 'en')
     {
         $this->session = $session;
+        $this->locale = $locale;
     }
     
     /**
@@ -43,5 +49,10 @@ class SessionEvent extends EventAbstract
     public function getSession()
     {
         return $this->session;
+    }
+    
+    public function getLocale()
+    {
+        return $this->locale;
     }
 }

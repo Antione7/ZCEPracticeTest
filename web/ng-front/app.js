@@ -57,4 +57,4 @@ var zcpe = angular.module('zcpe', [
     'hljs',
     'timer',
     'zcpeFilters'
-])
+]);

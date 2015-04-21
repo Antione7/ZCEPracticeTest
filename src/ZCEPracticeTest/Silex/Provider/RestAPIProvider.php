@@ -59,7 +59,7 @@ class RestAPIProvider implements ServiceProviderInterface, ControllerProviderInt
         ;
         
         $controllers
-            ->post('/session/finish/{sessionId}', 'zce.rest.session.controller:finishAction')
+            ->post('/{locale}/session/finish/{sessionId}', 'zce.rest.session.controller:finishAction')
             ->bind('api-post-session-score')
         ;
         

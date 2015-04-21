@@ -9,13 +9,13 @@
                         #}
                         <tr>
                             <td>
-                                <a href="{{ url('accueil') }}" style="color: #34495e; text-decoration: none; font-size: 24px"><img src="http://www.certiphp.com/images/Logo-final-150x30.png" alt="Logo CertiPHP" title="Logo CertiPHP" /></a>
+                                <a href="{{ url('panel') }}" style="color: #34495e; text-decoration: none; font-size: 24px"><img src="http://www.certiphp.com/images/Logo-final-150x30.png" alt="Logo CertiPHP" title="Logo CertiPHP" /></a>
                             </td>
                             <td>
                             </td>
                             {% if user is not null %}
                                 <td style="text-align: right">
-                                    <a href="{{ url('accueil') }}" style="color: #34495e; text-decoration: none;">{{ user.displayName }}</a>
+                                    <a href="{{ url('panel') }}" style="color: #34495e; text-decoration: none;">{{ user.displayName }}</a>
                                 </td>
                             {% endif %}
                         </tr>

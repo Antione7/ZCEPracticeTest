@@ -118,11 +118,12 @@ class SessionController
      * Set pass/fail state and save score
      * 
      * @param Request $request
+     * @param string $locale
      * @param integer $sessionId
      * 
      * @return JsonResponse
      */
-    public function finishAction(Request $request, $sessionId)
+    public function finishAction(Request $request, $locale, $sessionId)
     {
         $scoreData = json_decode($request->getContent());
         
@@ -157,7 +158,7 @@ class SessionController
         
         $this->em->flush();
         
-        $this->dispatcher->dispatch(SessionEvent::SESSION_ENDED, new SessionEvent($session));
+        $this->dispatcher->dispatch(SessionEvent::SESSION_ENDED, new SessionEvent($session, $locale));
         
         return new JsonResponse(array(
             'ok' => true,
