@@ -18,7 +18,6 @@ zcpe.service('restApi', ['$http', function ($http) {
     this.postResults = function (sessionId, score)
     {
         var locale = document.documentElement.getAttribute('lang');
-        console.log(locale);
         $http({
             url: config.restServer + '/' + locale + '/session/finish/' + sessionId,
             method: 'POST',
