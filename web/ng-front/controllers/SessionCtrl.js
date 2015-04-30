@@ -4,7 +4,8 @@ zcpe.controller('SessionCtrl', ['$scope', '$routeParams', 'restApi', function ($
     $scope.Question = Question;
     
     restApi.getSession(sessionId, function (data) {
-        data.session.dateStart.date = data.session.dateStart.date.replace(/-/g, '/').replace('.000000','');
+        data.session.dateStart.date = data.session.dateStart.date.replace(/ /g, 'T').replace('.000000','Z');
+        data.session.dateFinished.date = data.session.dateFinished.date.replace(/ /g, 'T').replace('.000000','Z');
         $scope.session = data.session;
         $scope.sessionDuration = calculDuration($scope.session.dateStart.date, $scope.session.dateFinished.date);
     });
@@ -33,10 +34,7 @@ zcpe.controller('SessionCtrl', ['$scope', '$routeParams', 'restApi', function ($
      * @returns {integer}
      */
     function calculDuration(date0, date1) {
-        var d0 = new Date(date0.replace(/-/g, '/').replace('.000000','')).getTime();
-        var d1 = new Date(date1.replace(/-/g, '/').replace('.000000','')).getTime();
-        
-        var seconds = Math.abs(d1 - d0);
+        var seconds = Math.abs(new Date(date1).getTime() - new Date(date0).getTime());
         
         return Math.round(seconds / 60000);
     }

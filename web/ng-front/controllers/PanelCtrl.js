@@ -30,7 +30,7 @@ zcpe.controller('PanelCtrl', ['$scope', '$location', 'restApi', 'sessionPersiste
     
     restApi.getSessions(function (data) {
         for(i=0; i < data.sessions.length; i++){
-            data.sessions[i].dateFinished.date = data.sessions[i].dateStart.date.replace(/-/g, '/').replace('.000000','');
+            data.sessions[i].dateFinished.date = data.sessions[i].dateStart.date.replace(/ /g, 'T').replace('.000000','Z');
         }
         $scope.sessions = data.sessions;
     });
