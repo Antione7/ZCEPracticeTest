@@ -39,7 +39,7 @@ zcpe.service('quizCreator', function () {
             });
         });
 
-        var dateStart = new Date(data.dateStart.date.replace(/-/g, '/'));
+        var dateStart = new Date(data.dateStart.date.replace(/-/g, '/').replace('.000000',''));
         
 
         var quiz = {
