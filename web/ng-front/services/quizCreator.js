@@ -39,13 +39,13 @@ zcpe.service('quizCreator', function () {
             });
         });
 
-        var dateStart = new Date(data.dateStart.date.replace(/-/g, '/'));
+        var dateStart = new Date(data.dateStart.date.replace(/ /g, 'T').replace('.000000','Z'));
         
 
         var quiz = {
             title: 'Title',
             description: 'Description',
-            dateStart: dateStart.getTime() - dateStart.getTimezoneOffset() * 60000,
+            dateStart: dateStart.getTime(),
             time: 5400, // 90 minutes
             questions: questions
         };
