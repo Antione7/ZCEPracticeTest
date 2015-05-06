@@ -30,7 +30,7 @@ class Session implements \JsonSerializable
     /**
      * @var integer
      */
-    private $statut;
+    private $status;
 
     /**
      * @var \DateTime
@@ -90,26 +90,26 @@ class Session implements \JsonSerializable
     }
 
     /**
-     * Set statut
+     * Set status
      *
-     * @param integer $statut
+     * @param integer $status
      * @return Session
      */
-    public function setStatut($statut)
+    public function setStatus($status)
     {
-        $this->statut = $statut;
+        $this->status = $status;
 
         return $this;
     }
 
     /**
-     * Get statut
+     * Get status
      *
      * @return integer 
      */
-    public function getStatut()
+    public function getStatus()
     {
-        return $this->statut;
+        return $this->status;
     }
 
     /**
@@ -306,7 +306,7 @@ class Session implements \JsonSerializable
         
         return array(
             'id' => $this->getId(),
-            'statut' => $this->getStatut(),
+            'status' => $this->getStatus(),
             'dateStart' => $this->getDateStart(),
             'dateFinished' => $this->getDateFinished(),
             'nbTopicsValidated' => $this->getNbTopicsValidated(),

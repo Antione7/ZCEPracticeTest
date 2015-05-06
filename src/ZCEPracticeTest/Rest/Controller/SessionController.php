@@ -141,7 +141,7 @@ class SessionController
         $session
             ->setDateFinished(new \DateTime('now', new \DateTimeZone('UTC')))
             ->setNbTopicsValidated($scoreData->nbTopicsValidated)
-            ->setStatut($scoreData->statut)
+            ->setStatus($scoreData->status)
         ;
         
         foreach ($scoreData->topics as $topicScoreData) {
