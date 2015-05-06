@@ -28,9 +28,9 @@ class Session implements \JsonSerializable
     private $id;
 
     /**
-     * @var integer
+     * @var boolean
      */
-    private $statut;
+    private $success;
 
     /**
      * @var \DateTime
@@ -90,26 +90,26 @@ class Session implements \JsonSerializable
     }
 
     /**
-     * Set statut
+     * Set success
      *
-     * @param integer $statut
+     * @param boolean $success
      * @return Session
      */
-    public function setStatut($statut)
+    public function setSuccess($success)
     {
-        $this->statut = $statut;
+        $this->success = $success;
 
         return $this;
     }
 
     /**
-     * Get statut
+     * Get success
      *
-     * @return integer 
+     * @return boolean 
      */
-    public function getStatut()
+    public function getSuccess()
     {
-        return $this->statut;
+        return $this->success;
     }
 
     /**
@@ -306,7 +306,7 @@ class Session implements \JsonSerializable
         
         return array(
             'id' => $this->getId(),
-            'statut' => $this->getStatut(),
+            'success' => $this->getSuccess(),
             'dateStart' => $this->getDateStart(),
             'dateFinished' => $this->getDateFinished(),
             'nbTopicsValidated' => $this->getNbTopicsValidated(),

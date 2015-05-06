@@ -2,8 +2,8 @@
     <div class="col-md-12">
         <h1>{{ 'session'|translate }}</h1>
         
-        <a class="btn zcpe-pass-fail zcpe-pass-fail-topic text-center" ng-class="{'btn-success': session.statut === 1, 'btn-danger': session.statut !== 1}">
-            {{ session.statut === 1 ? 'PASSED' : 'FAILED' }}
+        <a class="btn zcpe-pass-fail zcpe-pass-fail-topic text-center" ng-class="{'btn-success': session.success, 'btn-danger': !session.success}">
+            {{ session.success ? 'PASSED' : 'FAILED' }}
         </a>
         
         <p>

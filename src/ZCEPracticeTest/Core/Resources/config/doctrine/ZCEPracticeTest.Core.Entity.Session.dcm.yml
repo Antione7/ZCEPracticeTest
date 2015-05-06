@@ -9,8 +9,8 @@ ZCEPracticeTest\Core\Entity\Session:
             generator:
                 strategy: IDENTITY
     fields:
-        statut:
-            type: integer
+        success:
+            type: boolean
             nullable: true
         dateStart:
             type: datetime
