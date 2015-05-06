@@ -1,11 +1,11 @@
 {% extends "@mails/layout.html.twig" %}
 
 {% block content %}
-<p style="width: 100%; background-color: {{ session.success ? '#2ecc71' : '#e74c3c' }}; text-align: center; padding: 40px 0px; color: white; border-radius: 5px; font-size: 28px;">
-    {{ session.success ? 'PASS' : 'FAIL' }}
+<p style="width: 100%; background-color: {{ session.statut === 1 ? '#2ecc71' : '#e74c3c' }}; text-align: center; padding: 40px 0px; color: white; border-radius: 5px; font-size: 28px;">
+    {{ session.statut === 1 ? 'PASS' : 'FAIL' }}
 </p>
 
-{% if session.success %}
+{% if session.statut === 1 %}
     <p>
         Bravo {{ user.displayName }} ! :)
     </p>
