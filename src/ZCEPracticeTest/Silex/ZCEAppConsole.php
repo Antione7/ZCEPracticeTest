@@ -10,6 +10,7 @@ use Doctrine\ORM\Tools\Console\ConsoleRunner;
 use Silex\Application as SilexApplication;
 use ZCEPracticeTest\Core\Command\LoadFixturesCommand;
 use ZCEPracticeTest\Core\Command\CreateZCPEQuizCommand;
+use ZCEPracticeTest\Core\Command\CloseSessionsTimeoutCommand;
 use ZCEPracticeTest\Silex\Provider\ImportExportProvider;
 use ZCEPracticeTest\ImportExport\Command\ImportQuestionCommand;
 
@@ -51,6 +52,7 @@ class ZCEAppConsole extends Application
         $this->add(new LoadFixturesCommand($em));
         $this->add(new CreateZCPEQuizCommand($em, $this->silexApp['zce.core.zcpe_quiz_factory']));
         $this->add(new ImportQuestionCommand($em, $this->silexApp['zce.import_export.import_question']));
+        $this->add(new CloseSessionsTimeoutCommand($em));
         
         // Register Doctrine ORM commands
         $helperSet = new HelperSet(array(
