@@ -33,6 +33,10 @@ class ZCEAppConsole extends Application
         $this->silexApp = $app;
         
         $app->register(new ImportExportProvider());
+
+        $app->register(new \Silex\Provider\MonologServiceProvider(), array(
+            'monolog.logfile' => __DIR__.'/ZCEPracticeTest.log',
+        ));
         
         $app->get('/', function () {
             return '';
@@ -52,7 +56,7 @@ class ZCEAppConsole extends Application
         $this->add(new LoadFixturesCommand($em));
         $this->add(new CreateZCPEQuizCommand($em, $this->silexApp['zce.core.zcpe_quiz_factory']));
         $this->add(new ImportQuestionCommand($em, $this->silexApp['zce.import_export.import_question']));
-        $this->add(new CloseSessionsTimeoutCommand($em));
+        $this->add(new CloseSessionsTimeoutCommand($em, $this->silexApp['monolog']));
         
         // Register Doctrine ORM commands
         $helperSet = new HelperSet(array(

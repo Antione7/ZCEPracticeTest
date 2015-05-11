@@ -14,7 +14,8 @@
         "doctrine/data-fixtures": "1.0.*",
         "dflydev/doctrine-orm-service-provider": "~1.0",
         "jasongrimes/silex-simpleuser": "~2.0",
-        "symfony/dependency-injection": "~2.6"
+        "symfony/dependency-injection": "~2.6",
+        "monolog/monolog": "1.13.1"
     },
     "autoload": {
         "psr-0": {
