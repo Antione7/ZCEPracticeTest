@@ -35,7 +35,7 @@ class ZCEAppConsole extends Application
         $app->register(new ImportExportProvider());
 
         $app->register(new \Silex\Provider\MonologServiceProvider(), array(
-            'monolog.logfile' => __DIR__.'/ZCEPracticeTest.log',
+            'monolog.logfile' => $app['parameters']['log_path'],
         ));
         
         $app->get('/', function () {
