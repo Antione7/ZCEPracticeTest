@@ -50,9 +50,9 @@
             ng-switch="session.status"
             ng-disabled="session.status === 2"
         >
-            <span ng-switch-when="0" class="success lead">FAIL</span>
-            <span ng-switch-when="1" class="success lead">PASS</span>
-            <span ng-switch-when="2" class="success lead">ABORTED</span>
+            <span ng-switch-when="0" class="success lead">{{ 'failed' | translate | uppercase }}</span>
+            <span ng-switch-when="1" class="success lead">{{ 'passed' | translate | uppercase }}</span>
+            <span ng-switch-when="2" class="success lead">{{ 'timeout' | translate | uppercase }}</span>
             <br />
             <span ng-if="session.status !== 2" class="date">
                 {{ session.dateFinished.date| jsDate | date: 'medium' }}
@@ -61,7 +61,7 @@
                 {{ session.dateStart.date| jsDate | date: 'medium' }}
             </span>
             <br />
-            <span class="topics">{{ session.nbTopicsValidated || 0 }} / 10 {{ 'topics.validated'|translate }}</span>
+            <span ng-if="session.status !== 2" class="topics">{{ session.nbTopicsValidated || 0 }} / 10 {{ 'topics.validated'|translate }}</span>
         </button>
     </div>
 </div>
