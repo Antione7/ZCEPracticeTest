@@ -211,7 +211,7 @@ class SessionController
         
         $sessions = $this->sessionRepository->findBy(array(
             'user' => $user,
-        ), array('dateFinished' => 'DESC'));
+        ), array('dateStart' => 'DESC'));
 
         return new JsonResponse(array(
             'ok' => true,

@@ -54,10 +54,7 @@
             <span ng-switch-when="1" class="success lead">{{ 'passed' | translate | uppercase }}</span>
             <span ng-switch-when="2" class="success lead">{{ 'timeout' | translate | uppercase }}</span>
             <br />
-            <span ng-if="session.status !== 2" class="date">
-                {{ session.dateFinished.date| jsDate | date: 'medium' }}
-            </span>
-            <span ng-if="session.status === 2" class="date">
+            <span class="date">
                 {{ session.dateStart.date| jsDate | date: 'medium' }}
             </span>
             <br />

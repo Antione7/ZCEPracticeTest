@@ -6,8 +6,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Command\Command;
 use Doctrine\ORM\EntityManager;
-use ZCEPracticeTest\Core\Service\LogsManager;
-use Silex\Application;
+use ZCEPracticeTest\Core\Service\CloseSessionsTimeout;
 
 class CloseSessionsTimeoutCommand extends Command
 {
@@ -22,6 +21,8 @@ class CloseSessionsTimeoutCommand extends Command
     private $monolog;
 
     /**
+     * Constructor
+     * 
      * @param SessionRepository $sessionRepository
      */
     public function __construct(EntityManager $em, \Monolog\Logger $monolog)
@@ -43,26 +44,12 @@ class CloseSessionsTimeoutCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $now = new \DateTime('now', new \DateTimeZone('UTC'));
-        $nbClosedSessions = 0;
-
-        $sessionRepository = $this->em->getRepository('ZCE:Session');
-    	$sessions = $sessionRepository->findAll();
-    	
-    	for($i = 0; $i < count($sessions); $i++){
-    	    
-    	    $dateStart = $sessions[$i]->getDateStart();
-    	    
-    	    $diff = ($now->getTimestamp() - $dateStart->getTimestamp())/60;
-    	    
-    	    if(is_null($sessions[$i]->getDateFinished()) && $diff > 90 && $sessions[$i]->getStatus() !== 2){
-    	        $sessions[$i]->setStatus(2);
-    	        $nbClosedSessions++;
-    	    }
-        }
-           
+        
+        $closeSessionsTimeout = new CloseSessionsTimeout($this->em);
+        
+        $nbClosedSessions = $closeSessionsTimeout->closeSessionsTimeout();
+  
     	if($nbClosedSessions > 0){
-    	    
-    	    $this->em->flush();
 
             $message = $nbClosedSessions.' sessions closed at '.$now->format('l, d-M-Y H:i:s T');
     	    
