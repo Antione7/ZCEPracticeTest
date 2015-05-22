@@ -42,19 +42,23 @@
 
      --><button
             ng-repeat="session in sessions"
-            ng-if="session.success !== null"
+            ng-if="session.status !== null"
             ng-click="goToSession(session.id)"
-            ng-class="{'btn-success': session.success, 'btn-danger': !session.success }"
+            ng-class="{'btn-danger': session.status === 0, 'btn-success': session.status === 1}"
             type="button"
             class="btn btn-tile"
+            ng-switch="session.status"
+            ng-disabled="session.status === 2"
         >
-            <span class="success lead">{{ session.success ? 'PASS' : 'FAIL' }}</span>
+            <span ng-switch-when="0" class="success lead">{{ 'failed' | translate | uppercase }}</span>
+            <span ng-switch-when="1" class="success lead">{{ 'passed' | translate | uppercase }}</span>
+            <span ng-switch-when="2" class="success lead">{{ 'timeout' | translate | uppercase }}</span>
             <br />
             <span class="date">
-                {{ session.dateFinished.date| jsDate | date: 'medium' }}
+                {{ session.dateStart.date| jsDate | date: 'medium' }}
             </span>
             <br />
-            <span class="topics">{{ session.nbTopicsValidated || 0 }} / 10 {{ 'topics.validated'|translate }}</span>
+            <span ng-if="session.status !== 2" class="topics">{{ session.nbTopicsValidated || 0 }} / 10 {{ 'topics.validated'|translate }}</span>
         </button>
     </div>
 </div>

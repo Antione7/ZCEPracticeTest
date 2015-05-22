@@ -48,7 +48,7 @@ zcpe.service('evaluator', function () {
         return {
             nbTopics: nbTopics,
             nbTopicsValidated: nbTopicsValidated,
-            success: (goodAnswers / nbQuestions) >= 0.7,
+            status: (goodAnswers / nbQuestions) >= 0.7 ? 1 : 0,
             topics: goodAnswersTopics
         };
     };
